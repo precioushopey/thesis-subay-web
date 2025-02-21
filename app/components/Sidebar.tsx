@@ -1,5 +1,5 @@
 "use client";
-import { JSX, useState } from "react";
+import { JSX, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -31,11 +31,20 @@ const SidebarItem = ({ href, icon, label, isCollapsed }: SidebarItemProps) => {
 };
 
 const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsCollapsed(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div
-      className={`h-screen bg-[#0B1739] text-[#AEB9E1] drop-shadow-2xl font-[family-name:var(--font-prompt)] transition-all ${
+      className={`h-screen bg-[#0B1739] text-[#AEB9E1] drop-shadow-2xl font-[family-name:var(--font-prompt)] selection:bg-[#7F25FB] selection:text-white transition-all ${
         isCollapsed ? "w-16" : "w-64"
       }`}
     >
@@ -53,7 +62,7 @@ const Sidebar = () => {
         )}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="items-end"
+          className="transform transition duration-500 hover:scale-110 hover:text-white items-end"
         >
           <MdMenu size={20} />
         </button>

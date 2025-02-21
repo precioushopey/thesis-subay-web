@@ -3,6 +3,7 @@ import { Prompt } from "next/font/google";
 import "./globals.css";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
+import Clock from "./components/Clock";
 
 const prompt = Prompt({
   variable: "--font-prompt",
@@ -26,7 +27,10 @@ export default function RootLayout({
         <div className="flex flex-row">
           <Sidebar />
           <div className="w-full flex flex-col">
-            <Topbar />
+            <div className="flex flex-row justify-between">
+              <Topbar />
+              <Clock />
+            </div>
             {children}
           </div>
         </div>
