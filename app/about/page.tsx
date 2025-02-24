@@ -5,11 +5,11 @@ import { AiFillInstagram } from "react-icons/ai";
 
 const AboutPage = () => {
   return (
-    <div className="w-full h-full flex flex-col md:flex-row gap-4 p-4 -mt-4 font-[family-name:var(--font-prompt)] selection:bg-[#7F25FB] selection:text-white">
+    <div className="w-full h-full flex flex-col sm:flex-row gap-4 p-4 -mt-4 font-[family-name:var(--font-prompt)] selection:bg-[#7F25FB] selection:text-white">
       {/* LEFT */}
-      <div className="w-full 2xl:w-1/2 h-auto flex flex-col gap-4">
+      <div className="w-full lg:w-1/2 h-auto flex flex-col gap-4">
         {/* ABOUT US */}
-        <div className=" md:h-2/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md p-4">
+        <div className=" sm:h-2/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md p-4">
           <h1 className="font-semibold text-base pb-2">The Team</h1>
           <div className="w-full relative mx-auto h-auto overflow-hidden rounded-lg ">
             <Image
@@ -23,7 +23,7 @@ const AboutPage = () => {
           </div>
         </div>
         {/* SUBAY */}
-        <div className="md:h-1/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md p-4">
+        <div className="sm:h-1/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md p-4">
           <h1 className="font-semibold text-base pb-2">Abstract</h1>
           <p className="text-xs text-[#AEB9E1] text-wrap">
             Retail environments benefit greatly from advanced customer
@@ -38,7 +38,7 @@ const AboutPage = () => {
         </div>
       </div>
       {/* RIGHT */}
-      <div className="w-full 2xl:w-1/2 h-auto flex flex-col gap-4">
+      <div className="w-full lg:w-1/2 h-auto flex flex-col gap-4">
         {/* THE TEAM */}
         <div className="w-full h-auto sm:h-2/3 flex flex-col gap-4">
           {/* Xyrus and Precious */}
@@ -309,7 +309,7 @@ const AboutPage = () => {
           </div>
         </div>
         {/* Files */}
-        <div className="md:h-1/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md text-[#AEB9E1] p-4 overflow-x-auto">
+        <div className="sm:h-1/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md text-[#AEB9E1] p-4 overflow-x-auto">
           <h1 className="font-semibold text-white text-base pb-2">Files</h1>
           <div className="w-full h-full flex flex-row gap-4">
             <a

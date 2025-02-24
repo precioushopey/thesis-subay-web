@@ -32,7 +32,11 @@ const AnalyticsLineChart = () => {
         />
         <YAxis tick={{ fill: "#AEB9E1" }} />
         <Tooltip
-          contentStyle={{ backgroundColor: "#081028", color: "#FFF" }}
+          contentStyle={{
+            backgroundColor: "#081028",
+            borderRadius: "5px",
+            color: "#FFF",
+          }}
           itemStyle={{ color: "#FFF" }}
           cursor={{ stroke: "#FFF", strokeWidth: 2 }}
         />
@@ -41,13 +45,23 @@ const AnalyticsLineChart = () => {
           type="monotone"
           dataKey="pv"
           stroke="#CB3CFF"
-          activeDot={{ r: 8, fill: "#CB3CFF", stroke: "#FFF", strokeWidth: 2 }}
+          activeDot={{
+            r: 8,
+            fill: "#CB3CFF",
+            stroke: "#FFF",
+            strokeWidth: 2,
+          }}
         />
         <Line
           type="monotone"
           dataKey="uv"
           stroke="#00C2FF"
-          activeDot={{ r: 8, fill: "#00C2FF", stroke: "#FFF", strokeWidth: 2 }}
+          activeDot={{
+            r: 8,
+            fill: "#00C2FF",
+            stroke: "#FFF",
+            strokeWidth: 2,
+          }}
         />
       </LineChart>
     </ResponsiveContainer>

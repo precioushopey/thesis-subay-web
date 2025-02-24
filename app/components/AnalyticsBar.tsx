@@ -29,7 +29,11 @@ const AnalyticsBarChart = () => {
         <XAxis dataKey="name" tick={{ fill: "#AEB9E1" }} />
         <YAxis tick={{ fill: "#AEB9E1" }} />
         <Tooltip
-          contentStyle={{ backgroundColor: "#081028", color: "#FFF" }}
+          contentStyle={{
+            backgroundColor: "#081028",
+            borderRadius: "5px",
+            color: "#FFF",
+          }}
           itemStyle={{ color: "#FFF" }}
           cursor={{ fill: "rgba(255, 255, 255, 0.2)" }}
         />

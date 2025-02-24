@@ -1,5 +1,5 @@
 "use client";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 const data = [
   { name: "Group A", value: 400 },
@@ -16,6 +16,15 @@ const AnalyticsPieChart = () => {
   return (
     <ResponsiveContainer>
       <PieChart width={400} height={400}>
+        <Tooltip
+          contentStyle={{
+            backgroundColor: "#081028",
+            borderRadius: "5px",
+            color: "#FFF",
+          }}
+          itemStyle={{ color: "#FFF" }}
+          cursor={{ fill: "rgba(255, 255, 255, 0.2)" }}
+        />
         <Pie
           dataKey="value"
           startAngle={180}
