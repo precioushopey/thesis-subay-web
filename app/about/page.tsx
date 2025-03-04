@@ -9,7 +9,7 @@ const AboutPage = () => {
       {/* LEFT */}
       <div className="w-full lg:w-1/2 h-auto flex flex-col gap-4">
         {/* ABOUT US */}
-        <div className=" sm:h-2/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md p-4">
+        <div className=" sm:h-2/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md p-4 hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer">
           <h1 className="font-semibold text-base pb-2">The Team</h1>
           <div className="w-full relative mx-auto h-auto overflow-hidden rounded-lg ">
             <Image
@@ -23,7 +23,7 @@ const AboutPage = () => {
           </div>
         </div>
         {/* SUBAY */}
-        <div className="sm:h-1/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md p-4">
+        <div className="sm:h-1/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md p-4 hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer">
           <h1 className="font-semibold text-base pb-2">Abstract</h1>
           <p className="text-xs text-[#AEB9E1] text-wrap">
             Retail environments benefit greatly from advanced customer
@@ -44,7 +44,7 @@ const AboutPage = () => {
           {/* Xyrus and Precious */}
           <div className="w-full h-auto sm:h-1/2 flex flex-col sm:flex-row gap-4 overflow-hidden">
             {/* Xyrus */}
-            <div className="relative h-auto w-full sm:w-1/2 flex flex-col sm:flex-row sm:justify-between bg-[#0B1739] rounded-md cursor-pointer overflow-hidden">
+            <div className="relative h-auto w-full sm:w-1/2 flex flex-col sm:flex-row sm:justify-between bg-[#0B1739] rounded-md overflow-hidden hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer">
               <a
                 href="#"
                 target="_blank"
@@ -109,7 +109,7 @@ const AboutPage = () => {
               </div>
             </div>
             {/* Precious */}
-            <div className="relative h-auto w-full sm:w-1/2 flex flex-col-reverse sm:flex-row sm:justify-between bg-[#0B1739] rounded-md cursor-pointer">
+            <div className="relative h-auto w-full sm:w-1/2 flex flex-col-reverse sm:flex-row sm:justify-between bg-[#0B1739] rounded-md hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer">
               <a
                 href="https://drive.google.com/file/d/1Ht0vyHKKtTYDkNvNKNMpTn9Ppy886jza/view?usp=sharing"
                 target="_blank"
@@ -177,7 +177,7 @@ const AboutPage = () => {
           {/* Venz and Rezzelle */}
           <div className="w-full h-auto sm:h-1/2 flex flex-col sm:flex-row gap-4 overflow-hidden">
             {/* Rezzelle */}
-            <div className="relative h-auto w-full sm:w-1/2 flex flex-col sm:flex-row sm:justify-between bg-[#0B1739] rounded-md cursor-pointer overflow-hidden">
+            <div className="relative h-auto w-full sm:w-1/2 flex flex-col sm:flex-row sm:justify-between bg-[#0B1739] rounded-md overflow-hidden hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer">
               <a
                 href="#"
                 target="_blank"
@@ -242,7 +242,7 @@ const AboutPage = () => {
               </div>
             </div>
             {/* Venz */}
-            <div className="relative h-auto w-full sm:w-1/2 flex flex-col-reverse sm:flex-row sm:justify-between bg-[#0B1739] rounded-md cursor-pointer">
+            <div className="relative h-auto w-full sm:w-1/2 flex flex-col-reverse sm:flex-row sm:justify-between bg-[#0B1739] rounded-md hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer">
               <a
                 href="#"
                 target="_blank"
@@ -309,7 +309,7 @@ const AboutPage = () => {
           </div>
         </div>
         {/* Files */}
-        <div className="sm:h-1/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md text-[#AEB9E1] p-4 overflow-x-auto">
+        <div className="sm:h-1/3 h-auto w-full flex flex-col bg-[#0B1739] rounded-md text-[#AEB9E1] p-4 overflow-x-auto hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer">
           <h1 className="font-semibold text-white text-base pb-2">Files</h1>
           <div className="w-full h-full flex flex-row gap-4">
             <a
