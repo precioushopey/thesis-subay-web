@@ -7,12 +7,17 @@ const HeatmapPage = () => {
       <div className="h-full w-full sm:w-4/5 flex flex-col bg-[#0B1739] rounded-md p-4 hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer">
         <h1 className="font-semibold text-base pb-2">Heatmap</h1>
         <div className="border border-[#AEB9E1] rounded-md">
-          <Image
-            src={"/heatmap_sample.png"}
-            alt={""}
-            width={1000}
-            height={1000}
-          />
+          <video
+            controls
+            preload="none"
+            autoPlay
+            loop
+            muted
+            className="w-full object-cover"
+          >
+            <source src="/camera_sample.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
       <div className="h-full w-full sm:w-1/5 flex flex-col bg-[#0B1739] rounded-md p-4 hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer">

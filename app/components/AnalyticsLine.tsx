@@ -1,4 +1,6 @@
 "use client";
+import { useRef } from "react";
+import html2canvas from "html2canvas";
 import ExportButton from "./ExportButton";
 import {
   LineChart,
@@ -12,32 +14,74 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "Page A", uv: 4000, pv: 2400, amt: 2400 },
-  { name: "Page B", uv: 3000, pv: 1398, amt: 2210 },
-  { name: "Page C", uv: 2000, pv: 9800, amt: 2290 },
-  { name: "Page D", uv: 2780, pv: 3908, amt: 2000 },
-  { name: "Page E", uv: 1890, pv: 4800, amt: 2181 },
-  { name: "Page F", uv: 2390, pv: 3800, amt: 2500 },
-  { name: "Page G", uv: 3490, pv: 4300, amt: 2100 },
+  { name: "8:00 AM", day_1: 4000, day_2: 2400, day_3: 2400 },
+  { name: "9:00 AM", day_1: 3000, day_2: 1398, day_3: 2210 },
+  { name: "10:00 AM", day_1: 2000, day_2: 9800, day_3: 2290 },
+  { name: "11:00 AM", day_1: 2780, day_2: 3908, day_3: 2000 },
+  { name: "12:00 AM", day_1: 1890, day_2: 4800, day_3: 2181 },
+  { name: "1:00 PM", day_1: 2390, day_2: 3800, day_3: 2500 },
+  { name: "2:00 PM", day_1: 4000, day_2: 2400, day_3: 2400 },
+  { name: "3:00 PM", day_1: 3000, day_2: 1398, day_3: 2210 },
+  { name: "4:00 PM", day_1: 2000, day_2: 9800, day_3: 2290 },
+  { name: "5:00 PM", day_1: 2780, day_2: 3908, day_3: 2000 },
 ];
 
 const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
-  const chartHeight = page === "dashboard" ? 175 : 350;
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  const chartHeight =
+    page === "dashboard" ? window.innerHeight / 3.7 : window.innerHeight / 2;
+
+  const exportCSV = () => {
+    const csvContent =
+      "data:text/csv;charset=utf-8," +
+      ["name,day_1,day_2,day_3"]
+        .concat(
+          data.map(
+            (row) => `${row.name},${row.day_1},${row.day_2},${row.day_3}`
+          )
+        )
+        .join("\n");
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "analytics_line_data.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const exportPNG = () => {
+    if (chartRef.current) {
+      html2canvas(chartRef.current).then((canvas) => {
+        const link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png");
+        link.download = "analytics_line_chart.png";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    }
+  };
 
   return (
     <div
+      ref={chartRef}
       className="rounded-md bg-[#0B1739] p-4 hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer"
       style={{ height: chartHeight }}
     >
       <div className="flex flex-row justify-between">
-        <h1 className="text-sm font-medium text-white">Analytics Line</h1>
-        <ExportButton />
+        <div>
+          <h1 className="text-sm font-medium text-white">Daily Foot Traffic</h1>
+        </div>
+        <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
       </div>
       <div className="text-[10px] h-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={data}
-            margin={{ top: 15, bottom: 15, left: -22, right: 5 }}
+            margin={{ top: 15, bottom: 20, left: -22, right: 5 }}
           >
             <CartesianGrid
               strokeDasharray="3 3"
@@ -67,7 +111,7 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
             <Legend wrapperStyle={{ color: "#AEB9E1" }} />
             <Line
               type="monotone"
-              dataKey="pv"
+              dataKey="day_1"
               stroke="#CB3CFF"
               activeDot={{
                 r: 8,
@@ -78,7 +122,18 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
             />
             <Line
               type="monotone"
-              dataKey="uv"
+              dataKey="day_2"
+              stroke="#0038FF"
+              activeDot={{
+                r: 8,
+                fill: "#0038FF",
+                stroke: "#FFF",
+                strokeWidth: 2,
+              }}
+            />
+            <Line
+              type="monotone"
+              dataKey="day_3"
               stroke="#00C2FF"
               activeDot={{
                 r: 8,
