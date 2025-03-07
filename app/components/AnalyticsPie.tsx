@@ -2,6 +2,8 @@
 import { useRef } from "react";
 import ExportButton from "./ExportButton";
 import html2canvas from "html2canvas";
+import Link from "next/link";
+import { MdArrowOutward } from "react-icons/md";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 const data = [
@@ -47,15 +49,26 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     }
   };
 
+  const chartIcon =
+    page === "dashboard" ? (
+      <Link href={"/analytics"}>
+        <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[#CB3CFF] transform transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[#7F25FB] selection:text-white">
+          <MdArrowOutward size={16} />
+        </button>
+      </Link>
+    ) : (
+      <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
+    );
+
   return (
     <div
       ref={chartRef}
-      className="rounded-md bg-[#0B1739] p-4 hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer"
+      className="relative rounded-md bg-[#0B1739] p-4"
       style={{ height: chartHeight }}
     >
       <div className="flex flex-row justify-between">
         <h1 className="text-sm font-medium text-white">Total Foot Traffic</h1>
-        <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
+        <span className="absolute top-4 right-4">{chartIcon}</span>
       </div>
       <div className="w-full h-full flex flex-col sm:flex-row justify-between text-[10px]">
         <div className="relative sm:w-2/3 h-full">
@@ -92,7 +105,7 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
               </Pie>
             </PieChart>
           </ResponsiveContainer>
-          <div className="absolute top-2/4 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center">
+          <div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center">
             <h1 className="text-[#AEB9E1] text-xs">Total</h1>
             <h1 className="font-semibold text-2xl">1234</h1>
           </div>
@@ -101,7 +114,7 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
           <h1 className="text-xs text-[#AEB9E1]">Peak Hours</h1>
           <ul
             role="list"
-            className="flex flex-row flex-wrap sm:flex-col justify-center sm:justify-start gap-x-4 sm:gap-0"
+            className="flex flex-row flex-wrap sm:flex-col justify-center sm:justify-start gap-4 sm:gap-0"
           >
             <li className="flex flex-row justify-between">
               <h1>10AM:</h1>

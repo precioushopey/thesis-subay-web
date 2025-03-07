@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="w-full h-full flex flex-col lg:flex-row gap-4 p-4 -mt-5 font-[family-name:var(--font-prompt)] selection:bg-[#7F25FB] selection:text-white">
       {/* LEFT */}
-      <div className="h-full w-full lg:w-2/3 flex flex-col gap-4 hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer">
+      <div className="h-full w-full lg:w-2/3 flex flex-col gap-4">
         {/* CAMERA FEED AND HEATMAP */}
         <div className="h-full w-full flex flex-col bg-[#0B1739] rounded-md p-4">
           <h1 className="font-semibold text-base pb-2">
@@ -68,13 +68,13 @@ export default function Home() {
       </div>
       {/* RIGHT */}
       <div className="h-full w-full lg:w-1/3 flex flex-col gap-4">
-        <div className="h-full w-full cursor-pointer ">
+        <div className="h-full w-full">
           <AnalyticsLineChart page="dashboard" />
         </div>
-        <div className="h-full w-full cursor-pointer">
+        <div className="h-full w-full rounded-md bg-[#0B1739] p-4">
           <AnalyticsBarChart page="dashboard" />
         </div>
-        <div className="h-full w-full hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer">
+        <div className="h-full w-full">
           <AnalyticsPieChart page="dashboard" />
         </div>
       </div>

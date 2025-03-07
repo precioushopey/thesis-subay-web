@@ -2,6 +2,8 @@
 import { useRef } from "react";
 import ExportButton from "./ExportButton";
 import html2canvas from "html2canvas";
+import Link from "next/link";
+import { MdArrowOutward } from "react-icons/md";
 import {
   BarChart,
   Bar,
@@ -15,21 +17,21 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "Shelf 1", visits: 4000, dwell_time: 2400 },
-  { name: "Shelf 2", visits: 3000, dwell_time: 1398 },
-  { name: "Shelf 3", visits: 2000, dwell_time: 9800 },
-  { name: "Shelf 4", visits: 2780, dwell_time: 3908 },
-  { name: "Shelf 5", visits: 1890, dwell_time: 4800 },
-  { name: "Shelf 6", visits: 2390, dwell_time: 3800 },
-  { name: "Shelf 7", visits: 3490, dwell_time: 4300 },
-  { name: "Shelf 8", visits: 4000, dwell_time: 2400 },
+  { name: "Shelf A", visits: 400, dwell_time: 240 },
+  { name: "Shelf B", visits: 300, dwell_time: 139 },
+  { name: "Shelf C", visits: 200, dwell_time: 980 },
+  { name: "Shelf D", visits: 278, dwell_time: 390 },
+  { name: "Shelf E", visits: 189, dwell_time: 480 },
+  { name: "Shelf F", visits: 239, dwell_time: 380 },
+  { name: "Shelf G", visits: 349, dwell_time: 430 },
+  { name: "Shelf H", visits: 400, dwell_time: 240 },
 ];
 
 const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   const chartRef = useRef<HTMLDivElement>(null);
 
   const chartHeight =
-    page === "dashboard" ? window.innerHeight / 3.7 : window.innerHeight / 2;
+    page === "dashboard" ? window.innerHeight / 4.5 : window.innerHeight / 2.5;
 
   const exportCSV = () => {
     const csvContent =
@@ -62,21 +64,28 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     }
   };
 
+  const chartIcon =
+    page === "dashboard" ? (
+      <Link href={"/analytics"}>
+        <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[#CB3CFF] transform transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[#7F25FB] selection:text-white">
+          <MdArrowOutward size={16} />
+        </button>
+      </Link>
+    ) : (
+      <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
+    );
+
   return (
-    <div
-      ref={chartRef}
-      className="rounded-md bg-[#0B1739] p-4 hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer"
-      style={{ height: chartHeight }}
-    >
+    <div ref={chartRef} style={{ height: chartHeight }} className="relative">
       <div className="flex flex-row justify-between">
         <h1 className="text-sm font-medium text-white">
           Shelf Visits vs. Dwell Time
         </h1>
-        <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
+        <span className="absolute top-0 right-0">{chartIcon}</span>
       </div>
-      <div className="text-[10px] h-full">
+      <div className="text-[10px] h-full -mt-2">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 15, bottom: 20, left: -22 }}>
+          <BarChart data={data} margin={{ left: -25 }}>
             <CartesianGrid
               strokeDasharray="3 3"
               vertical={false}
@@ -102,7 +111,16 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
               itemStyle={{ color: "#FFF" }}
               cursor={{ fill: "rgba(255, 255, 255, 0.2)" }}
             />
-            <Legend wrapperStyle={{ color: "#AEB9E1" }} />
+            <Legend
+              align="left"
+              verticalAlign="top"
+              wrapperStyle={{
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                paddingLeft: "25px",
+                color: "#AEB9E1",
+              }}
+            />
             <Bar
               dataKey="visits"
               fill="#CB3CFF"

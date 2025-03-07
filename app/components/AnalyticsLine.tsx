@@ -1,7 +1,9 @@
 "use client";
 import { useRef } from "react";
-import html2canvas from "html2canvas";
 import ExportButton from "./ExportButton";
+import html2canvas from "html2canvas";
+import Link from "next/link";
+import { MdArrowOutward } from "react-icons/md";
 import {
   LineChart,
   Line,
@@ -14,16 +16,16 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "8:00 AM", day_1: 4000, day_2: 2400, day_3: 2400 },
-  { name: "9:00 AM", day_1: 3000, day_2: 1398, day_3: 2210 },
-  { name: "10:00 AM", day_1: 2000, day_2: 9800, day_3: 2290 },
-  { name: "11:00 AM", day_1: 2780, day_2: 3908, day_3: 2000 },
-  { name: "12:00 AM", day_1: 1890, day_2: 4800, day_3: 2181 },
-  { name: "1:00 PM", day_1: 2390, day_2: 3800, day_3: 2500 },
-  { name: "2:00 PM", day_1: 4000, day_2: 2400, day_3: 2400 },
-  { name: "3:00 PM", day_1: 3000, day_2: 1398, day_3: 2210 },
-  { name: "4:00 PM", day_1: 2000, day_2: 9800, day_3: 2290 },
-  { name: "5:00 PM", day_1: 2780, day_2: 3908, day_3: 2000 },
+  { name: "8:00 AM", day_1: 400, day_2: 240, day_3: 240 },
+  { name: "9:00 AM", day_1: 300, day_2: 139, day_3: 221 },
+  { name: "10:00 AM", day_1: 200, day_2: 980, day_3: 229 },
+  { name: "11:00 AM", day_1: 278, day_2: 390, day_3: 200 },
+  { name: "12:00 AM", day_1: 189, day_2: 480, day_3: 218 },
+  { name: "1:00 PM", day_1: 239, day_2: 380, day_3: 250 },
+  { name: "2:00 PM", day_1: 400, day_2: 240, day_3: 240 },
+  { name: "3:00 PM", day_1: 300, day_2: 139, day_3: 221 },
+  { name: "4:00 PM", day_1: 200, day_2: 980, day_3: 229 },
+  { name: "5:00 PM", day_1: 278, day_2: 390, day_3: 200 },
 ];
 
 const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
@@ -65,24 +67,32 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     }
   };
 
+  const chartIcon =
+    page === "dashboard" ? (
+      <Link href={"/analytics"}>
+        <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[#CB3CFF] transform transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[#7F25FB] selection:text-white">
+          <MdArrowOutward size={16} />
+        </button>
+      </Link>
+    ) : (
+      <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
+    );
+
   return (
     <div
       ref={chartRef}
-      className="rounded-md bg-[#0B1739] p-4 hover:rounded-md hover:border hover:border-[#AEB9E1] cursor-pointer"
+      className="relative rounded-md bg-[#0B1739] p-4"
       style={{ height: chartHeight }}
     >
       <div className="flex flex-row justify-between">
         <div>
           <h1 className="text-sm font-medium text-white">Daily Foot Traffic</h1>
         </div>
-        <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
+        <span className="absolute top-4 right-4">{chartIcon}</span>
       </div>
-      <div className="text-[10px] h-full">
+      <div className="text-[10px] h-full -mt-2">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart
-            data={data}
-            margin={{ top: 15, bottom: 20, left: -22, right: 5 }}
-          >
+          <LineChart data={data} margin={{ left: -25, right: 10 }}>
             <CartesianGrid
               strokeDasharray="3 3"
               vertical={false}
@@ -108,7 +118,16 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
               itemStyle={{ color: "#FFF" }}
               cursor={{ stroke: "#FFF", strokeWidth: 2 }}
             />
-            <Legend wrapperStyle={{ color: "#AEB9E1" }} />
+            <Legend
+              align="left"
+              verticalAlign="top"
+              wrapperStyle={{
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                paddingLeft: "25px",
+                color: "#AEB9E1",
+              }}
+            />
             <Line
               type="monotone"
               dataKey="day_1"
