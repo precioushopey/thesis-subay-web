@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import ExportButton from "./ExportButton";
+import ExpandButton from "./ExpandButton";
 import html2canvas from "html2canvas";
 import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
@@ -57,7 +58,10 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
         </button>
       </Link>
     ) : (
-      <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
+      <div className="flex flex-row gap-2">
+        <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
+        <ExpandButton label="Expand Pie Chart" chartType="pie" />
+      </div>
     );
 
   return (
