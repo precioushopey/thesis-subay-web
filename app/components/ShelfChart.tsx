@@ -12,10 +12,10 @@ import {
   Rectangle,
 } from "recharts";
 
-const ShelfA = ({ label, data }: { label: String; data: any }) => {
+const ShelfChart = ({ label, data }: { label: String; data: any }) => {
   return (
     <div className="w-full h-[6rem]">
-      <h1 className="text-xs text-[#AEB9E1]">{label}</h1>
+      <h1 className="text-xs text-[var(--gray)]">{label}</h1>
       <div className="text-[7px] h-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
@@ -81,4 +81,4 @@ const ShelfA = ({ label, data }: { label: String; data: any }) => {
   );
 };
 
-export default ShelfA;
+export default ShelfChart;

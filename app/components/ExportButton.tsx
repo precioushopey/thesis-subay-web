@@ -15,19 +15,19 @@ const ExportButton = ({
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex flex-row items-center justify-center rounded-md p-1 bg-[#CB3CFF] transform transition duration-500 hover:scale-110"
+        className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--pink)] transform transition duration-500 hover:scale-110"
       >
         <MdDownload size={16} />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-32 bg-[#081028] rounded-md shadow-lg z-10">
+        <div className="absolute right-0 mt-2 w-32 bg-[var(--background)] rounded-md shadow-lg z-10">
           <button
             onClick={() => {
               onExportCSV();
               setIsOpen(false);
             }}
-            className="block w-full text-left px-4 py-2 text-xs text-white hover:bg-[#CB3CFF] rounded-t-md"
+            className="block w-full text-left px-4 py-2 text-xs text-white hover:bg-[var(--pink)] rounded-t-md"
           >
             Export as CSV
           </button>
@@ -36,7 +36,7 @@ const ExportButton = ({
               onExportPNG();
               setIsOpen(false);
             }}
-            className="block w-full text-left px-4 py-2 text-xs text-white hover:bg-[#CB3CFF] rounded-b-md"
+            className="block w-full text-left px-4 py-2 text-xs text-white hover:bg-[var(--pink)] rounded-b-md"
           >
             Export as PNG
           </button>

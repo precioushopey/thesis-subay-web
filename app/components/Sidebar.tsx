@@ -22,7 +22,7 @@ const SidebarItem = ({ href, icon, label, isCollapsed }: SidebarItemProps) => {
   return (
     <Link
       href={href}
-      className="flex items-center gap-4 px-4 py-2 hover:bg-[#081028] hover:border-l-[10px] hover:border-l-[#CB3CFF] hover:text-white focus:bg-[#081028] focus:text-[#CB3CFF] transition-all ease-in-out duration-700"
+      className="flex items-center gap-4 px-4 py-2 hover:bg-[var(--background)] hover:border-l-[10px] hover:border-l-[var(--pink)] hover:text-white focus:bg-[var(--background)] focus:text-[var(--pink)] transition-all ease-in-out duration-700"
     >
       {icon}
       {!isCollapsed && <span className="text-sm font-medium">{label}</span>}
@@ -44,12 +44,11 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`h-screen bg-[#0B1739] text-[#AEB9E1] drop-shadow-2xl font-[family-name:var(--font-prompt)] selection:bg-[#7F25FB] selection:text-white transition-all ${
+      className={`h-screen bg-[var(--card)] text-[var(--gray)] drop-shadow-2xl font-[family-name:var(--font-prompt)] selection:bg-[var(--purple)] selection:text-white transition-all ${
         isCollapsed ? "w-16" : "w-64"
       }`}
     >
-      {/* Toggle Button */}
-      <div className="flex items-center justify-between p-4 border-b border-[#AEB9E1]">
+      <div className="flex items-center justify-between p-4 border-b border-[var(--gray)]">
         {!isCollapsed && (
           <div className="flex flex-row justify-center items-end gap-2">
             <Image

@@ -23,9 +23,9 @@ const Clock = () => {
   }, []);
 
   return (
-    <div className="w-full sm:w-1/2 flex flex-col items-end justify-end p-4 font-[family-name:var(--font-prompt)] selection:bg-[#7F25FB] selection:text-white">
+    <div className="w-full sm:w-1/2 flex flex-col items-end justify-end p-4 font-[family-name:var(--font-prompt)] selection:bg-[var(--purple)] selection:text-white">
       <h1 className="text-lg">{ctime}</h1>
-      <div className="flex flex-row gap-x-2 text-xs text-[#AEB9E1]">
+      <div className="flex flex-row gap-x-2 text-xs text-[var(--gray)]">
         <h1>{format(new Date(), "eeee")}, </h1>
         <h1>{format(new Date(), "MMM dd, yyyy")}</h1>
       </div>

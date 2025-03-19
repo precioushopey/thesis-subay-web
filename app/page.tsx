@@ -5,15 +5,15 @@ import AnalyticsPieChart from "./components/AnalyticsPie";
 
 export default function Home() {
   return (
-    <div className="w-full h-full flex flex-col lg:flex-row gap-4 p-4 -mt-5 font-[family-name:var(--font-prompt)] selection:bg-[#7F25FB] selection:text-white">
+    <div className="w-full h-full flex flex-col lg:flex-row gap-4 p-4 -mt-5 font-[family-name:var(--font-prompt)] selection:bg-[var(--purple)] selection:text-white">
       {/* LEFT */}
       <div className="h-full w-full lg:w-2/3 flex flex-col gap-4">
         {/* CAMERA FEED AND HEATMAP */}
-        <div className="h-full w-full flex flex-col bg-[#0B1739] rounded-md p-4">
+        <div className="h-full w-full flex flex-col bg-[var(--card)] rounded-md p-4">
           <h1 className="font-semibold text-base pb-2">
             Camera Feed and Heatmap
           </h1>
-          <div className="border border-[#AEB9E1] rounded-md">
+          <div className="border border-[var(--subtext)] rounded-md">
             <video
               controls
               preload="none"
@@ -26,7 +26,7 @@ export default function Home() {
               Your browser does not support the video tag.
             </video>
             <div className="flex flex-col sm:flex-row">
-              <div className="w-full object-cover border border-[#AEB9E1] rounded-bl-md">
+              <div className="w-full object-cover border border-[var(--subtext)] rounded-bl-md">
                 <Image
                   src={"/heatmap_sample.png"}
                   alt={""}
@@ -35,7 +35,7 @@ export default function Home() {
                   className="w-full object-cover"
                 />
               </div>
-              <div className="w-full object-cover border border-[#AEB9E1]">
+              <div className="w-full object-cover border border-[var(--subtext)]">
                 <Image
                   src={"/heatmap_sample.png"}
                   alt={""}
@@ -44,7 +44,7 @@ export default function Home() {
                   className="w-full object-cover"
                 />
               </div>
-              <div className="w-full object-cover border border-[#AEB9E1]">
+              <div className="w-full object-cover border border-[var(--subtext)]">
                 <Image
                   src={"/heatmap_sample.png"}
                   alt={""}
@@ -53,7 +53,7 @@ export default function Home() {
                   className="w-full object-cover"
                 />
               </div>
-              <div className="w-full object-cover border border-[#AEB9E1] rounded-br-md">
+              <div className="w-full object-cover border border-[var(--subtext)] rounded-br-md">
                 <Image
                   src={"/heatmap_sample.png"}
                   alt={""}
@@ -71,7 +71,7 @@ export default function Home() {
         <div className="h-full w-full">
           <AnalyticsLineChart page="dashboard" />
         </div>
-        <div className="h-full w-full rounded-md bg-[#0B1739] p-4">
+        <div className="h-full w-full">
           <AnalyticsBarChart page="dashboard" />
         </div>
         <div className="h-full w-full">
