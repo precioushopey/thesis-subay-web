@@ -10,7 +10,7 @@ import { pieChartData } from "@/app/lib/pieChartData";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
-  const COLORS = ["#CB3CFF", "#0038FF", "#00C2FF"];
+  const COLORS = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
   const chartRef = useRef<HTMLDivElement>(null);
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
@@ -64,7 +64,7 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     ) : (
       <div className="mb-8">
         <h1 className="text-sm font-medium text-white">Total Foot Traffic</h1>
-        <div className="absolute top-3 right-3 flex flex-col items-end gap-y-2">
+        <div className="absolute top-3 right-4 flex flex-col items-end gap-y-2">
           <DatePicker onRangeChange={setDateRange} />
           <div className="flex flex-row items-center gap-x-2">
             <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
@@ -87,10 +87,6 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       setFilteredData(pieChartData);
     }
   }, [dateRange]);
-
-  const uniqueDates = Array.from(
-    new Set(filteredData.map((entry) => entry.date))
-  );
 
   const visibleData = filteredData.filter(
     (entry) => !hiddenDates.includes(entry.date)

@@ -8,6 +8,7 @@ import ExpandButton from "./ExpandButton";
 import ShelfChart from "./ShelfChart";
 import { barChartData, shelf } from "@/app/lib/barChartData";
 import { MdArrowOutward, MdCircle } from "react-icons/md";
+import { isWithinInterval, parseISO, startOfDay, endOfDay } from "date-fns";
 import {
   BarChart,
   Bar,
@@ -19,23 +20,10 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { isWithinInterval, parseISO } from "date-fns";
 
 const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   const chartRef = useRef<HTMLDivElement>(null);
-
   const [dateRange, setDateRange] = useState<[Date, Date] | null>(null);
-
-  const chartHeight =
-    page === "dashboard" ? window.innerHeight / 3.7 : window.innerHeight / 2.2;
-
-  const filteredShelfData = useMemo(() => {
-    if (!dateRange) return shelf;
-    return shelf.filter((d) => {
-      const date = parseISO(d.date);
-      return isWithinInterval(date, { start: dateRange[0], end: dateRange[1] });
-    });
-  }, [dateRange]);
 
   const exportCSV = () => {
     const header = ["Shelf", "Visits", "Dwell Time"];
@@ -70,13 +58,24 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     }
   };
 
+  const filteredShelfData = useMemo(() => {
+    if (!dateRange) return shelf;
+    return shelf.filter((d) => {
+      const date = parseISO(d.date);
+      return isWithinInterval(date, {
+        start: startOfDay(dateRange[0]),
+        end: endOfDay(dateRange[1]),
+      });
+    });
+  }, [dateRange]);
+
   const chartContents =
     page === "dashboard" ? (
       // DASHBOARD VIEW
       <div
         ref={chartRef}
         className="relative rounded-md bg-[var(--card)] p-4"
-        style={{ height: chartHeight }}
+        style={{ height: window.innerHeight / 3.7 }}
       >
         <div className="flex flex-row justify-between">
           <h1 className="text-sm font-medium text-white">
@@ -150,8 +149,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       // ANALYTICS PAGE VIEW
       <div
         ref={chartRef}
-        className="relative rounded-md bg-[var(--card)] py-4"
-        style={{ height: chartHeight }}
+        className="relative h-full rounded-md bg-[var(--card)] py-4"
       >
         <div className="flex flex-row justify-between px-4">
           <h1 className="text-sm font-medium text-white">
@@ -164,7 +162,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
           </div>
         </div>
         <div className="text-[10px] h-full -mt-2 px-4">
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height={250}>
             <BarChart data={barChartData} margin={{ left: -25 }}>
               <CartesianGrid
                 strokeDasharray="3 3"

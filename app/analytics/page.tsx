@@ -12,7 +12,7 @@ const AnalyticsPage = () => {
         <div className="w-full h-full flex flex-row gap-4">
           <div className="w-full lg:w-1/3 h-full flex flex-col gap-4">
             <div className="relative w-full h-full flex flex-col justify-center bg-[var(--card)] rounded-md p-4">
-              <div className="absolute top-4 left-4 flex flex-row items-center gap-2 text-[var(--gray)]">
+              <div className="absolute top-3 left-3 flex flex-row items-center gap-2 text-[var(--gray)]">
                 <MdFlag size={18} />
                 <h1 className="text-sm font-medium">Peak Day</h1>
               </div>
@@ -21,7 +21,7 @@ const AnalyticsPage = () => {
               </h1>
             </div>
             <div className="relative w-full h-full flex flex-col justify-center bg-[var(--card)] rounded-md p-4">
-              <div className="absolute top-4 left-4 flex flex-row items-center gap-2 text-[var(--gray)]">
+              <div className="absolute top-3 left-3 flex flex-row items-center gap-2 text-[var(--gray)]">
                 <MdFlag size={18} />
                 <h1 className="text-sm font-medium">Peak Hour</h1>
               </div>

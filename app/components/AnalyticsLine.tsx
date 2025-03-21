@@ -174,13 +174,13 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
               />
             )}
             {uniqueDates.map((date, index) => {
-              const colorList = ["#CB3CFF", "#0038FF", "#00C2FF"];
+              const colorList = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
               return (
                 <Line
                   key={date}
                   type="monotone"
                   dataKey={date}
-                  stroke={colorList[index % 3]}
+                  stroke={colorList[index % 4]}
                   dot={false}
                   hide={hiddenDates.includes(date)}
                 />
