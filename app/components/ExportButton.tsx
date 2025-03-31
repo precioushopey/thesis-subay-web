@@ -15,9 +15,12 @@ const ExportButton = ({
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--pink)] transform transition duration-500 hover:scale-110"
+        className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--brightaqua)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110"
       >
-        <MdDownload size={16} />
+        <MdDownload
+          size={16}
+          className="text-[var(--bluetext)] dark:text-[var(--white)]"
+        />
       </button>
 
       {isOpen && (
@@ -27,7 +30,7 @@ const ExportButton = ({
               onExportCSV();
               setIsOpen(false);
             }}
-            className="block w-full text-left px-4 py-2 text-xs text-white hover:bg-[var(--pink)] rounded-t-md"
+            className="block w-full text-left px-4 py-2 text-xs text-white hover:bg-[var(--softpink)] dark:hover:bg-[var(--brimagenta)] rounded-t-md"
           >
             Export as CSV
           </button>
@@ -36,7 +39,7 @@ const ExportButton = ({
               onExportPNG();
               setIsOpen(false);
             }}
-            className="block w-full text-left px-4 py-2 text-xs text-white hover:bg-[var(--pink)] rounded-b-md"
+            className="block w-full text-left px-4 py-2 text-xs text-white hover:bg-[var(--softpink)] dark:hover:bg-[var(--brimagenta)] rounded-b-md"
           >
             Export as PNG
           </button>

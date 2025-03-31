@@ -66,7 +66,7 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
         <div className="absolute top-3 right-4 flex flex-row items-center gap-2">
           <DatePicker onRangeChange={setDateRange} />
           <Link href={"/analytics"}>
-            <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--pink)] transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[var(--purple)] selection:text-white">
+            <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
               <MdArrowOutward size={16} />
             </button>
           </Link>
@@ -75,9 +75,11 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     ) : (
       <div>
         <div className="flex flex-row items-center gap-x-2">
-          <h1 className="text-sm font-medium text-white">Daily Foot Traffic</h1>
+          <h1 className="text-sm text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium">
+            Daily Foot Traffic
+          </h1>
           <button
-            className="items-center text-[var(--gray)] hover:text-white transition duration-500 hover:scale-110"
+            className="items-center text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-white transition duration-500 hover:scale-110"
             onClick={() => setShowLegend(!showLegend)}
           >
             <MdLegendToggle size={16} />
@@ -129,7 +131,7 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   return (
     <div
       ref={chartRef}
-      className="relative rounded-md bg-[var(--card)] p-4"
+      className="relative rounded-md bg-white dark:bg-[var(--navyblue)] p-4"
       style={{ height: chartHeight }}
     >
       <div>{chartToolbar}</div>

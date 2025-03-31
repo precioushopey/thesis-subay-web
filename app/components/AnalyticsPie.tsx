@@ -55,7 +55,7 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
         <div className="absolute top-3 right-4 flex flex-row items-center gap-2">
           <DatePicker onRangeChange={setDateRange} />
           <Link href={"/analytics"}>
-            <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--pink)] transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[var(--purple)] selection:text-white">
+            <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
               <MdArrowOutward size={16} />
             </button>
           </Link>
@@ -95,7 +95,7 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   return (
     <div
       ref={chartRef}
-      className="relative rounded-md bg-[var(--card)] p-4"
+      className="relative rounded-md bg-white dark:bg-[var(--navyblue)] p-4"
       style={{ height: chartHeight }}
     >
       <div>{chartToolbar}</div>
@@ -133,7 +133,9 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
             </PieChart>
           </ResponsiveContainer>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center mt-2">
-            <h1 className="text-[var(--gray)] text-xs">Total</h1>
+            <h1 className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-xs">
+              Total
+            </h1>
             <h1 className="font-semibold text-2xl">
               {filteredData.reduce((sum, entry) => sum + entry.value, 0)}
             </h1>

@@ -25,14 +25,14 @@ const ExpandButton = ({
     <>
       <button
         onClick={() => setOpen(true)}
-        className="flex flex-row items-center justify-center rounded-md bg-[var(--purple)] p-1 transform transition duration-500 hover:scale-110"
+        className="flex flex-row items-center justify-center rounded-md bg-[var(--deepteal)] dark:bg-[var(--elecpurple)] p-1 transform transition duration-500 hover:scale-110"
       >
         <MdOpenInFull size={16} />
       </button>
 
       {open && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
-          <div className="relative bg-[var(--card)] rounded-md p-4 w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[50%]">
+          <div className="relative bg-[var(--navyblue)] dark:bg-white rounded-md p-4 w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[50%]">
             <button
               onClick={onClose}
               className="absolute top-2 right-2 rounded-md transform transition duration-500 hover:scale-110 p-2"

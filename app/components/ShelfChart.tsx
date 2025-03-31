@@ -15,7 +15,9 @@ import {
 const ShelfChart = ({ label, data }: { label: String; data: any }) => {
   return (
     <div className="w-full h-[6rem]">
-      <h1 className="text-xs text-[var(--gray)]">{label}</h1>
+      <h1 className="text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)]">
+        {label}
+      </h1>
       <div className="text-[7px] h-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 5, left: -35 }}>

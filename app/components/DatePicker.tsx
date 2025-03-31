@@ -74,25 +74,27 @@ const DatePicker = ({
   }, [onRangeChange, onDateChange]);
 
   return (
-    <div className="relative text-xs text-[#AEB9E1]">
+    <div className="relative text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)]">
       <button
         onClick={togglePicker}
-        className="flex items-center gap-2 bg-[#081028] px-3 py-1.5 rounded-md hover:brightness-120 transition"
+        className="flex items-center gap-2 bg-[var(--offwhite)] dark:bg-[var(--darkbg)] px-3 py-1.5 rounded-md hover:brightness-120 transition"
       >
         <MdCalendarMonth size={14} />
-        <span className="hover:text-white">{displayLabel}</span>
+        <span className="hover:text-[var(--deepteal)] dark:hover:text-white">
+          {displayLabel}
+        </span>
         <MdExpandMore size={16} />
       </button>
 
       {showPicker && (
-        <div className="absolute top-8 right-0 z-10 flex flex-col sm:flex-row items-end gap-2 bg-[#081028] p-2 rounded-md shadow-lg">
+        <div className="absolute top-8 right-0 z-10 flex flex-col sm:flex-row items-end gap-2 bg-[var(--offwhite)] dark:bg-[var(--darkbg)] p-2 rounded-md shadow-lg">
           <div className="flex flex-col">
             <label className="mb-1">From</label>
             <input
               type="date"
               value={fromDate}
               onChange={(e) => setFromDate(e.target.value)}
-              className="appearance-none rounded-md bg-[#0B1739] hover:text-white p-1 cursor-pointer"
+              className="appearance-none rounded-md bg-white dark:bg-[var(--darkbg)] border-[var(--background)] hover:text-[var(--deepteal)] dark:hover:text-white p-1 cursor-pointer"
             />
           </div>
           <div className="flex flex-col">
@@ -101,7 +103,7 @@ const DatePicker = ({
               type="date"
               value={toDate}
               onChange={(e) => setToDate(e.target.value)}
-              className="appearance-none rounded-md bg-[#0B1739] hover:text-white p-1 cursor-pointer"
+              className="appearance-none rounded-md bg-white dark:bg-[var(--darkbg)] border-[var(--background)] hover:text-[var(--deepteal)] dark:hover:text-white p-1 cursor-pointer"
             />
           </div>
           <button
@@ -109,8 +111,8 @@ const DatePicker = ({
             disabled={!fromDate || !toDate}
             className={`transition px-3 py-1.5 rounded-md text-white ${
               fromDate && toDate
-                ? "bg-[#CB3CFF] hover:bg-[#a02cc5]"
-                : "bg-[#3a3f5c] cursor-not-allowed"
+                ? "bg-[var(--deepteal)] hover:bg-[var(--brightaqua)] dark:bg-[var(--brimagenta)] dark:hover:bg-[var(--elecpurple)]"
+                : "bg-gray-700 cursor-not-allowed"
             }`}
           >
             OK

@@ -74,16 +74,16 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       // DASHBOARD VIEW
       <div
         ref={chartRef}
-        className="relative rounded-md bg-[var(--card)] p-4"
+        className="relative rounded-md bg-white dark:bg-[var(--navyblue)] p-4"
         style={{ height: window.innerHeight / 3.7 }}
       >
         <div className="flex flex-row justify-between">
-          <h1 className="text-sm font-medium text-white">
+          <h1 className="text-sm text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium">
             Shelf Visits vs. Dwell Time
           </h1>
           <span className="absolute top-3 right-4">
             <Link href={"/analytics"}>
-              <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--pink)] transform transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[var(--purple)] selection:text-white">
+              <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
                 <MdArrowOutward size={16} />
               </button>
             </Link>
@@ -149,10 +149,10 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       // ANALYTICS PAGE VIEW
       <div
         ref={chartRef}
-        className="relative h-full rounded-md bg-[var(--card)] py-4"
+        className="relative h-full rounded-md bg-white dark:bg-[var(--navyblue)] py-4"
       >
         <div className="flex flex-row justify-between px-4">
-          <h1 className="text-sm font-medium text-white">
+          <h1 className="text-sm text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium">
             Shelf Visits vs. Dwell Time
           </h1>
           <div className="absolute top-3 right-4 flex flex-row items-center gap-2">
@@ -217,7 +217,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
           </ResponsiveContainer>
         </div>
         {/* Shelf Charts */}
-        <div className="w-full h-full flex flex-col rounded-b-md bg-[var(--card)] gap-4 px-4 pb-4">
+        <div className="w-full h-full flex flex-col rounded-b-md bg-white dark:bg-[var(--navyblue)] gap-4 px-4 pb-4">
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4">
             <ShelfChart label={"Shelf A"} data={filteredShelfData} />
             <ShelfChart label={"Shelf B"} data={filteredShelfData} />
@@ -229,13 +229,13 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
             <ShelfChart label={"Shelf F"} data={filteredShelfData} />
           </div>
           <ul className="flex flex-row items-center justify-center text-center gap-x-4">
-            <li className="flex flex-row items-center text-[var(--pink)] text-[10px] gap-x-1">
+            <li className="flex flex-row items-center text-[var(--softpurple)] dark:text-[var(--brimagenta)] text-[10px] gap-x-1">
               <MdCircle /> <h6>long</h6>
             </li>
-            <li className="flex flex-row items-center text-[var(--blue)] text-[10px] gap-x-1">
+            <li className="flex flex-row items-center text-[var(--softpink)] dark:text-[var(--royalblue)] text-[10px] gap-x-1">
               <MdCircle /> <h6>medium</h6>
             </li>
-            <li className="flex flex-row items-center text-[var(--teal)] text-[10px] gap-x-1">
+            <li className="flex flex-row items-center text-[var(--softblue)] dark:text-[var(--cyanblue)] text-[10px] gap-x-1">
               <MdCircle /> <h6>short</h6>
             </li>
           </ul>

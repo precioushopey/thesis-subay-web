@@ -2,13 +2,13 @@
 
 const Topbar = () => {
   return (
-    <div className="flex-row w-full hidden lg:block justify-between px-4 py-3 font-[family-name:var(--font-prompt)] selection:bg-[var(--purple)] selection:text-white">
-      <h1 className="font-bold text-white text-lg">
+    <div className="flex-row w-full hidden lg:block justify-between p-4 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-white text-[var(--bluetext)]">
+      <h1 className="font-bold dark:text-white text-lg">
         SUBAY: A Multi-Camera Detection System for Customer Tracking
       </h1>
-      <h3 className="font-medium text-[var(--gray)] text-xs">
+      <h1 className="font-semibold dark:font-medium dark:text-[var(--periwinkle)] text-xs">
         An Undergraduate Thesis by Dominguez, Jumuad, Nolasco, and Onahon
-      </h3>
+      </h1>
     </div>
   );
 };

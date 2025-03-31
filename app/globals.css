@@ -4,17 +4,48 @@
 
 :root {
   --background: #081028;
-  --foreground: #fff;
-  --card: #0B1739;
-  --gray: #AEB9E1;
-  --pink: #CB3CFF;
-  --purple: #7F25FB;
-  --blue: #0038FF;
-  --teal: #00C2FF;
+  --foreground: #F2F2F2;
+
+  --darkbg: #081028;
+
+  --deepteal: #0B698B;
+  --brightaqua: #0396A6;
+  --softcyan: #9CD3D8;
+  --offwhite: #F2F2F2;
+  --softpurple: #8979FF;
+  --softpink: #FF928A;
+  --softblue: #3CC3DF;
+  --warmorange: #FFAE4C;
+  --vividblue: #537FF1;
+  --softgreen: #6FD195;
+  --bluetext: #044F6C;
+
+  --navyblue: #0B1739;
+  --periwinkle: #AEB9E1;
+  --elecpurple: #7F25FB;
+  --brimagenta: #CB3CFF;
+  --royalblue: #0038FF;
+  --cyanblue: #00C2FF;
+
+}
+
+* {
+  @apply transition-all duration-200
+}
+
+.dark {
+  --background: #081028;
+  --foreground: #FFFFFF;
+}
+
+.light {
+  --background: #F2F2F2;
+  --foreground: #FFFFFF;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
