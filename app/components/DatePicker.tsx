@@ -13,15 +13,40 @@ const formatDateLabel = (dateStr: string) => {
 };
 
 const getDefaultDates = () => {
+  // Get min and max dates from your data (March 1-30, 2025 in your case)
+  const minDate = new Date("2025-03-01");
+  const minDateStr = minDate.toISOString().split("T")[0];
+  const maxDate = new Date("2025-03-30");
+  const maxDateStr = maxDate.toISOString().split("T")[0];
+
   const today = new Date();
   const inThreeDays = new Date();
   inThreeDays.setDate(today.getDate() + 3);
 
-  const format = (date: Date) => date.toISOString().split("T")[0];
+  // If today is beyond maxDate, set to last 4 days of available data
+  if (today > maxDate) {
+    const lastDay = new Date(maxDate);
+    const threeDaysBeforeLast = new Date(maxDate);
+    threeDaysBeforeLast.setDate(maxDate.getDate() - 3);
 
+    return {
+      from: threeDaysBeforeLast.toISOString().split("T")[0],
+      to: lastDay.toISOString().split("T")[0],
+    };
+  }
+
+  // If inThreeDays is beyond maxDate, adjust toDate to maxDate
+  if (inThreeDays > maxDate) {
+    return {
+      from: today > minDate ? today.toISOString().split("T")[0] : minDateStr,
+      to: maxDateStr,
+    };
+  }
+
+  // Normal case - today to 3 days from now
   return {
-    from: format(today),
-    to: format(inThreeDays),
+    from: today > minDate ? today.toISOString().split("T")[0] : minDateStr,
+    to: inThreeDays.toISOString().split("T")[0],
   };
 };
 
@@ -32,6 +57,10 @@ const DatePicker = ({
   onRangeChange?: (range: { from: string; to: string }) => void;
   onDateChange?: (range: [Date, Date]) => void;
 }) => {
+  // Define min and max dates from your data
+  const minDate = "2025-03-01";
+  const maxDate = "2025-03-30";
+
   const defaultDates = getDefaultDates();
 
   const [showPicker, setShowPicker] = useState(false);
@@ -93,8 +122,16 @@ const DatePicker = ({
             <input
               type="date"
               value={fromDate}
-              onChange={(e) => setFromDate(e.target.value)}
-              className="appearance-none rounded-md bg-white dark:bg-[var(--darkbg)] border-[var(--background)] hover:text-[var(--deepteal)] dark:hover:text-white p-1 cursor-pointer"
+              min={minDate}
+              max={maxDate}
+              onChange={(e) => {
+                const newFrom = e.target.value;
+                if (newFrom > toDate) {
+                  setToDate(newFrom);
+                }
+                setFromDate(newFrom);
+              }}
+              className="appearance-none rounded-md bg-white dark:bg-[var(--navyblue)] border-[var(--background)] hover:text-[var(--deepteal)] dark:hover:text-white p-1 cursor-pointer"
             />
           </div>
           <div className="flex flex-col">
@@ -102,8 +139,10 @@ const DatePicker = ({
             <input
               type="date"
               value={toDate}
+              min={fromDate}
+              max={maxDate}
               onChange={(e) => setToDate(e.target.value)}
-              className="appearance-none rounded-md bg-white dark:bg-[var(--darkbg)] border-[var(--background)] hover:text-[var(--deepteal)] dark:hover:text-white p-1 cursor-pointer"
+              className="appearance-none rounded-md bg-white dark:bg-[var(--navyblue)] border-[var(--background)] hover:text-[var(--deepteal)] dark:hover:text-white p-1 cursor-pointer"
             />
           </div>
           <button
@@ -112,7 +151,7 @@ const DatePicker = ({
             className={`transition px-3 py-1.5 rounded-md text-white ${
               fromDate && toDate
                 ? "bg-[var(--deepteal)] hover:bg-[var(--brightaqua)] dark:bg-[var(--brimagenta)] dark:hover:bg-[var(--elecpurple)]"
-                : "bg-gray-700 cursor-not-allowed"
+                : "bg-[var(--periwinkle)] cursor-not-allowed"
             }`}
           >
             OK

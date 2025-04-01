@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { MdEmail, MdFacebook, MdFileOpen } from "react-icons/md";
+import { MdEmail, MdFacebook, MdFileOpen, MdFolder } from "react-icons/md";
 import { AiFillInstagram } from "react-icons/ai";
 
 const AboutPage = () => {
@@ -9,9 +9,9 @@ const AboutPage = () => {
       {/* LEFT */}
       <div className="w-full lg:w-1/2 h-auto flex flex-col gap-4">
         {/* ABOUT US */}
-        <div className=" sm:h-2/3 h-auto w-full flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md p-4 cursor-pointer">
-          <h1 className="font-semibold text-base pb-2 gap-x-2">The Team</h1>
-          <div className="w-full relative mx-auto h-auto overflow-hidden rounded-lg ">
+        <div className="sm:h-2/3 h-auto w-full flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md p-4">
+          <h1 className="font-semibold text-base pb-2">The Team</h1>
+          <div className="w-full relative mx-auto h-auto overflow-hidden rounded-lg cursor-pointer border-2 border-[var(--brightaqua)] dark:border-[var(--brimagenta)]">
             <Image
               src={"/group.jpg"}
               alt={"Group Picture"}
@@ -25,7 +25,7 @@ const AboutPage = () => {
         {/* SUBAY */}
         <div className="sm:h-1/3 h-auto w-full flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md p-4 cursor-pointer">
           <h1 className="font-semibold text-base pb-2">Abstract</h1>
-          <p className="text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-wrap">
+          <p className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-xs text-wrap">
             Retail environments benefit greatly from advanced customer
             analytics, yet traditional single-camera tracking systems often fail
             to provide comprehensive insights due to occlusions and limited
@@ -48,7 +48,7 @@ const AboutPage = () => {
               <a
                 href="#"
                 target="_blank"
-                className="absolute top-2 right-2 sm:left-2 hover:text-[var(--softpurple)] dark:hover:text-[var(--elecpurple)]"
+                className="absolute top-2 right-2 sm:left-2 hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)]"
               >
                 <MdFileOpen />
               </a>
@@ -56,7 +56,7 @@ const AboutPage = () => {
                 <div className="h-1/4 text-sm text-right font-semibold mt-2">
                   Xyrus Vincent Dominguez
                 </div>
-                <div className="h-3/4 rounded-tr-full rounded-tl-full content-end bg-gradient-to-br from-[var(--softcyan)] via-[var(--brightaqua)] to-[var(--deepteal)] dark:from-[var(--brimagenta)] dark:via-[var(--brimagenta)] dark:to-[var(--elecpurple)]">
+                <div className="h-3/4 rounded-tr-full rounded-tl-full content-end bg-gradient-to-br from-[var(--softcyan)] via-[var(--brightaqua)] to-[var(--deepteal)] dark:from-[var(--brimagenta)] dark:via-[var(--purgenta)] dark:to-[var(--elecpurple)]">
                   <Image
                     src={"/xyrus.png"}
                     alt={"Xyrus Vincent L. Dominguez"}
@@ -80,7 +80,7 @@ const AboutPage = () => {
                     <a
                       href="mailto:dominguez.xyrusvincent1@gmail.com"
                       target="_blank"
-                      className="hover:text-[var(--softpurple)] dark:hover:text-[var(--elecpurple)] flex flex-col"
+                      className="hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)] flex flex-col"
                     >
                       <p>xyrus@gmail.com</p>
                     </a>
@@ -90,7 +90,7 @@ const AboutPage = () => {
                     <a
                       href="https://www.facebook.com/XVLDM"
                       target="_blank"
-                      className="hover:text-[var(--softpurple)] dark:hover:text-[var(--elecpurple)]"
+                      className="hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)]"
                     >
                       Xyrus Dominguez
                     </a>
@@ -100,7 +100,7 @@ const AboutPage = () => {
                     <a
                       href="https://www.instagram.com/xyeuuuuusss/"
                       target="_blank"
-                      className="hover:text-[var(--softpurple)] dark:hover:text-[var(--elecpurple)]"
+                      className="hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)]"
                     >
                       @xyeuuuuusss
                     </a>
@@ -113,7 +113,7 @@ const AboutPage = () => {
               <a
                 href="https://drive.google.com/file/d/1Ht0vyHKKtTYDkNvNKNMpTn9Ppy886jza/view?usp=sharing"
                 target="_blank"
-                className="absolute top-2 right-2 hover:text-[var(--softpink)] dark:hover:text-[var(--brimagenta)]"
+                className="absolute top-2 right-2 hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)]"
               >
                 <MdFileOpen />
               </a>
@@ -130,7 +130,7 @@ const AboutPage = () => {
                     <a
                       href="mailto:jumuad.precious@gmail.com"
                       target="_blank"
-                      className="hover:text-[var(--softpink)] dark:hover:text-[var(--brimagenta)] flex flex-col"
+                      className="hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)] flex flex-col"
                     >
                       <p>precious@gmail.com</p>
                     </a>
@@ -140,7 +140,7 @@ const AboutPage = () => {
                     <a
                       href="https://www.facebook.com/precioushope.jumuad"
                       target="_blank"
-                      className="hover:text-[var(--softpink)] dark:hover:text-[var(--brimagenta)]"
+                      className="hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)]"
                     >
                       Precious Jumuad
                     </a>
@@ -150,7 +150,7 @@ const AboutPage = () => {
                     <a
                       href="https://www.instagram.com/yourprecioushope/"
                       target="_blank"
-                      className="hover:text-[var(--softpink)] dark:hover:text-[var(--brimagenta)]"
+                      className="hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)]"
                     >
                       @yourprecioushope
                     </a>
@@ -162,7 +162,7 @@ const AboutPage = () => {
                 <div className="h-1/4 text-sm text-left font-semibold mt-2">
                   Precious Hope Jumuad
                 </div>
-                <div className="h-3/4 rounded-tr-full rounded-tl-full content-end bg-gradient-to-bl from-[var(--deepteal)] via-[var(--brightaqua)] to-[var(--softcyan)] dark:from-[var(--elecpurple)] dark:via-[var(--brimagenta)] dark:to-[var(--brimagenta)]">
+                <div className="h-3/4 rounded-tr-full rounded-tl-full content-end bg-gradient-to-bl from-[var(--deepteal)] via-[var(--brightaqua)] to-[var(--softcyan)] dark:from-[var(--elecpurple)] dark:via-[var(--purgenta)] dark:to-[var(--brimagenta)]">
                   <Image
                     src={"/precious.png"}
                     alt={"Precious Hope T. Jumuad"}
@@ -181,7 +181,7 @@ const AboutPage = () => {
               <a
                 href="#"
                 target="_blank"
-                className="absolute top-2 right-2 sm:left-2 hover:text-[var(--softpink)] dark:hover:text-[var(--brimagenta)]"
+                className="absolute top-2 right-2 sm:left-2 hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)]"
               >
                 <MdFileOpen />
               </a>
@@ -189,7 +189,7 @@ const AboutPage = () => {
                 <div className="h-1/4 text-sm text-right font-semibold mt-2">
                   Rezzelle Tinoy Onahon
                 </div>
-                <div className="h-3/4 rounded-tr-full rounded-tl-full content-end bg-gradient-to-br from-[var(--deepteal)] via-[var(--brightaqua)] to-[var(--softcyan)] dark:from-[var(--elecpurple)] dark:via-[var(--brimagenta)] dark:to-[var(--brimagenta)]">
+                <div className="h-3/4 rounded-tr-full rounded-tl-full content-end bg-gradient-to-br from-[var(--deepteal)] via-[var(--brightaqua)] to-[var(--softcyan)] dark:from-[var(--elecpurple)] dark:via-[var(--purgenta)] dark:to-[var(--brimagenta)]">
                   <Image
                     src={"/rezzelle.png"}
                     alt={"Rezzelle T. Onahon"}
@@ -213,7 +213,7 @@ const AboutPage = () => {
                     <a
                       href="mailto:rezzelleonahon@gmail.com"
                       target="_blank"
-                      className="hover:text-[var(--softpink)] dark:hover:text-[var(--brimagenta)] flex flex-col"
+                      className="hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)] flex flex-col"
                     >
                       <p>rezzelle@gmail.com</p>
                     </a>
@@ -223,7 +223,7 @@ const AboutPage = () => {
                     <a
                       href="https://www.facebook.com/rezzelleliesh.onahon"
                       target="_blank"
-                      className="hover:text-[var(--softpink)] dark:hover:text-[var(--brimagenta)]"
+                      className="hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)]"
                     >
                       Rezzelle Onahon
                     </a>
@@ -233,7 +233,7 @@ const AboutPage = () => {
                     <a
                       href="https://www.instagram.com/_rrreezzelle/"
                       target="_blank"
-                      className="hover:text-[var(--softpink)] dark:hover:text-[var(--brimagenta)]"
+                      className="hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)]"
                     >
                       @_rrreezzelle
                     </a>
@@ -246,7 +246,7 @@ const AboutPage = () => {
               <a
                 href="#"
                 target="_blank"
-                className="absolute top-2 right-2 hover:text-[var(--softpurple)] dark:hover:text-[var(--elecpurple)]"
+                className="absolute top-2 right-2 hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)]"
               >
                 <MdFileOpen />
               </a>
@@ -263,7 +263,7 @@ const AboutPage = () => {
                     <a
                       href="mailto:vjnolasco0510@gmail.com"
                       target="_blank"
-                      className="hover:text-[var(--softpurple)] dark:hover:text-[var(--elecpurple)] flex flex-col"
+                      className="hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)] flex flex-col"
                     >
                       <p>venz@gmail.com</p>
                     </a>
@@ -273,7 +273,7 @@ const AboutPage = () => {
                     <a
                       href="https://www.facebook.com/vnzjshnlsc"
                       target="_blank"
-                      className="hover:text-[var(--softpurple)] dark:hover:text-[var(--elecpurple)]"
+                      className="hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)]"
                     >
                       Venz Nolasco
                     </a>
@@ -283,7 +283,7 @@ const AboutPage = () => {
                     <a
                       href="https://www.instagram.com/vnzjshnlsc/"
                       target="_blank"
-                      className="hover:text-[var(--softpurple)] dark:hover:text-[var(--elecpurple)]"
+                      className="hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)]"
                     >
                       @vnzjshnlsc
                     </a>
@@ -295,7 +295,7 @@ const AboutPage = () => {
                 <div className="h-1/4 text-sm text-left font-semibold mt-2">
                   Venz Joshua Nolasco
                 </div>
-                <div className="h-3/4 rounded-tr-full rounded-tl-full content-end bg-gradient-to-bl from-[var(--softcyan)] via-[var(--brightaqua)] to-[var(--deepteal)] dark:from-[var(--brimagenta)] dark:via-[var(--brimagenta)] dark:to-[var(--elecpurple)]">
+                <div className="h-3/4 rounded-tr-full rounded-tl-full content-end bg-gradient-to-bl from-[var(--softcyan)] via-[var(--brightaqua)] to-[var(--deepteal)] dark:from-[var(--brimagenta)] dark:via-[var(--purgenta)] dark:to-[var(--elecpurple)]">
                   <Image
                     src={"/venz.png"}
                     alt={"Venz Joshua Nolasco"}
@@ -319,11 +319,9 @@ const AboutPage = () => {
               target="_blank"
               className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
             >
-              <Image
-                src={"/folder.png"}
-                alt={"PDF File"}
-                width={100}
-                height={100}
+              <MdFolder
+                size={80}
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)]"
               />
               <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
                 Subay.pdf
@@ -334,14 +332,12 @@ const AboutPage = () => {
               target="_blank"
               className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
             >
-              <Image
-                src={"/folder.png"}
-                alt={"PDF File"}
-                width={100}
-                height={100}
+              <MdFolder
+                size={80}
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)]"
               />
               <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
-                Feed.mp4
+                Forms.docs
               </h1>
             </a>
             <a
@@ -349,11 +345,9 @@ const AboutPage = () => {
               target="_blank"
               className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
             >
-              <Image
-                src={"/folder.png"}
-                alt={"PDF File"}
-                width={100}
-                height={100}
+              <MdFolder
+                size={80}
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)]"
               />
               <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
                 Report.xlsx
@@ -364,14 +358,25 @@ const AboutPage = () => {
               target="_blank"
               className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
             >
-              <Image
-                src={"/folder.png"}
-                alt={"PDF File"}
-                width={100}
-                height={100}
+              <MdFolder
+                size={80}
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)]"
               />
               <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
-                Forms.docs
+                Feed.mp4
+              </h1>
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
+            >
+              <MdFolder
+                size={80}
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)]"
+              />
+              <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
+                Photos.jpg
               </h1>
             </a>
           </div>

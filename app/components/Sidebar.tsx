@@ -23,10 +23,12 @@ const SidebarItem = ({ href, icon, label, isCollapsed }: SidebarItemProps) => {
   return (
     <Link
       href={href}
-      className="flex items-center gap-4 px-4 py-2 hover:bg-[var(--background)] hover:border-l-[10px] hover:border-l-[var(--softcyan)] dark:hover:border-l-[var(--brimagenta)] hover:text-[var(--deepteal)] dark:hover:text-white focus:bg-[var(--background)] focus:text-[var(--softcyan)] dark:focus:text-[var(--brimagenta)] transition-all ease-in-out duration-700"
+      className="flex items-center gap-4 px-4 py-2 hover:bg-[var(--background)] hover:border-l-[10px] hover:border-l-[var(--brightaqua)] dark:hover:border-l-[var(--brimagenta)] hover:text-[var(--deepteal)] dark:hover:text-white focus:bg-[var(--background)] focus:text-[var(--brightaqua)] dark:focus:text-[var(--brimagenta)] transition-all ease-in-out duration-700"
     >
       {icon}
-      {!isCollapsed && <span className="text-sm font-medium">{label}</span>}
+      {!isCollapsed && (
+        <span className="font-semibold dark:font-medium text-sm">{label}</span>
+      )}
     </Link>
   );
 };
@@ -101,7 +103,7 @@ const Sidebar = () => {
           isCollapsed={isCollapsed}
         />
       </nav>
-      <div className="absolute bottom-4 right-2">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
         <ToggleThemeButton />
       </div>
     </div>

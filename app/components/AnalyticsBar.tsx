@@ -1,12 +1,13 @@
 "use client";
-import { useRef, useState, useMemo } from "react";
+import { useRef, useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import html2canvas from "html2canvas";
 import DatePicker from "./DatePicker";
 import ExportButton from "./ExportButton";
 import ExpandButton from "./ExpandButton";
 import ShelfChart from "./ShelfChart";
-import { barChartData, shelf } from "@/app/lib/barChartData";
+import { barChartData } from "@/app/lib/barChartData";
+import { shelfChartData } from "@/app/lib/shelfChartData";
 import { MdArrowOutward, MdCircle } from "react-icons/md";
 import { isWithinInterval, parseISO, startOfDay, endOfDay } from "date-fns";
 import {
@@ -21,28 +22,154 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+type AggregatedData = {
+  shelf: string;
+  visits: number;
+  dwell_time: number;
+};
+
 const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   const chartRef = useRef<HTMLDivElement>(null);
-  const [dateRange, setDateRange] = useState<[Date, Date] | null>(null);
+  const [dateRange, setDateRange] = useState({ from: "", to: "" });
+  const [filteredData, setFilteredData] = useState<AggregatedData[]>(() => {
+    const initialAggregatedData: Record<
+      string,
+      { visits: number; dwell_time: number }
+    > = {};
+
+    barChartData.forEach((item) => {
+      if (!initialAggregatedData[item.shelf]) {
+        initialAggregatedData[item.shelf] = { visits: 0, dwell_time: 0 };
+      }
+      initialAggregatedData[item.shelf].visits += item.visits;
+      initialAggregatedData[item.shelf].dwell_time += item.dwell_time;
+    });
+
+    return Object.entries(initialAggregatedData).map(([shelf, values]) => ({
+      shelf,
+      visits: values.visits,
+      dwell_time: values.dwell_time,
+    }));
+  });
+
+  const COLORS_LIGHT = [
+    "#8979FF",
+    "#FF928A",
+    "#3CC3DF",
+    "#FFAE4C",
+    "#537FF1",
+    "#6FD195",
+  ];
+  const COLORS_DARK = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
+
+  const [theme, setTheme] = useState<string>("dark");
+
+  useEffect(() => {
+    const getCurrentTheme = () =>
+      document.documentElement.classList.contains("dark") ? "dark" : "light";
+
+    setTheme(getCurrentTheme());
+
+    const observer = new MutationObserver(() => {
+      setTheme(getCurrentTheme());
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const filterAndAggregateData = (
+    from: string,
+    to: string
+  ): AggregatedData[] => {
+    const fromDate = new Date(from);
+    const toDate = new Date(to);
+
+    const filteredData = barChartData.filter((item) => {
+      const itemDate = new Date(item.date);
+      return itemDate >= fromDate && itemDate <= toDate;
+    });
+
+    const aggregatedData: Record<
+      string,
+      { visits: number; dwell_time: number }
+    > = {};
+
+    filteredData.forEach((item) => {
+      if (!aggregatedData[item.shelf]) {
+        aggregatedData[item.shelf] = { visits: 0, dwell_time: 0 };
+      }
+      aggregatedData[item.shelf].visits += item.visits;
+      aggregatedData[item.shelf].dwell_time += item.dwell_time;
+    });
+
+    return Object.entries(aggregatedData).map(([shelf, values]) => ({
+      shelf,
+      visits: values.visits,
+      dwell_time: values.dwell_time,
+    }));
+  };
+
+  useEffect(() => {
+    if (dateRange.from && dateRange.to) {
+      const newData = filterAndAggregateData(dateRange.from, dateRange.to);
+      setFilteredData(newData);
+    }
+  }, [dateRange]);
+
+  const filteredShelfData = useMemo(() => {
+    if (!dateRange) return shelfChartData;
+    return shelfChartData.filter((d) => {
+      const date = parseISO(d.date);
+      return isWithinInterval(date, {
+        start: startOfDay(dateRange.from),
+        end: endOfDay(dateRange.to),
+      });
+    });
+  }, [dateRange]);
 
   const exportCSV = () => {
-    const header = ["Shelf", "Visits", "Dwell Time"];
-    const csvContent =
+    const barChartHeader = ["Shelf", "Visits", "Dwell Time"];
+    const barChartContent =
       "data:text/csv;charset=utf-8," +
-      [header.join(",")]
+      [barChartHeader.join(",")]
         .concat(
-          barChartData.map(
+          filteredData.map(
             (row) => `${row.shelf},${row.visits},${row.dwell_time}`
           )
         )
         .join("\n");
 
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "analytics_bar_chart.csv");
-    document.body.appendChild(link);
-    link.click();
+    const shelfChartHeader = ["Date", "Long", "Medium", "Short"];
+    const shelfChartContent =
+      "data:text/csv;charset=utf-8," +
+      [shelfChartHeader.join(",")]
+        .concat(
+          filteredShelfData.map(
+            (row) => `${row.date},${row.long},${row.med},${row.short}`
+          )
+        )
+        .join("\n");
+
+    const barChartLink = document.createElement("a");
+    barChartLink.setAttribute("href", encodeURI(barChartContent));
+    barChartLink.setAttribute("download", "analytics_bar_chart.csv");
+    document.body.appendChild(barChartLink);
+    barChartLink.click();
+    document.body.removeChild(barChartLink);
+
+    setTimeout(() => {
+      const shelfChartLink = document.createElement("a");
+      shelfChartLink.setAttribute("href", encodeURI(shelfChartContent));
+      shelfChartLink.setAttribute("download", "analytics_shelf_chart.csv");
+      document.body.appendChild(shelfChartLink);
+      shelfChartLink.click();
+      document.body.removeChild(shelfChartLink);
+    }, 100);
   };
 
   const exportPNG = () => {
@@ -58,17 +185,6 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     }
   };
 
-  const filteredShelfData = useMemo(() => {
-    if (!dateRange) return shelf;
-    return shelf.filter((d) => {
-      const date = parseISO(d.date);
-      return isWithinInterval(date, {
-        start: startOfDay(dateRange[0]),
-        end: endOfDay(dateRange[1]),
-      });
-    });
-  }, [dateRange]);
-
   const chartContents =
     page === "dashboard" ? (
       // DASHBOARD VIEW
@@ -77,45 +193,51 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
         className="relative rounded-md bg-white dark:bg-[var(--navyblue)] p-4"
         style={{ height: window.innerHeight / 3.7 }}
       >
-        <div className="flex flex-row justify-between">
-          <h1 className="text-sm text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium">
+        <div className="flex flex-row items-center justify-between">
+          <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
             Shelf Visits vs. Dwell Time
           </h1>
-          <span className="absolute top-3 right-4">
-            <Link href={"/analytics"}>
-              <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
-                <MdArrowOutward size={16} />
-              </button>
-            </Link>
-          </span>
+          <Link
+            href={"/analytics"}
+            className="flex flex-row items-center gap-x-2"
+          >
+            <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110">
+              <MdArrowOutward size={16} className="text-white" />
+            </button>
+          </Link>
         </div>
         <div className="text-[10px] h-full -mt-2">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={barChartData} margin={{ left: -25 }}>
+            <BarChart data={filteredData} margin={{ left: -25 }}>
               <CartesianGrid
                 strokeDasharray="3 3"
                 vertical={false}
-                stroke="#AEB9E1"
+                stroke={theme === "dark" ? "#AEB9E1" : "#0B698B"}
               />
               <XAxis
                 dataKey="shelf"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "#AEB9E1" }}
+                tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "#AEB9E1" }}
+                tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#081028",
+                  backgroundColor: theme === "dark" ? "#081028" : "#F2F2F2",
                   borderRadius: "5px",
-                  color: "#FFF",
+                  color: theme === "dark" ? "#FFF" : "#044F6C",
                 }}
-                itemStyle={{ color: "#FFF" }}
-                cursor={{ fill: "rgba(255, 255, 255, 0.2)" }}
+                itemStyle={{ color: theme === "dark" ? "#FFF" : "#044F6C" }}
+                cursor={{
+                  fill:
+                    theme === "dark"
+                      ? "rgba(255, 255, 255, 0.2)"
+                      : "rgba(0, 0, 0, 0.1)",
+                }}
               />
               <Legend
                 align="left"
@@ -124,19 +246,19 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
                   paddingTop: "10px",
                   paddingBottom: "10px",
                   paddingLeft: "25px",
-                  color: "#AEB9E1",
+                  color: theme === "dark" ? "#AEB9E1" : "#0B698B",
                 }}
               />
               <Bar
                 dataKey="visits"
-                fill="#CB3CFF"
+                fill={theme === "dark" ? "#7F25FB" : "#8979FF"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#E74C3C" stroke="#FFF" />}
               />
               <Bar
                 dataKey="dwell_time"
-                fill="#00C2FF"
+                fill={theme === "dark" ? "#CB3CFF" : "#FF928A"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#F1C40F" stroke="#FFF" />}
@@ -151,43 +273,48 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
         ref={chartRef}
         className="relative h-full rounded-md bg-white dark:bg-[var(--navyblue)] py-4"
       >
-        <div className="flex flex-row justify-between px-4">
-          <h1 className="text-sm text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-y-2 px-4">
+          <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
             Shelf Visits vs. Dwell Time
           </h1>
-          <div className="absolute top-3 right-4 flex flex-row items-center gap-2">
-            <DatePicker onDateChange={setDateRange} />
+          <div className="flex flex-row items-center gap-x-2">
+            <DatePicker onRangeChange={setDateRange} />
             <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
             <ExpandButton label="Expand Bar Chart" chartType="bar" />
           </div>
         </div>
         <div className="text-[10px] h-full -mt-2 px-4">
           <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={barChartData} margin={{ left: -25 }}>
+            <BarChart data={filteredData} margin={{ left: -25 }}>
               <CartesianGrid
                 strokeDasharray="3 3"
                 vertical={false}
-                stroke="#AEB9E1"
+                stroke={theme === "dark" ? "#AEB9E1" : "#0B698B"}
               />
               <XAxis
                 dataKey="shelf"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "#AEB9E1" }}
+                tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "#AEB9E1" }}
+                tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#081028",
+                  backgroundColor: theme === "dark" ? "#081028" : "#F2F2F2",
                   borderRadius: "5px",
-                  color: "#FFF",
+                  color: theme === "dark" ? "#FFF" : "#044F6C",
                 }}
-                itemStyle={{ color: "#FFF" }}
-                cursor={{ fill: "rgba(255, 255, 255, 0.2)" }}
+                itemStyle={{ color: theme === "dark" ? "#FFF" : "#044F6C" }}
+                cursor={{
+                  fill:
+                    theme === "dark"
+                      ? "rgba(255, 255, 255, 0.2)"
+                      : "rgba(0, 0, 0, 0.1)",
+                }}
               />
               <Legend
                 align="left"
@@ -196,19 +323,19 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
                   paddingTop: "10px",
                   paddingBottom: "10px",
                   paddingLeft: "25px",
-                  color: "#AEB9E1",
+                  color: theme === "dark" ? "#AEB9E1" : "#0B698B",
                 }}
               />
               <Bar
                 dataKey="visits"
-                fill="#CB3CFF"
+                fill={theme === "dark" ? "#7F25FB" : "#8979FF"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#E74C3C" stroke="#FFF" />}
               />
               <Bar
                 dataKey="dwell_time"
-                fill="#00C2FF"
+                fill={theme === "dark" ? "#CB3CFF" : "#FF928A"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#F1C40F" stroke="#FFF" />}

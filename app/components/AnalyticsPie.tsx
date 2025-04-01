@@ -10,11 +10,42 @@ import { pieChartData } from "@/app/lib/pieChartData";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
-  const COLORS = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
   const chartRef = useRef<HTMLDivElement>(null);
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
   const [hiddenDates, setHiddenDates] = useState<string[]>([]);
+
+  const COLORS_LIGHT = [
+    "#8979FF",
+    "#FF928A",
+    "#3CC3DF",
+    "#FFAE4C",
+    "#537FF1",
+    "#6FD195",
+  ];
+  const COLORS_DARK = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
+
+  const [theme, setTheme] = useState<string>("dark");
+
+  useEffect(() => {
+    const getCurrentTheme = () =>
+      document.documentElement.classList.contains("dark") ? "dark" : "light";
+
+    setTheme(getCurrentTheme());
+
+    const observer = new MutationObserver(() => {
+      setTheme(getCurrentTheme());
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const colors = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
 
   const chartHeight =
     page === "dashboard" ? window.innerHeight / 3.7 : window.innerHeight / 3;
@@ -48,32 +79,6 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     }
   };
 
-  const chartToolbar =
-    page === "dashboard" ? (
-      <div className="flex flex-row justify-between">
-        <h1 className="text-sm font-medium text-white">Total Foot Traffic</h1>
-        <div className="absolute top-3 right-4 flex flex-row items-center gap-2">
-          <DatePicker onRangeChange={setDateRange} />
-          <Link href={"/analytics"}>
-            <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
-              <MdArrowOutward size={16} />
-            </button>
-          </Link>
-        </div>
-      </div>
-    ) : (
-      <div className="mb-8">
-        <h1 className="text-sm font-medium text-white">Total Foot Traffic</h1>
-        <div className="absolute top-3 right-4 flex flex-col items-end gap-y-2">
-          <DatePicker onRangeChange={setDateRange} />
-          <div className="flex flex-row items-center gap-x-2">
-            <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
-            <ExpandButton label="Expand Pie Chart" chartType="pie" />
-          </div>
-        </div>
-      </div>
-    );
-
   useEffect(() => {
     if (dateRange.from && dateRange.to) {
       const fromDate = new Date(dateRange.from);
@@ -92,25 +97,60 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     (entry) => !hiddenDates.includes(entry.date)
   );
 
+  const chartToolbar =
+    page === "dashboard" ? (
+      <div className="flex flex-row items-center justify-between">
+        <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
+          Total Foot Traffic
+        </h1>
+        <div className="flex flex-row items-center gap-x-2">
+          <DatePicker onRangeChange={setDateRange} />
+          <Link href={"/analytics"}>
+            <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transition duration-500 hover:scale-110">
+              <MdArrowOutward size={16} className="text-white" />
+            </button>
+          </Link>
+        </div>
+      </div>
+    ) : (
+      <div className="flex flex-row justify-between">
+        <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
+          Total Foot Traffic
+        </h1>
+        <div className="flex flex-row sm:flex-col gap-2">
+          <DatePicker onRangeChange={setDateRange} />
+          <div className="flex flex-col sm:flex-row items-end justify-end gap-2">
+            <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
+            <ExpandButton label="Expand Pie Chart" chartType="pie" />
+          </div>
+        </div>
+      </div>
+    );
+
   return (
     <div
       ref={chartRef}
-      className="relative rounded-md bg-white dark:bg-[var(--navyblue)] p-4"
+      className="rounded-md bg-white dark:bg-[var(--navyblue)] p-4"
       style={{ height: chartHeight }}
     >
       <div>{chartToolbar}</div>
       <div className="w-full h-full flex flex-col justify-between text-[10px]">
-        <div className="relative h-full">
+        <div className="relative">
           <ResponsiveContainer width="100%" height={120}>
             <PieChart>
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#081028",
+                  backgroundColor: theme === "dark" ? "#081028" : "#FFF",
                   borderRadius: "5px",
-                  color: "#FFF",
+                  color: theme === "dark" ? "#FFF" : "#000",
                 }}
-                itemStyle={{ color: "#FFF" }}
-                cursor={{ fill: "rgba(255, 255, 255, 0.2)" }}
+                itemStyle={{ color: theme === "dark" ? "#FFF" : "#000" }}
+                cursor={{
+                  fill:
+                    theme === "dark"
+                      ? "rgba(255, 255, 255, 0.2)"
+                      : "rgba(0, 0, 0, 0.1)",
+                }}
               />
               <Pie
                 dataKey="value"
@@ -119,21 +159,21 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
                 data={visibleData}
                 cx="50%"
                 cy="100%"
-                innerRadius={65}
+                innerRadius={60}
                 outerRadius={85}
                 label
               >
                 {visibleData.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
+                    fill={colors[index % colors.length]}
                   />
                 ))}
               </Pie>
             </PieChart>
           </ResponsiveContainer>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center mt-2">
-            <h1 className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-xs">
+          <div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center mt-2">
+            <h1 className="font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-xs">
               Total
             </h1>
             <h1 className="font-semibold text-2xl">

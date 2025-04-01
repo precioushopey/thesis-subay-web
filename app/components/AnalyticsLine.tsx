@@ -25,6 +25,38 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   const [hiddenDates, setHiddenDates] = useState<string[]>([]);
   const [showLegend, setShowLegend] = useState(false);
 
+  const COLORS_LIGHT = [
+    "#8979FF",
+    "#FF928A",
+    "#3CC3DF",
+    "#FFAE4C",
+    "#537FF1",
+    "#6FD195",
+  ];
+  const COLORS_DARK = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
+
+  const [theme, setTheme] = useState<string>("dark");
+
+  useEffect(() => {
+    const getCurrentTheme = () =>
+      document.documentElement.classList.contains("dark") ? "dark" : "light";
+
+    setTheme(getCurrentTheme());
+
+    const observer = new MutationObserver(() => {
+      setTheme(getCurrentTheme());
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const colors = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
+
   const chartHeight =
     page === "dashboard" ? window.innerHeight / 3.7 : window.innerHeight / 2;
 
@@ -58,40 +90,6 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       });
     }
   };
-
-  const chartToolbar =
-    page === "dashboard" ? (
-      <div className="flex flex-row justify-between">
-        <h1 className="text-sm font-medium text-white">Daily Foot Traffic</h1>
-        <div className="absolute top-3 right-4 flex flex-row items-center gap-2">
-          <DatePicker onRangeChange={setDateRange} />
-          <Link href={"/analytics"}>
-            <button className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transition duration-500 hover:scale-110 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
-              <MdArrowOutward size={16} />
-            </button>
-          </Link>
-        </div>
-      </div>
-    ) : (
-      <div>
-        <div className="flex flex-row items-center gap-x-2">
-          <h1 className="text-sm text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium">
-            Daily Foot Traffic
-          </h1>
-          <button
-            className="items-center text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-white transition duration-500 hover:scale-110"
-            onClick={() => setShowLegend(!showLegend)}
-          >
-            <MdLegendToggle size={16} />
-          </button>
-        </div>
-        <div className="absolute top-3 right-4 flex flex-row items-center gap-2">
-          <DatePicker onRangeChange={setDateRange} />
-          <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
-          <ExpandButton label="Expand Line Chart" chartType="line" />
-        </div>
-      </div>
-    );
 
   useEffect(() => {
     if (dateRange.from && dateRange.to) {
@@ -128,6 +126,42 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     );
   };
 
+  const chartToolbar =
+    page === "dashboard" ? (
+      <div className="flex flex-row items-center justify-between">
+        <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
+          Daily Foot Traffic
+        </h1>
+        <div className="flex flex-row items-center gap-x-2">
+          <DatePicker onRangeChange={setDateRange} />
+          <Link href={"/analytics"}>
+            <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transition duration-500 hover:scale-110">
+              <MdArrowOutward size={16} className="text-white" />
+            </button>
+          </Link>
+        </div>
+      </div>
+    ) : (
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-y-2">
+        <div className="flex flex-row gap-x-2">
+          <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
+            Daily Foot Traffic
+          </h1>
+          <button
+            className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] transition duration-500 hover:scale-110"
+            onClick={() => setShowLegend(!showLegend)}
+          >
+            <MdLegendToggle size={16} />
+          </button>
+        </div>
+        <div className="flex flex-row items-center gap-x-2">
+          <DatePicker onRangeChange={setDateRange} />
+          <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
+          <ExpandButton label="Expand Line Chart" chartType="line" />
+        </div>
+      </div>
+    );
+
   return (
     <div
       ref={chartRef}
@@ -135,33 +169,36 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       style={{ height: chartHeight }}
     >
       <div>{chartToolbar}</div>
-      <div className="text-[10px] h-full -mt-2">
+      <div className="text-[10px] w-full h-full -mt-3">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={finalChartData} margin={{ top: 25, left: -35 }}>
             <CartesianGrid
               strokeDasharray="3 3"
               vertical={false}
-              stroke="#AEB9E1"
+              stroke={theme === "dark" ? "#AEB9E1" : "#0B698B"}
             />
             <XAxis
               dataKey="hour"
               axisLine={false}
               tickLine={false}
-              tick={{ fill: "#AEB9E1" }}
+              tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}
             />
             <YAxis
               axisLine={false}
               tickLine={false}
-              tick={{ fill: "#AEB9E1" }}
+              tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: "#081028",
+                backgroundColor: theme === "dark" ? "#081028" : "#F2F2F2",
                 borderRadius: "5px",
-                color: "#FFF",
+                color: theme === "dark" ? "#FFF" : "#044F6C",
               }}
-              itemStyle={{ color: "#FFF" }}
-              cursor={{ stroke: "#FFF", strokeWidth: 2 }}
+              itemStyle={{ color: theme === "dark" ? "#FFF" : "#044F6C" }}
+              cursor={{
+                stroke: theme === "dark" ? "#FFF" : "#044F6C",
+                strokeWidth: 2,
+              }}
             />
             {showLegend && (
               <Legend
@@ -170,19 +207,18 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
                 wrapperStyle={{
                   paddingBottom: "10px",
                   paddingLeft: "50px",
-                  color: "#AEB9E1",
+                  color: theme === "dark" ? "#AEB9E1" : "#0B698B",
                 }}
                 onClick={handleLegendClick}
               />
             )}
             {uniqueDates.map((date, index) => {
-              const colorList = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
               return (
                 <Line
                   key={date}
                   type="monotone"
                   dataKey={date}
-                  stroke={colorList[index % 4]}
+                  stroke={colors[index % colors.length]}
                   dot={false}
                   hide={hiddenDates.includes(date)}
                 />
