@@ -14,6 +14,9 @@ const prompt = Prompt({
 export const metadata: Metadata = {
   title: "SUBAY",
   description: "An Undergraduate Thesis",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

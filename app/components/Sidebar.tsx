@@ -34,14 +34,16 @@ const SidebarItem = ({ href, icon, label, isCollapsed }: SidebarItemProps) => {
 };
 
 const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(window.innerWidth < 768);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsCollapsed(window.innerWidth < 768);
     };
 
+    handleResize(); // Run on mount
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 

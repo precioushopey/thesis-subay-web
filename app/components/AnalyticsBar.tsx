@@ -2,6 +2,7 @@
 import { useRef, useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import html2canvas from "html2canvas";
+import ChartHeight from "./ChartHeight";
 import DatePicker from "./DatePicker";
 import ExportButton from "./ExportButton";
 import ExpandButton from "./ExpandButton";
@@ -29,6 +30,7 @@ type AggregatedData = {
 };
 
 const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
+  const chartHeight = ChartHeight(page);
   const chartRef = useRef<HTMLDivElement>(null);
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
   const [filteredData, setFilteredData] = useState<AggregatedData[]>(() => {
@@ -61,7 +63,6 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     "#6FD195",
   ];
   const COLORS_DARK = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
-
   const [theme, setTheme] = useState<string>("dark");
 
   useEffect(() => {
@@ -191,7 +192,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       <div
         ref={chartRef}
         className="relative rounded-md bg-white dark:bg-[var(--navyblue)] p-4"
-        style={{ height: window.innerHeight / 3.7 }}
+        style={{ height: chartHeight }}
       >
         <div className="flex flex-row items-center justify-between">
           <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">

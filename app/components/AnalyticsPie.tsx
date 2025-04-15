@@ -14,6 +14,24 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
   const [hiddenDates, setHiddenDates] = useState<string[]>([]);
+  const [chartHeight, setChartHeight] = useState<number>(300);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      const height =
+        page === "dashboard"
+          ? window.innerHeight / 3.7
+          : window.innerHeight / 2.9;
+      setChartHeight(height);
+    };
+
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+
+    return () => {
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, [page]);
 
   const COLORS_LIGHT = [
     "#8979FF",
@@ -46,9 +64,6 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   }, []);
 
   const colors = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
-
-  const chartHeight =
-    page === "dashboard" ? window.innerHeight / 3.7 : window.innerHeight / 3;
 
   const exportCSV = () => {
     const header = ["Date", "Value"];

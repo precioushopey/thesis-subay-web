@@ -69,13 +69,13 @@ export default function Home() {
       {/* RIGHT */}
       <div className="h-full w-full lg:w-1/3 flex flex-col gap-4">
         <div className="h-1/3 w-full">
-          <AnalyticsLineChart page="dashboard" />
+          <AnalyticsPieChart page="dashboard" />
         </div>
         <div className="h-1/3 w-full">
           <AnalyticsBarChart page="dashboard" />
         </div>
         <div className="h-1/3 w-full">
-          <AnalyticsPieChart page="dashboard" />
+          <AnalyticsLineChart page="dashboard" />
         </div>
       </div>
     </div>

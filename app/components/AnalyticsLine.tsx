@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import html2canvas from "html2canvas";
+import ChartHeight from "./ChartHeight";
 import DatePicker from "./DatePicker";
 import ExportButton from "./ExportButton";
 import ExpandButton from "./ExpandButton";
@@ -19,6 +20,7 @@ import {
 } from "recharts";
 
 const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
+  const chartHeight = ChartHeight(page);
   const chartRef = useRef<HTMLDivElement>(null);
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
@@ -56,9 +58,6 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   }, []);
 
   const colors = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
-
-  const chartHeight =
-    page === "dashboard" ? window.innerHeight / 3.7 : window.innerHeight / 2;
 
   const exportCSV = () => {
     const header = ["Hour", "Date", "Value"];
