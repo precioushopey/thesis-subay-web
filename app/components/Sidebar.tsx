@@ -61,7 +61,7 @@ const Sidebar = () => {
               alt={"SUBAY Logo"}
               width={100}
               height={100}
-            ></Image>
+            />
           </div>
         )}
         <button
@@ -75,31 +75,31 @@ const Sidebar = () => {
       {/* Menu Items */}
       <nav className="mt-4">
         <SidebarItem
-          href="/"
+          href="../dashboard"
           icon={<MdHome size={20} />}
           label="Dashboard"
           isCollapsed={isCollapsed}
         />
         <SidebarItem
-          href="/camera-feed"
+          href="../dashboard/camera-feed"
           icon={<MdVideocam size={20} />}
           label="Camera Feed"
           isCollapsed={isCollapsed}
         />
         <SidebarItem
-          href="/heatmap"
+          href="../dashboard/heatmap"
           icon={<MdBubbleChart size={20} />}
           label="Heatmap"
           isCollapsed={isCollapsed}
         />
         <SidebarItem
-          href="/analytics"
+          href="../dashboard/analytics"
           icon={<MdAnalytics size={20} />}
           label="Analytics"
           isCollapsed={isCollapsed}
         />
         <SidebarItem
-          href="/about"
+          href="../dashboard/about"
           icon={<MdInfo size={20} />}
           label="About Us"
           isCollapsed={isCollapsed}
