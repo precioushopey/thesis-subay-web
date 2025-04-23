@@ -55,14 +55,17 @@ const Sidebar = () => {
     >
       <div className="flex items-center justify-between p-4 border-b border-[var(--bluetext)] dark:border-[var(--periwinkle)]">
         {!isCollapsed && (
-          <div className="flex flex-row justify-center items-end gap-2">
+          <a
+            href="../dashboard"
+            className="flex flex-row justify-center items-end gap-2"
+          >
             <Image
               src={"/subay.png"}
               alt={"SUBAY Logo"}
               width={100}
               height={100}
             />
-          </div>
+          </a>
         )}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
@@ -74,30 +77,45 @@ const Sidebar = () => {
 
       {/* Menu Items */}
       <nav className="mt-4">
+        {!isCollapsed && (
+          <h1 className="text-[var(--brightaqua)] dark:text-white font-semibold dark:font-medium text-sm pl-4 py-2">
+            Real-Time Analysis
+          </h1>
+        )}
         <SidebarItem
-          href="../dashboard"
-          icon={<MdHome size={20} />}
-          label="Dashboard"
-          isCollapsed={isCollapsed}
-        />
-        <SidebarItem
-          href="../dashboard/camera-feed"
+          href="../dashboard/live-analytics"
           icon={<MdVideocam size={20} />}
-          label="Camera Feed"
+          label="Live Analytics"
           isCollapsed={isCollapsed}
         />
         <SidebarItem
-          href="../dashboard/heatmap"
+          href="../dashboard/metrics"
           icon={<MdBubbleChart size={20} />}
-          label="Heatmap"
+          label="Metrics"
+          isCollapsed={isCollapsed}
+        />
+        {!isCollapsed && (
+          <h1 className="hidden lg:block text-[var(--brightaqua)] dark:text-white font-semibold dark:font-medium text-sm pl-4 py-2">
+            Post-Event Analysis
+          </h1>
+        )}
+        <SidebarItem
+          href="../dashboard/post-analytics"
+          icon={<MdHome size={20} />}
+          label="Post Analytics"
           isCollapsed={isCollapsed}
         />
         <SidebarItem
-          href="../dashboard/analytics"
+          href="../dashboard/insights"
           icon={<MdAnalytics size={20} />}
-          label="Analytics"
+          label="Insights"
           isCollapsed={isCollapsed}
         />
+        {!isCollapsed && (
+          <h1 className="hidden lg:block text-[var(--brightaqua)] dark:text-white font-semibold dark:font-medium text-sm pl-4 py-2">
+            Others
+          </h1>
+        )}
         <SidebarItem
           href="../dashboard/about"
           icon={<MdInfo size={20} />}

@@ -1,14 +1,8 @@
 "use client";
 import { useState } from "react";
-import { MdDownload } from "react-icons/md";
+import { MdDownload, MdInsights } from "react-icons/md";
 
-const ExportButton = ({
-  onExportCSV,
-  onExportPNG,
-}: {
-  onExportCSV: () => void;
-  onExportPNG: () => void;
-}) => {
+const ExportButton = ({ onExportPDF }: { onExportPDF: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -21,25 +15,20 @@ const ExportButton = ({
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-32 bg-[var(--background)] rounded-md shadow-lg z-10 text-[var(--bluetext)] dark:text-white">
+        <div className="absolute right-0 mt-2 w-40 flex flex-row items-center bg-[var(--background)] rounded-md hover:bg-[var(--softcyan)] dark:hover:bg-[var(--brimagenta)] shadow-lg z-10 text-[var(--bluetext)] dark:text-white cursor-pointer">
           <button
             onClick={() => {
-              onExportCSV();
+              console.log("Generated Insights!");
+              onExportPDF();
               setIsOpen(false);
             }}
-            className="block w-full text-left px-4 py-2 text-xs hover:bg-[var(--softcyan)] dark:hover:bg-[var(--brimagenta)] rounded-t-md"
+            className="block w-full rounded-md text-left pl-4 py-2 text-xs"
           >
-            Export as CSV
+            Generate Insights
           </button>
-          <button
-            onClick={() => {
-              onExportPNG();
-              setIsOpen(false);
-            }}
-            className="block w-full text-left px-4 py-2 text-xs hover:bg-[var(--softcyan)] dark:hover:bg-[var(--brimagenta)] rounded-b-md"
-          >
-            Export as PNG
-          </button>
+          <div className="rounded-md pr-4">
+            <MdInsights size={16} />
+          </div>
         </div>
       )}
     </div>

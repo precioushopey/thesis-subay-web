@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="w-full h-screen flex flex-row items-center justify-center gap-10 font-[family-name:var(--font-prompt)] selection:bg-[var(--elecpurple)] selection:text-white text-white">
-      <Image src="/favicon.png" alt="logo" width={200} height={200} />
+      <Image src="/favicon.png" alt="logo" width={220} height={220} />
       <div className="flex flex-col">
         <div className="flex flex-row gap-x-1.5">
           <h1 className="text-6xl font-bold italic">SUBAY</h1>

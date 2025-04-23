@@ -280,7 +280,6 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
           </h1>
           <div className="flex flex-row items-center gap-x-2">
             <DatePicker onRangeChange={setDateRange} />
-            <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
             <ExpandButton label="Expand Bar Chart" chartType="bar" />
           </div>
         </div>

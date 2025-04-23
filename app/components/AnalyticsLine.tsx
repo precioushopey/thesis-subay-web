@@ -1,13 +1,13 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import html2canvas from "html2canvas";
 import ChartHeight from "./ChartHeight";
 import DatePicker from "./DatePicker";
 import ExportButton from "./ExportButton";
 import ExpandButton from "./ExpandButton";
 import { lineChartData } from "@/app/lib/lineChartData";
 import { MdArrowOutward, MdLegendToggle } from "react-icons/md";
+import { exportPDFWithInsights } from "./utils/exportPDFWithInsights";
 import {
   LineChart,
   Line,
@@ -59,34 +59,15 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
 
   const colors = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
 
-  const exportCSV = () => {
-    const header = ["Hour", "Date", "Value"];
-    const csvContent =
-      "data:text/csv;charset=utf-8," +
-      [header.join(",")]
-        .concat(
-          filteredData.map((row) => `${row.hour},${row.date},${row.value}`)
-        )
-        .join("\n");
-
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "analytics_line_chart.csv");
-    document.body.appendChild(link);
-    link.click();
-  };
-
-  const exportPNG = () => {
+  const handleExportPDF = () => {
     if (chartRef.current) {
-      html2canvas(chartRef.current).then((canvas) => {
-        const link = document.createElement("a");
-        link.href = canvas.toDataURL("image/png");
-        link.download = "analytics_line_chart.png";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
+      exportPDFWithInsights(
+        chartRef.current,
+        filteredData,
+        "foot_traffic_report.pdf"
+      );
+    } else {
+      console.warn("Chart reference is not available");
     }
   };
 
@@ -155,7 +136,7 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
         </div>
         <div className="flex flex-row items-center gap-x-2">
           <DatePicker onRangeChange={setDateRange} />
-          <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
+          <ExportButton onExportPDF={handleExportPDF} />
           <ExpandButton label="Expand Line Chart" chartType="line" />
         </div>
       </div>
