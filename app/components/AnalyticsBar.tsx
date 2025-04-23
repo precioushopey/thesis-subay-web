@@ -6,11 +6,19 @@ import ChartHeight from "./ChartHeight";
 import DatePicker from "./DatePicker";
 import ExportButton from "./ExportButton";
 import ExpandButton from "./ExpandButton";
-import ShelfChart from "./ShelfChart";
+import ZoneChart from "./ZoneChart";
 import { barChartData } from "@/app/lib/barChartData";
-import { shelfChartData } from "@/app/lib/shelfChartData";
 import { MdArrowOutward, MdCircle } from "react-icons/md";
 import { isWithinInterval, parseISO, startOfDay, endOfDay } from "date-fns";
+import {
+  zoneAChartData,
+  zoneBChartData,
+  zoneCChartData,
+  zoneDChartData,
+  zoneEChartData,
+  zoneFChartData,
+  zoneGChartData,
+} from "@/app/lib/zoneChartData";
 import {
   BarChart,
   Bar,
@@ -24,7 +32,7 @@ import {
 } from "recharts";
 
 type AggregatedData = {
-  shelf: string;
+  zone: string;
   visits: number;
   dwell_time: number;
 };
@@ -40,15 +48,15 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     > = {};
 
     barChartData.forEach((item) => {
-      if (!initialAggregatedData[item.shelf]) {
-        initialAggregatedData[item.shelf] = { visits: 0, dwell_time: 0 };
+      if (!initialAggregatedData[item.zone]) {
+        initialAggregatedData[item.zone] = { visits: 0, dwell_time: 0 };
       }
-      initialAggregatedData[item.shelf].visits += item.visits;
-      initialAggregatedData[item.shelf].dwell_time += item.dwell_time;
+      initialAggregatedData[item.zone].visits += item.visits;
+      initialAggregatedData[item.zone].dwell_time += item.dwell_time;
     });
 
-    return Object.entries(initialAggregatedData).map(([shelf, values]) => ({
-      shelf,
+    return Object.entries(initialAggregatedData).map(([zone, values]) => ({
+      zone,
       visits: values.visits,
       dwell_time: values.dwell_time,
     }));
@@ -101,15 +109,15 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     > = {};
 
     filteredData.forEach((item) => {
-      if (!aggregatedData[item.shelf]) {
-        aggregatedData[item.shelf] = { visits: 0, dwell_time: 0 };
+      if (!aggregatedData[item.zone]) {
+        aggregatedData[item.zone] = { visits: 0, dwell_time: 0 };
       }
-      aggregatedData[item.shelf].visits += item.visits;
-      aggregatedData[item.shelf].dwell_time += item.dwell_time;
+      aggregatedData[item.zone].visits += item.visits;
+      aggregatedData[item.zone].dwell_time += item.dwell_time;
     });
 
-    return Object.entries(aggregatedData).map(([shelf, values]) => ({
-      shelf,
+    return Object.entries(aggregatedData).map(([zone, values]) => ({
+      zone,
       visits: values.visits,
       dwell_time: values.dwell_time,
     }));
@@ -122,69 +130,37 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     }
   }, [dateRange]);
 
-  const filteredShelfData = useMemo(() => {
-    if (!dateRange) return shelfChartData;
-    return shelfChartData.filter((d) => {
-      const date = parseISO(d.date);
-      return isWithinInterval(date, {
-        start: startOfDay(dateRange.from),
-        end: endOfDay(dateRange.to),
+  const zoneData = {
+    "Zone A": zoneAChartData,
+    "Zone B": zoneBChartData,
+    "Zone C": zoneCChartData,
+    "Zone D": zoneDChartData,
+    "Zone E": zoneEChartData,
+    "Zone F": zoneFChartData,
+    "Zone G": zoneGChartData,
+  };
+
+  const filteredZoneData = useMemo(() => {
+    if (!dateRange) return zoneData;
+
+    const start = startOfDay(dateRange.from);
+    const end = endOfDay(dateRange.to);
+
+    const filtered = {} as typeof zoneData;
+
+    Object.entries(zoneData).forEach(([zone, data]) => {
+      filtered[zone as keyof typeof zoneData] = data.filter((d) => {
+        const date = parseISO(d.date);
+        return isWithinInterval(date, { start, end });
       });
     });
+
+    return filtered;
   }, [dateRange]);
 
-  const exportCSV = () => {
-    const barChartHeader = ["Shelf", "Visits", "Dwell Time"];
-    const barChartContent =
-      "data:text/csv;charset=utf-8," +
-      [barChartHeader.join(",")]
-        .concat(
-          filteredData.map(
-            (row) => `${row.shelf},${row.visits},${row.dwell_time}`
-          )
-        )
-        .join("\n");
-
-    const shelfChartHeader = ["Date", "Long", "Medium", "Short"];
-    const shelfChartContent =
-      "data:text/csv;charset=utf-8," +
-      [shelfChartHeader.join(",")]
-        .concat(
-          filteredShelfData.map(
-            (row) => `${row.date},${row.long},${row.med},${row.short}`
-          )
-        )
-        .join("\n");
-
-    const barChartLink = document.createElement("a");
-    barChartLink.setAttribute("href", encodeURI(barChartContent));
-    barChartLink.setAttribute("download", "analytics_bar_chart.csv");
-    document.body.appendChild(barChartLink);
-    barChartLink.click();
-    document.body.removeChild(barChartLink);
-
-    setTimeout(() => {
-      const shelfChartLink = document.createElement("a");
-      shelfChartLink.setAttribute("href", encodeURI(shelfChartContent));
-      shelfChartLink.setAttribute("download", "analytics_shelf_chart.csv");
-      document.body.appendChild(shelfChartLink);
-      shelfChartLink.click();
-      document.body.removeChild(shelfChartLink);
-    }, 100);
-  };
-
-  const exportPNG = () => {
-    if (chartRef.current) {
-      html2canvas(chartRef.current).then((canvas) => {
-        const link = document.createElement("a");
-        link.href = canvas.toDataURL("image/png");
-        link.download = "analytics_bar_chart.png";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-    }
-  };
+  const zoneEntries = Object.entries(filteredZoneData);
+  const firstThree = zoneEntries.slice(0, 3);
+  const remaining = zoneEntries.slice(3);
 
   const chartContents =
     page === "dashboard" ? (
@@ -196,7 +172,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       >
         <div className="flex flex-row items-center justify-between">
           <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-            Shelf Visits vs. Dwell Time
+            Zone-Based Foot Traffic and Dwell Time
           </h1>
           <Link
             href={"/analytics"}
@@ -216,7 +192,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
                 stroke={theme === "dark" ? "#AEB9E1" : "#0B698B"}
               />
               <XAxis
-                dataKey="shelf"
+                dataKey="zone"
                 axisLine={false}
                 tickLine={false}
                 tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}
@@ -276,7 +252,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       >
         <div className="flex flex-col sm:flex-row items-center justify-between gap-y-2 px-4">
           <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-            Shelf Visits vs. Dwell Time
+            Zone-Based Foot Traffic and Dwell Time
           </h1>
           <div className="flex flex-row items-center gap-x-2">
             <DatePicker onRangeChange={setDateRange} />
@@ -292,7 +268,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
                 stroke={theme === "dark" ? "#AEB9E1" : "#0B698B"}
               />
               <XAxis
-                dataKey="shelf"
+                dataKey="zone"
                 axisLine={false}
                 tickLine={false}
                 tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}
@@ -343,29 +319,18 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        {/* Shelf Charts */}
+        {/* Zone Charts */}
         <div className="w-full h-full flex flex-col rounded-b-md bg-white dark:bg-[var(--navyblue)] gap-4 px-4 pb-4">
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4">
-            <ShelfChart label={"Shelf A"} data={filteredShelfData} />
-            <ShelfChart label={"Shelf B"} data={filteredShelfData} />
-            <ShelfChart label={"Shelf C"} data={filteredShelfData} />
+            {firstThree.map(([label, data]) => (
+              <ZoneChart key={label} label={label} data={data} />
+            ))}
           </div>
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4">
-            <ShelfChart label={"Shelf D"} data={filteredShelfData} />
-            <ShelfChart label={"Shelf E"} data={filteredShelfData} />
-            <ShelfChart label={"Shelf F"} data={filteredShelfData} />
+            {remaining.map(([label, data]) => (
+              <ZoneChart key={label} label={label} data={data} />
+            ))}
           </div>
-          <ul className="flex flex-row items-center justify-center text-center gap-x-4">
-            <li className="flex flex-row items-center text-[var(--softpurple)] dark:text-[var(--brimagenta)] text-[10px] gap-x-1">
-              <MdCircle /> <h6>long</h6>
-            </li>
-            <li className="flex flex-row items-center text-[var(--softpink)] dark:text-[var(--royalblue)] text-[10px] gap-x-1">
-              <MdCircle /> <h6>medium</h6>
-            </li>
-            <li className="flex flex-row items-center text-[var(--softblue)] dark:text-[var(--cyanblue)] text-[10px] gap-x-1">
-              <MdCircle /> <h6>short</h6>
-            </li>
-          </ul>
         </div>
       </div>
     );

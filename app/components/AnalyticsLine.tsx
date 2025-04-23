@@ -86,11 +86,11 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   }, [dateRange]);
 
   const finalChartData = Object.values(
-    filteredData.reduce((acc, { hour, date, value }) => {
-      if (!acc[hour]) acc[hour] = { hour };
-      acc[hour][date] = value;
+    filteredData.reduce((acc, { camera, date, value }) => {
+      if (!acc[camera]) acc[camera] = { camera };
+      acc[camera][date] = value;
       return acc;
-    }, {} as any)
+    }, {} as Record<string, any>)
   );
 
   const uniqueDates = Array.from(
@@ -110,7 +110,7 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     page === "dashboard" ? (
       <div className="flex flex-row items-center justify-between">
         <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-          Daily Foot Traffic
+          Camera Foot Traffic
         </h1>
         <div className="flex flex-row items-center gap-x-2">
           <DatePicker onRangeChange={setDateRange} />
@@ -125,7 +125,7 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-y-2">
         <div className="flex flex-row gap-x-2">
           <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-            Daily Foot Traffic
+            Per Camera Foot Traffic
           </h1>
           <button
             className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] transition duration-500 hover:scale-110"
@@ -158,7 +158,7 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
               stroke={theme === "dark" ? "#AEB9E1" : "#0B698B"}
             />
             <XAxis
-              dataKey="hour"
+              dataKey="camera"
               axisLine={false}
               tickLine={false}
               tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}
@@ -192,8 +192,8 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
                 onClick={handleLegendClick}
               />
             )}
-            {uniqueDates.map((date, index) => {
-              return (
+            {[...new Set(filteredData.map((entry) => entry.date))].map(
+              (date, index) => (
                 <Line
                   key={date}
                   type="monotone"
@@ -202,8 +202,8 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
                   dot={false}
                   hide={hiddenDates.includes(date)}
                 />
-              );
-            })}
+              )
+            )}
           </LineChart>
         </ResponsiveContainer>
       </div>

@@ -13,21 +13,19 @@ const formatDateLabel = (dateStr: string) => {
 };
 
 const getDefaultDates = () => {
-  // Get min and max dates from your data (March 1-30, 2025 in your case)
-  const minDate = new Date("2025-03-01");
+  const minDate = new Date("2025-04-07");
   const minDateStr = minDate.toISOString().split("T")[0];
-  const maxDate = new Date("2025-03-30");
+  const maxDate = new Date("2025-04-13");
   const maxDateStr = maxDate.toISOString().split("T")[0];
 
   const today = new Date();
   const inThreeDays = new Date();
-  inThreeDays.setDate(today.getDate() + 3);
+  inThreeDays.setDate(today.getDate() + 2);
 
-  // If today is beyond maxDate, set to last 4 days of available data
   if (today > maxDate) {
     const lastDay = new Date(maxDate);
     const threeDaysBeforeLast = new Date(maxDate);
-    threeDaysBeforeLast.setDate(maxDate.getDate() - 3);
+    threeDaysBeforeLast.setDate(maxDate.getDate() - 2);
 
     return {
       from: threeDaysBeforeLast.toISOString().split("T")[0],
@@ -35,7 +33,6 @@ const getDefaultDates = () => {
     };
   }
 
-  // If inThreeDays is beyond maxDate, adjust toDate to maxDate
   if (inThreeDays > maxDate) {
     return {
       from: today > minDate ? today.toISOString().split("T")[0] : minDateStr,
@@ -43,7 +40,6 @@ const getDefaultDates = () => {
     };
   }
 
-  // Normal case - today to 3 days from now
   return {
     from: today > minDate ? today.toISOString().split("T")[0] : minDateStr,
     to: inThreeDays.toISOString().split("T")[0],
@@ -57,9 +53,8 @@ const DatePicker = ({
   onRangeChange?: (range: { from: string; to: string }) => void;
   onDateChange?: (range: [Date, Date]) => void;
 }) => {
-  // Define min and max dates from your data
-  const minDate = "2025-03-01";
-  const maxDate = "2025-03-30";
+  const minDate = "2025-04-07";
+  const maxDate = "2025-04-13";
 
   const defaultDates = getDefaultDates();
 

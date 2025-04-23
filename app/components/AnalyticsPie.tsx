@@ -135,7 +135,6 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
         <div className="flex flex-row sm:flex-col gap-2">
           <DatePicker onRangeChange={setDateRange} />
           <div className="flex flex-col sm:flex-row items-end justify-end gap-2">
-            <ExportButton onExportCSV={exportCSV} onExportPNG={exportPNG} />
             <ExpandButton label="Expand Pie Chart" chartType="pie" />
           </div>
         </div>

@@ -89,9 +89,9 @@ const Sidebar = () => {
           isCollapsed={isCollapsed}
         />
         <SidebarItem
-          href="../dashboard/metrics"
+          href="../dashboard/heatmapping"
           icon={<MdBubbleChart size={20} />}
-          label="Metrics"
+          label="Heatmapping"
           isCollapsed={isCollapsed}
         />
         {!isCollapsed && (

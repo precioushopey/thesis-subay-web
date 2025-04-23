@@ -11,7 +11,7 @@ import {
   Rectangle,
 } from "recharts";
 
-const ShelfChart = ({ label, data }: { label: String; data: any }) => {
+const ZoneChart = ({ label, data }: { label: String; data: any }) => {
   const COLORS_LIGHT = [
     "#8979FF",
     "#FF928A",
@@ -83,26 +83,16 @@ const ShelfChart = ({ label, data }: { label: String; data: any }) => {
               }}
             />
             <Bar
-              dataKey="long"
-              stackId="a"
+              dataKey="visits"
               fill={theme === "dark" ? "#7F25FB" : "#8979FF"}
               legendType="none"
               activeBar={<Rectangle fill="#E74C3C" stroke="#FFF" />}
             />
             <Bar
-              dataKey="med"
-              stackId="a"
+              dataKey="dwell_time"
               fill={theme === "dark" ? "#CB3CFF" : "#FF928A"}
               legendType="none"
               activeBar={<Rectangle fill="#EC8825" stroke="#FFF" />}
-            />
-            <Bar
-              dataKey="short"
-              stackId="a"
-              fill={theme === "dark" ? "#00C2FF" : "#3CC3DF"}
-              legendType="none"
-              radius={[5, 5, 0, 0]}
-              activeBar={<Rectangle fill="#F1C40F" stroke="#FFF" />}
             />
           </BarChart>
         </ResponsiveContainer>
@@ -111,4 +101,4 @@ const ShelfChart = ({ label, data }: { label: String; data: any }) => {
   );
 };
 
-export default ShelfChart;
+export default ZoneChart;
