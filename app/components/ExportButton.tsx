@@ -8,32 +8,18 @@ const ExportButton = ({ onExportPDF }: { onExportPDF: () => void }) => {
   return (
     <div className="relative">
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          console.log("Generated Insights!");
+          onExportPDF();
+          setIsOpen(false);
+        }}
         className="flex flex-row items-center justify-center rounded-md px-4 py-2 bg-[var(--brightaqua)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110"
       >
-        <span className="text-[var(--bluetext)] dark:text-white text-xs font-semibold mr-2">
-          Export
+        <span className="text-[var(--bluetext)] dark:text-white text-xs font-semibold dark:font-medium mr-2">
+          Generate Insights
         </span>
-        <MdDownload size={16} className="text-white" />
+        <MdInsights size={16} />
       </button>
-
-      {isOpen && (
-        <div className="absolute right-0 mt-2 w-40 flex flex-row items-center bg-[var(--background)] rounded-md hover:bg-[var(--softcyan)] dark:hover:bg-[var(--brimagenta)] shadow-lg z-10 text-[var(--bluetext)] dark:text-white cursor-pointer">
-          <button
-            onClick={() => {
-              console.log("Generated Insights!");
-              onExportPDF();
-              setIsOpen(false);
-            }}
-            className="block w-full rounded-md text-left pl-4 py-2 text-xs"
-          >
-            Generate Insights
-          </button>
-          <div className="rounded-md pr-4">
-            <MdInsights size={16} />
-          </div>
-        </div>
-      )}
     </div>
   );
 };
