@@ -132,11 +132,9 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
         <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
           Total Foot Traffic
         </h1>
-        <div className="flex flex-row sm:flex-col gap-2">
+        <div className="flex flex-row items-center gap-x-2 pb-5">
           <DatePicker onRangeChange={setDateRange} />
-          <div className="flex flex-col sm:flex-row items-end justify-end gap-2">
-            <ExpandButton label="Expand Pie Chart" chartType="pie" />
-          </div>
+          <ExpandButton label="Expand Pie Chart" chartType="pie" />
         </div>
       </div>
     );

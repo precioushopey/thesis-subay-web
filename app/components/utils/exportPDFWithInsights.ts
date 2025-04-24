@@ -32,7 +32,7 @@ export const generateFootTrafficInsights = (data: DataEntry[]) => {
 export const exportPDFWithInsights = async (
     ref: HTMLElement,
     data: DataEntry[],
-    filename = "analytics_report.pdf"
+    filename = "insights_report.pdf"
 ) => {
   const insights = generateFootTrafficInsights(data);
   if (!insights) return;
@@ -46,7 +46,7 @@ export const exportPDFWithInsights = async (
   const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
   pdf.setFontSize(14);
-  pdf.text("Analytics Report: Foot Traffic", 15, 15);
+  pdf.text("Insights Report", 15, 15);
 
   pdf.setFontSize(12);
   pdf.text("Insights Summary:", 15, 25);

@@ -26,13 +26,13 @@ const PostAnalyticsPage = () => {
       </div>
       {/* BOTTOM */}
       <div className="h-full w-full flex flex-col sm:flex-row gap-4">
-        <div className="h-1/3 w-full sm:w-1/3">
+        <div className="h-full w-full sm:w-1/3">
           <AnalyticsPieChart page="dashboard" />
         </div>
-        <div className="h-1/3 w-full sm:w-1/3">
+        <div className="h-full w-full sm:w-1/3">
           <AnalyticsLineChart page="dashboard" />
         </div>
-        <div className="h-1/3 w-full sm:w-1/3">
+        <div className="h-full w-full sm:w-1/3">
           <AnalyticsBarChart page="dashboard" />
         </div>
       </div>

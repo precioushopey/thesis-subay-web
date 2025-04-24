@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import ChartHeight from "./ChartHeight";
 import DatePicker from "./DatePicker";
-import ExportButton from "./ExportButton";
 import ExpandButton from "./ExpandButton";
 import { lineChartData } from "@/app/lib/lineChartData";
 import { MdArrowOutward, MdLegendToggle } from "react-icons/md";
@@ -58,18 +57,6 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   }, []);
 
   const colors = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
-
-  const handleExportPDF = () => {
-    if (chartRef.current) {
-      exportPDFWithInsights(
-        chartRef.current,
-        filteredData,
-        "foot_traffic_report.pdf"
-      );
-    } else {
-      console.warn("Chart reference is not available");
-    }
-  };
 
   useEffect(() => {
     if (dateRange.from && dateRange.to) {
@@ -136,7 +123,6 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
         </div>
         <div className="flex flex-row items-center gap-x-2">
           <DatePicker onRangeChange={setDateRange} />
-          <ExportButton onExportPDF={handleExportPDF} />
           <ExpandButton label="Expand Line Chart" chartType="line" />
         </div>
       </div>

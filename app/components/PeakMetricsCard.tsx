@@ -9,7 +9,6 @@ import {
   zoneDChartData,
   zoneEChartData,
   zoneFChartData,
-  zoneGChartData,
 } from "@/app/lib/zoneChartData";
 
 const PeakMetricsCard: React.FC = () => {
@@ -25,7 +24,6 @@ const PeakMetricsCard: React.FC = () => {
       "Zone D": zoneDChartData,
       "Zone E": zoneEChartData,
       "Zone F": zoneFChartData,
-      "Zone G": zoneGChartData,
     };
 
     const totalVisitsPerZone = Object.entries(zoneMap).map(([zone, data]) => {

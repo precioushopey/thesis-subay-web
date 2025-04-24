@@ -1,5 +1,4 @@
 import React from "react";
-import { MdFlag } from "react-icons/md";
 import AnalyticsLineChart from "../../components/AnalyticsLine";
 import AnalyticsBarChart from "../../components/AnalyticsBar";
 import AnalyticsPieChart from "../../components/AnalyticsPie";

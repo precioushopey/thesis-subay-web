@@ -46,12 +46,4 @@ export const barChartData = [
   { id: 5, date: "2025-04-11", zone: "Zone F", visits: 85, dwell_time: 95 },
   { id: 6, date: "2025-04-12", zone: "Zone F", visits: 135, dwell_time: 55 },
   { id: 7, date: "2025-04-13", zone: "Zone F", visits: 150, dwell_time: 80 },
-
-  { id: 1, date: "2025-04-07", zone: "Zone G", visits: 90, dwell_time: 80 },
-  { id: 2, date: "2025-04-08", zone: "Zone G", visits: 110, dwell_time: 60 },
-  { id: 3, date: "2025-04-09", zone: "Zone G", visits: 160, dwell_time: 100 },
-  { id: 4, date: "2025-04-10", zone: "Zone G", visits: 120, dwell_time: 70 },
-  { id: 5, date: "2025-04-11", zone: "Zone G", visits: 85, dwell_time: 95 },
-  { id: 6, date: "2025-04-12", zone: "Zone G", visits: 135, dwell_time: 55 },
-  { id: 7, date: "2025-04-13", zone: "Zone G", visits: 150, dwell_time: 80 },
 ];

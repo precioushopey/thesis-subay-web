@@ -17,7 +17,6 @@ import {
   zoneDChartData,
   zoneEChartData,
   zoneFChartData,
-  zoneGChartData,
 } from "@/app/lib/zoneChartData";
 import {
   BarChart,
@@ -137,7 +136,6 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     "Zone D": zoneDChartData,
     "Zone E": zoneEChartData,
     "Zone F": zoneFChartData,
-    "Zone G": zoneGChartData,
   };
 
   const filteredZoneData = useMemo(() => {
