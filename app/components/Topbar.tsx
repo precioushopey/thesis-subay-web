@@ -1,16 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { auth } from "@/app/firebase/config";
 import {
   MdOutlineAdminPanelSettings,
   MdOutlineKeyboardArrowUp,
   MdOutlineKeyboardArrowDown,
 } from "react-icons/md";
+import ExportButton from "./ExportButton";
 
 const Topbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const path = usePathname();
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -32,7 +34,10 @@ const Topbar = () => {
           An Undergraduate Thesis by Dominguez, Jumuad, Nolasco, and Onahon
         </h1>
       </div>
-      <div className="relative flex flex-row items-center justify-center gap-2">
+      <div className="relative flex flex-row items-center justify-center gap-4">
+        {path === "/dashboard/insights" && (
+          <ExportButton onExportPDF={() => {}} />
+        )}
         <MdOutlineAdminPanelSettings
           size={40}
           className="text-[var(--bluetext)] dark:text-white"
