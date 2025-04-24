@@ -9,8 +9,11 @@ const ExportButton = ({ onExportPDF }: { onExportPDF: () => void }) => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex flex-row items-center justify-center rounded-md p-1 bg-[var(--brightaqua)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110"
+        className="flex flex-row items-center justify-center rounded-md px-4 py-2 bg-[var(--brightaqua)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110"
       >
+        <span className="text-[var(--bluetext)] dark:text-white text-xs font-semibold mr-2">
+          Export
+        </span>
         <MdDownload size={16} className="text-white" />
       </button>
 
