@@ -1,10 +1,31 @@
 "use client";
 import { MdInsights } from "react-icons/md";
+import { HTMLTemplate } from "./utils/InsightReportTemplate";
+import { generateInsights } from "./utils/generateInsights";
+import printJS from "print-js";
 
 const ExportButton = () => {
+  const generateReport = async () => {
+    const insights = await generateInsights();
+    const htmlString = HTMLTemplate({ insights, printJS });
+
+    // console.log(insights);
+
+    const reportWindow = window.open("insight-report", "_blank");
+    if (reportWindow) {
+      reportWindow.document.open();
+      reportWindow.document.write(htmlString);
+      reportWindow.document.close();
+    }
+  };
+
   return (
     <div>
-      <a href="/insights-report.html" target="_blank" rel="noopener noreferrer">
+      <a
+        onClick={() => {
+          generateReport();
+        }}
+      >
         <button className="flex flex-row items-center justify-center rounded-md px-4 py-2 bg-[var(--brightaqua)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110">
           <span className="text-white text-xs font-semibold dark:font-medium mr-2">
             Generate Insights
