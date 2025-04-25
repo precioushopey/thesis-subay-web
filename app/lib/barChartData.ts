@@ -20,7 +20,7 @@ export const barChartData = [
   { id: 1, date: "2025-04-15", zone: "Zone D", visits: 98, dwell_time: 8.46 },
   { id: 2, date: "2025-04-16", zone: "Zone D", visits: 94, dwell_time: 7.92 },
   { id: 3, date: "2025-04-17", zone: "Zone D", visits: 108, dwell_time: 8.75 },
-  { id: 4, date: "2025-04-18", zone: "Zone D", visits: 90, dwell_time: 9.30 },
+  { id: 4, date: "2025-04-18", zone: "Zone D", visits: 90, dwell_time: 9.3 },
   { id: 5, date: "2025-04-19", zone: "Zone D", visits: 115, dwell_time: 7.61 },
 
   { id: 1, date: "2025-04-15", zone: "Zone E", visits: 120, dwell_time: 4.58 },
