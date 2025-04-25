@@ -86,12 +86,14 @@ const ZoneChart = ({ label, data }: { label: String; data: any }) => {
               dataKey="visits"
               fill={theme === "dark" ? "#7F25FB" : "#8979FF"}
               legendType="none"
+              radius={[5, 5, 0, 0]}
               activeBar={<Rectangle fill="#E74C3C" stroke="#FFF" />}
             />
             <Bar
               dataKey="dwell_time"
               fill={theme === "dark" ? "#CB3CFF" : "#FF928A"}
               legendType="none"
+              radius={[5, 5, 0, 0]}
               activeBar={<Rectangle fill="#EC8825" stroke="#FFF" />}
             />
           </BarChart>

@@ -13,9 +13,9 @@ const formatDateLabel = (dateStr: string) => {
 };
 
 const getDefaultDates = () => {
-  const minDate = new Date("2025-04-07");
+  const minDate = new Date("2025-04-15");
   const minDateStr = minDate.toISOString().split("T")[0];
-  const maxDate = new Date("2025-04-13");
+  const maxDate = new Date("2025-04-19");
   const maxDateStr = maxDate.toISOString().split("T")[0];
 
   const today = new Date();
@@ -53,8 +53,8 @@ const DatePicker = ({
   onRangeChange?: (range: { from: string; to: string }) => void;
   onDateChange?: (range: [Date, Date]) => void;
 }) => {
-  const minDate = "2025-04-07";
-  const maxDate = "2025-04-13";
+  const minDate = "2025-04-15";
+  const maxDate = "2025-04-19";
 
   const defaultDates = getDefaultDates();
 

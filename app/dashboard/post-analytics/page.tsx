@@ -14,7 +14,17 @@ const PostAnalyticsPage = () => {
             Customer and Zone-based Counting
           </h1>
           <div className="h-full w-full border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md">
-            <Image src={"/roi.png"} alt={""} width={600} height={600} />
+            <video
+              controls
+              preload="none"
+              autoPlay
+              loop
+              muted
+              className="w-full object-cover"
+            >
+              <source src="/output_combined.avi" type="video/avi" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
         <div className="h-full w-[1/2] flex flex-col py-4 pr-4 pl-2">
