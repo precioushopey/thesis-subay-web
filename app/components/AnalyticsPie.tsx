@@ -34,8 +34,8 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   }, [page]);
 
   const COLORS_LIGHT = [
-    "#8979FF",
-    "#FF928A",
+    "#0396A6",
+    "#9CD3D8",
     "#3CC3DF",
     "#FFAE4C",
     "#537FF1",

@@ -28,8 +28,8 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   const [showLegend, setShowLegend] = useState(false);
 
   const COLORS_LIGHT = [
-    "#8979FF",
-    "#FF928A",
+    "#0396A6",
+    "#9CD3D8",
     "#3CC3DF",
     "#FFAE4C",
     "#537FF1",
@@ -176,7 +176,7 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
               itemStyle={{ color: theme === "dark" ? "#FFF" : "#044F6C" }}
               cursor={{
                 stroke: theme === "dark" ? "#FFF" : "#044F6C",
-                strokeWidth: 2,
+                strokeWidth: 3,
               }}
             />
             {showLegend && (

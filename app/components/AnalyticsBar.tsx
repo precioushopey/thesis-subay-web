@@ -1,23 +1,21 @@
 "use client";
 import { useRef, useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import html2canvas from "html2canvas";
 import ChartHeight from "./ChartHeight";
 import DatePicker from "./DatePicker";
-import ExportButton from "./ExportButton";
 import ExpandButton from "./ExpandButton";
-import ZoneChart from "./ZoneChart";
+import AisleChart from "./AisleChart";
 import { barChartData } from "@/app/lib/barChartData";
-import { MdArrowOutward, MdCircle } from "react-icons/md";
+import { MdArrowOutward } from "react-icons/md";
 import { isWithinInterval, parseISO, startOfDay, endOfDay } from "date-fns";
 import {
-  zoneAChartData,
-  zoneBChartData,
-  zoneCChartData,
-  zoneDChartData,
-  zoneEChartData,
-  zoneFChartData,
-} from "@/app/lib/zoneChartData";
+  aisleAChartData,
+  aisleBChartData,
+  aisleCChartData,
+  aisleDChartData,
+  aisleEChartData,
+  aisleFChartData,
+} from "@/app/lib/aisleChartData";
 import {
   BarChart,
   Bar,
@@ -31,7 +29,7 @@ import {
 } from "recharts";
 
 type AggregatedData = {
-  zone: string;
+  aisle: string;
   visits: number;
   dwell_time: number;
 };
@@ -47,23 +45,23 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     > = {};
 
     barChartData.forEach((item) => {
-      if (!initialAggregatedData[item.zone]) {
-        initialAggregatedData[item.zone] = { visits: 0, dwell_time: 0 };
+      if (!initialAggregatedData[item.aisle]) {
+        initialAggregatedData[item.aisle] = { visits: 0, dwell_time: 0 };
       }
-      initialAggregatedData[item.zone].visits += item.visits;
-      initialAggregatedData[item.zone].dwell_time += item.dwell_time;
+      initialAggregatedData[item.aisle].visits += item.visits;
+      initialAggregatedData[item.aisle].dwell_time += item.dwell_time;
     });
 
-    return Object.entries(initialAggregatedData).map(([zone, values]) => ({
-      zone,
+    return Object.entries(initialAggregatedData).map(([aisle, values]) => ({
+      aisle,
       visits: values.visits,
       dwell_time: values.dwell_time,
     }));
   });
 
   const COLORS_LIGHT = [
-    "#8979FF",
-    "#FF928A",
+    "#0396A6",
+    "#9CD3D8",
     "#3CC3DF",
     "#FFAE4C",
     "#537FF1",
@@ -108,15 +106,15 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     > = {};
 
     filteredData.forEach((item) => {
-      if (!aggregatedData[item.zone]) {
-        aggregatedData[item.zone] = { visits: 0, dwell_time: 0 };
+      if (!aggregatedData[item.aisle]) {
+        aggregatedData[item.aisle] = { visits: 0, dwell_time: 0 };
       }
-      aggregatedData[item.zone].visits += item.visits;
-      aggregatedData[item.zone].dwell_time += item.dwell_time;
+      aggregatedData[item.aisle].visits += item.visits;
+      aggregatedData[item.aisle].dwell_time += item.dwell_time;
     });
 
-    return Object.entries(aggregatedData).map(([zone, values]) => ({
-      zone,
+    return Object.entries(aggregatedData).map(([aisle, values]) => ({
+      aisle,
       visits: values.visits,
       dwell_time: values.dwell_time,
     }));
@@ -129,25 +127,25 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     }
   }, [dateRange]);
 
-  const zoneData = {
-    "Zone A": zoneAChartData,
-    "Zone B": zoneBChartData,
-    "Zone C": zoneCChartData,
-    "Zone D": zoneDChartData,
-    "Zone E": zoneEChartData,
-    "Zone F": zoneFChartData,
+  const aisleData = {
+    "Aisle A": aisleAChartData,
+    "Aisle B": aisleBChartData,
+    "Aisle C": aisleCChartData,
+    "Aisle D": aisleDChartData,
+    "Aisle E": aisleEChartData,
+    "Aisle F": aisleFChartData,
   };
 
-  const filteredZoneData = useMemo(() => {
-    if (!dateRange) return zoneData;
+  const filteredaisleData = useMemo(() => {
+    if (!dateRange) return aisleData;
 
     const start = startOfDay(dateRange.from);
     const end = endOfDay(dateRange.to);
 
-    const filtered = {} as typeof zoneData;
+    const filtered = {} as typeof aisleData;
 
-    Object.entries(zoneData).forEach(([zone, data]) => {
-      filtered[zone as keyof typeof zoneData] = data.filter((d) => {
+    Object.entries(aisleData).forEach(([aisle, data]) => {
+      filtered[aisle as keyof typeof aisleData] = data.filter((d) => {
         const date = parseISO(d.date);
         return isWithinInterval(date, { start, end });
       });
@@ -156,9 +154,9 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     return filtered;
   }, [dateRange]);
 
-  const zoneEntries = Object.entries(filteredZoneData);
-  const firstThree = zoneEntries.slice(0, 3);
-  const remaining = zoneEntries.slice(3);
+  const aisleEntries = Object.entries(filteredaisleData);
+  const firstThree = aisleEntries.slice(0, 3);
+  const remaining = aisleEntries.slice(3);
 
   const chartContents =
     page === "dashboard" ? (
@@ -170,7 +168,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       >
         <div className="flex flex-row items-center justify-between">
           <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-            Zone-Based Foot Traffic and Dwell Time
+            Aisle-Based Foot Traffic and Dwell Time
           </h1>
           <Link
             href={"/analytics"}
@@ -190,7 +188,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
                 stroke={theme === "dark" ? "#AEB9E1" : "#0B698B"}
               />
               <XAxis
-                dataKey="zone"
+                dataKey="aisle"
                 axisLine={false}
                 tickLine={false}
                 tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}
@@ -226,14 +224,14 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
               />
               <Bar
                 dataKey="visits"
-                fill={theme === "dark" ? "#7F25FB" : "#8979FF"}
+                fill={theme === "dark" ? "#7F25FB" : "#0396A6"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#E74C3C" stroke="#FFF" />}
               />
               <Bar
                 dataKey="dwell_time"
-                fill={theme === "dark" ? "#CB3CFF" : "#FF928A"}
+                fill={theme === "dark" ? "#CB3CFF" : "#9CD3D8"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#F1C40F" stroke="#FFF" />}
@@ -250,7 +248,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       >
         <div className="flex flex-col sm:flex-row items-center justify-between gap-y-2 px-4">
           <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-            Zone-Based Foot Traffic and Dwell Time
+            Aisle-Based Foot Traffic and Dwell Time
           </h1>
           <div className="flex flex-row items-center gap-x-2">
             <DatePicker onRangeChange={setDateRange} />
@@ -266,7 +264,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
                 stroke={theme === "dark" ? "#AEB9E1" : "#0B698B"}
               />
               <XAxis
-                dataKey="zone"
+                dataKey="aisle"
                 axisLine={false}
                 tickLine={false}
                 tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}
@@ -302,14 +300,14 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
               />
               <Bar
                 dataKey="visits"
-                fill={theme === "dark" ? "#7F25FB" : "#8979FF"}
+                fill={theme === "dark" ? "#7F25FB" : "#0396A6"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#E74C3C" stroke="#FFF" />}
               />
               <Bar
                 dataKey="dwell_time"
-                fill={theme === "dark" ? "#CB3CFF" : "#FF928A"}
+                fill={theme === "dark" ? "#CB3CFF" : "#9CD3D8"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#F1C40F" stroke="#FFF" />}
@@ -317,16 +315,16 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        {/* Zone Charts */}
+        {/* aisle Charts */}
         <div className="w-full h-full flex flex-col rounded-b-md bg-white dark:bg-[var(--navyblue)] gap-4 px-4 pb-4">
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4">
             {firstThree.map(([label, data]) => (
-              <ZoneChart key={label} label={label} data={data} />
+              <AisleChart key={label} label={label} data={data} />
             ))}
           </div>
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4">
             {remaining.map(([label, data]) => (
-              <ZoneChart key={label} label={label} data={data} />
+              <AisleChart key={label} label={label} data={data} />
             ))}
           </div>
         </div>
