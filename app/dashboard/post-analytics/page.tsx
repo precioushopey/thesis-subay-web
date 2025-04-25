@@ -11,7 +11,7 @@ const PostAnalyticsPage = () => {
       <div className="w-full h-full flex flex-col sm:flex-row bg-white dark:bg-[var(--navyblue)] rounded-md">
         <div className="h-full w-[1/2] flex flex-col py-4 pl-4 pr-2">
           <h1 className="font-semibold text-base pb-2">
-            Customer and aisle-based Counting
+            Customer and Zone-based Counting
           </h1>
           <div className="h-full w-full border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md">
             <video

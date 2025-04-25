@@ -134,7 +134,7 @@ const HTMLTemplate = () => {
         <div class="card">
             <i class="fas fa-shopping-cart fa-2x" style="color: #0B1739;"></i>
             <p>Peak Stall</p>
-            <h2>aisle F</h2>
+            <h2>Zone F</h2>
         </div>
         <div class="card">
             <i class="fas fa-chart-line fa-2x" style="color: #0B1739;"></i>
@@ -169,25 +169,25 @@ const HTMLTemplate = () => {
 
         <div class="charts">
         <div class="chart-box">
-            <canvas id="aisleAChart"></canvas>
+            <canvas id="zoneAChart"></canvas>
         </div>
         <div class="chart-box">
-            <canvas id="aisleBChart"></canvas>
+            <canvas id="zoneBChart"></canvas>
         </div>
         <div class="chart-box">
-            <canvas id="aisleCChart"></canvas>
+            <canvas id="zoneCChart"></canvas>
         </div>
         </div>
 
         <div class="charts">
         <div class="chart-box">
-            <canvas id="aisleDChart"></canvas>
+            <canvas id="zoneDChart"></canvas>
         </div>
         <div class="chart-box">
-            <canvas id="aisleEChart"></canvas>
+            <canvas id="zoneEChart"></canvas>
         </div>
         <div class="chart-box">
-            <canvas id="aisleFChart"></canvas>
+            <canvas id="zoneFChart"></canvas>
         </div>
         </div>
 
@@ -207,12 +207,12 @@ const HTMLTemplate = () => {
     <script>
         const ctx1 = document.getElementById('dailyFootTrafficChart').getContext('2d');
         const ctx2 = document.getElementById('shelfVisitChart').getContext('2d');
-        const ctx3 = document.getElementById('aisleAChart').getContext('2d');
-        const ctx4 = document.getElementById('aisleBChart').getContext('2d');
-        const ctx5 = document.getElementById('aisleCChart').getContext('2d');
-        const ctx6 = document.getElementById('aisleDChart').getContext('2d');
-        const ctx7 = document.getElementById('aisleEChart').getContext('2d');
-        const ctx8 = document.getElementById('aisleFChart').getContext('2d');
+        const ctx3 = document.getElementById('zoneAChart').getContext('2d');
+        const ctx4 = document.getElementById('zoneBChart').getContext('2d');
+        const ctx5 = document.getElementById('zoneCChart').getContext('2d');
+        const ctx6 = document.getElementById('zoneDChart').getContext('2d');
+        const ctx7 = document.getElementById('zoneEChart').getContext('2d');
+        const ctx8 = document.getElementById('zoneFChart').getContext('2d');
 
         new Chart(ctx1, {
         type: 'line',
@@ -230,7 +230,7 @@ const HTMLTemplate = () => {
         new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: ['Aisle A', 'Aisle B', 'Aisle C', 'Aisle D', 'Aisle E', 'Aisle F'],
+            labels: ['Zone A', 'Zone B', 'Zone C', 'Zone D', 'Zone E', 'Zone F'],
             datasets: [{
             label: 'Visits',
             data: [400, 380, 420, 390, 410, 400],

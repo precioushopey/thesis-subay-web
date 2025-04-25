@@ -8,11 +8,11 @@ type DataEntry = {
 
 const totalVisitors = 1987;
 const peakDay = "Saturday";
-const peakaisle = "aisle B";
+const peakZone = "Zone B";
 const peakDayFootTraffic = 432;
-const peakaisleTraffic = 678;
+const peakZoneTraffic = 678;
 const avgDwellTime = 5.8;
-const longestDwellTimeaisle = "aisle A";
+const longestDwellTimeZone = "Zone A";
 const longestDwellTime = 9.3;
 
 export const exportPDFWithInsights = async (
@@ -46,16 +46,16 @@ export const exportPDFWithInsights = async (
   cursorY += 6;
   pdf.text(`- Peak day: ${peakDay} had ${peakDayFootTraffic} visitors`, margin, cursorY);
   cursorY += 6;
-  pdf.text(`- Peak aisle: ${peakaisle} with ${peakaisleTraffic} entries recorded`, margin, cursorY);
+  pdf.text(`- Peak zone: ${peakZone} with ${peakZoneTraffic} entries recorded`, margin, cursorY);
   cursorY += 6;
-  pdf.text(`- Average customer dwell time across all aisles: ${avgDwellTime} minutes`, margin, cursorY);
+  pdf.text(`- Average customer dwell time across all zones: ${avgDwellTime} minutes`, margin, cursorY);
   cursorY += 6;
-  pdf.text(`- aisle with the longest dwell time: ${longestDwellTimeaisle}, averaging ${longestDwellTime} minutes`, margin, cursorY);
+  pdf.text(`- Zone with the longest dwell time: ${longestDwellTimeZone}, averaging ${longestDwellTime} minutes`, margin, cursorY);
   cursorY += 10;
 
   // Interpretation
   const saturdayPct = ((peakDayFootTraffic / totalVisitors) * 100).toFixed(1);
-  const aisleBPct = ((peakaisleTraffic / totalVisitors) * 100).toFixed(1);
+  const zoneBPct = ((peakZoneTraffic / totalVisitors) * 100).toFixed(1);
 
   pdf.setFont("helvetica", "bold");
   pdf.text("Interpretation:", margin, cursorY);
@@ -64,9 +64,9 @@ export const exportPDFWithInsights = async (
   pdf.setFont("helvetica", "normal");
   pdf.text(`- On average, ${saturdayPct}% of total traffic occurred on ${peakDay}.`, margin, cursorY);
   cursorY += 6;
-  pdf.text(`- ${peakaisle} accounted for ${aisleBPct}% of total entries, highlighting it as a high-engagement area.`, margin, cursorY);
+  pdf.text(`- ${peakZone} accounted for ${zoneBPct}% of total entries, highlighting it as a high-engagement area.`, margin, cursorY);
   cursorY += 6;
-  pdf.text(`- Dwell time suggests customers spend more time evaluating or interacting with displays in ${longestDwellTimeaisle}.`, margin, cursorY);
+  pdf.text(`- Dwell time suggests customers spend more time evaluating or interacting with displays in ${longestDwellTimeZone}.`, margin, cursorY);
   cursorY += 10;
 
   // Recommendation
