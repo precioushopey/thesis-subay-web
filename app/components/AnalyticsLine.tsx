@@ -1,13 +1,11 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import ChartHeight from "./ChartHeight";
 import DatePicker from "./DatePicker";
-import ExportButton from "./ExportButton";
+import ChartHeight from "./ChartHeight";
 import ExpandButton from "./ExpandButton";
 import { lineChartData } from "@/app/lib/lineChartData";
 import { MdArrowOutward, MdLegendToggle } from "react-icons/md";
-import { exportPDFWithInsights } from "./utils/exportPDFWithInsights";
 import {
   LineChart,
   Line,
@@ -19,26 +17,17 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
+const AnalyticsLineChart = ({ page }: { page: "analytics" | "insights" }) => {
   const chartHeight = ChartHeight(page);
   const chartRef = useRef<HTMLDivElement>(null);
-  const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [dateRange, setDateRange] = useState({ from: "", to: "" });
-  const [hiddenDates, setHiddenDates] = useState<string[]>([]);
   const [showLegend, setShowLegend] = useState(false);
-
-  const COLORS_LIGHT = [
-    "#8979FF",
-    "#FF928A",
-    "#3CC3DF",
-    "#FFAE4C",
-    "#537FF1",
-    "#6FD195",
-  ];
-  const COLORS_DARK = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
+  const [filteredData, setFilteredData] = useState<any[]>([]);
+  const [hiddenDates, setHiddenDates] = useState<string[]>([]);
+  const [dateRange, setDateRange] = useState({ from: "", to: "" });
+  const COLORS_DARK = ["#CB3CFF", "#7F25FB", "#0038FF", "#00C2FF"];
+  const COLORS_LIGHT = ["#0396A6", "#0B698B", "#537FF1", "#3CC3DF", "#9CD3D8"];
 
   const [theme, setTheme] = useState<string>("dark");
-
   useEffect(() => {
     const getCurrentTheme = () =>
       document.documentElement.classList.contains("dark") ? "dark" : "light";
@@ -58,19 +47,6 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   }, []);
 
   const colors = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
-
-  const handleExportPDF = () => {
-    if (chartRef.current) {
-      exportPDFWithInsights(
-        chartRef.current,
-        filteredData,
-        "foot_traffic_report.pdf"
-      );
-    } else {
-      console.warn("Chart reference is not available");
-    }
-  };
-
   useEffect(() => {
     if (dateRange.from && dateRange.to) {
       const fromDate = new Date(dateRange.from);
@@ -86,15 +62,11 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   }, [dateRange]);
 
   const finalChartData = Object.values(
-    filteredData.reduce((acc, { camera, date, value }) => {
-      if (!acc[camera]) acc[camera] = { camera };
-      acc[camera][date] = value;
+    filteredData.reduce((acc, { zone, date, value }) => {
+      if (!acc[zone]) acc[zone] = { zone };
+      acc[zone][date] = value;
       return acc;
     }, {} as Record<string, any>)
-  );
-
-  const uniqueDates = Array.from(
-    new Set(filteredData.map((entry) => entry.date))
   );
 
   const handleLegendClick = (data: any) => {
@@ -107,14 +79,14 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   };
 
   const chartToolbar =
-    page === "dashboard" ? (
+    page === "analytics" ? (
       <div className="flex flex-row items-center justify-between">
         <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-          Camera Foot Traffic
+          Avg. Dwell Time
         </h1>
         <div className="flex flex-row items-center gap-x-2">
           <DatePicker onRangeChange={setDateRange} />
-          <Link href={"/analytics"}>
+          <Link href={"/dashboard/insights"}>
             <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transition duration-500 hover:scale-110">
               <MdArrowOutward size={16} className="text-white" />
             </button>
@@ -125,7 +97,7 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-y-2">
         <div className="flex flex-row gap-x-2">
           <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-            Per Camera Foot Traffic
+            Average Dwell Time per Aisle
           </h1>
           <button
             className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] transition duration-500 hover:scale-110"
@@ -157,7 +129,7 @@ const AnalyticsLineChart = ({ page }: { page: "dashboard" | "analytics" }) => {
               stroke={theme === "dark" ? "#AEB9E1" : "#0B698B"}
             />
             <XAxis
-              dataKey="camera"
+              dataKey="zone"
               axisLine={false}
               tickLine={false}
               tick={{ fill: theme === "dark" ? "#AEB9E1" : "#0B698B" }}

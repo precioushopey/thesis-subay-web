@@ -1,15 +1,13 @@
 "use client";
-import { MdInsights } from "react-icons/md";
-import { HTMLTemplate } from "./utils/InsightReportTemplate";
-import { generateInsights } from "./utils/generateInsights";
 import printJS from "print-js";
+import { MdInsights } from "react-icons/md";
+import { generateInsights } from "./utils/generateInsights";
+import { HTMLTemplate } from "./utils/InsightReportTemplate";
 
 const ExportButton = () => {
   const generateReport = async () => {
     const insights = await generateInsights();
     const htmlString = HTMLTemplate({ insights, printJS });
-
-    // console.log(insights);
 
     const reportWindow = window.open("insight-report", "_blank");
     if (reportWindow) {

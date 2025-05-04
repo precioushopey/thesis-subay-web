@@ -23,13 +23,13 @@ function LiveAnalyticsIFrame() {
   }, []);
 
   return (
-    <div className="h-full sm:h-[570px] w-full sm:w-[805px] flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md p-4">
-      <h1 className="font-semibold text-base pb-2">Live Analytics</h1>
+    <div className="h-full sm:h-[570px] w-full sm:w-[805px] flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md gap-y-4 p-4">
+      <h1 className="font-semibold text-base">Live Analytics</h1>
       <div className="h-full border flex items-center justify-center rounded-md">
         <iframe
           ref={contentRef}
           className="w-full object-cover h-full"
-          src="http://172.20.22.253:5001/video_feed/boxes"
+          src="http://172.20.23.253:5001/video_feed/boxes"
         ></iframe>
       </div>
     </div>

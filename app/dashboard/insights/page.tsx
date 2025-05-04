@@ -1,25 +1,23 @@
 import React from "react";
-import AnalyticsLineChart from "../../components/AnalyticsLine";
+import PeakMetricsCard from "../../components/PeakMetricsCard";
 import AnalyticsBarChart from "../../components/AnalyticsBar";
 import AnalyticsPieChart from "../../components/AnalyticsPie";
-import PeakMetricsCard from "../../components/PeakMetricsCard";
+import AnalyticsLineChart from "../../components/AnalyticsLine";
 
 const AnalyticsPage = () => {
   return (
-    <div className="w-full h-full flex flex-col sm:flex-row gap-4 p-4 -mt-4 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
-      {/* LEFT */}
+    <div className="w-full h-full flex flex-col sm:flex-row gap-4 p-4 -mt-5 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
       <div className="w-full h-full flex flex-col gap-4">
         <div className="w-full h-full flex flex-col sm:flex-row gap-4">
           <PeakMetricsCard />
           <div className="w-full md:w-2/3 h-full">
-            <AnalyticsPieChart page="analytics" />
+            <AnalyticsPieChart page="insights" />
           </div>
         </div>
-        <AnalyticsLineChart page="analytics" />
+        <AnalyticsLineChart page="insights" />
       </div>
-      {/* RIGHT */}
       <div className="w-full h-full">
-        <AnalyticsBarChart page="analytics" />
+        <AnalyticsBarChart page="insights" />
       </div>
     </div>
   );

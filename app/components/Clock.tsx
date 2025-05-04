@@ -23,8 +23,8 @@ const Clock = () => {
   }, []);
 
   return (
-    <div className="w-full sm:w-1/2 flex flex-col items-end justify-end p-4 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white">
-      <h1 className="font-bold text-[var(--bluetext)] dark:text-white text-lg">
+    <div className="w-full sm:w-1/2 flex flex-row items-center justify-end p-4 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white">
+      <h1 className="font-bold text-[var(--bluetext)] dark:text-white text-4xl">
         {ctime}
       </h1>
       <div className="flex flex-row gap-x-2 font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-xs">

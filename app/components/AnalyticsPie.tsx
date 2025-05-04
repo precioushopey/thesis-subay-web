@@ -1,25 +1,25 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import html2canvas from "html2canvas";
 import DatePicker from "./DatePicker";
-import ExportButton from "./ExportButton";
 import ExpandButton from "./ExpandButton";
 import { MdArrowOutward } from "react-icons/md";
 import { pieChartData } from "@/app/lib/pieChartData";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
-const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
+const AnalyticsPieChart = ({ page }: { page: "analytics" | "insights" }) => {
   const chartRef = useRef<HTMLDivElement>(null);
-  const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [dateRange, setDateRange] = useState({ from: "", to: "" });
-  const [hiddenDates, setHiddenDates] = useState<string[]>([]);
   const [chartHeight, setChartHeight] = useState<number>(300);
+  const [filteredData, setFilteredData] = useState<any[]>([]);
+  const [hiddenDates, setHiddenDates] = useState<string[]>([]);
+  const [dateRange, setDateRange] = useState({ from: "", to: "" });
+  const COLORS_DARK = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF", "#A531FD"];
+  const COLORS_LIGHT = ["#0B698B", "#0396A6", "#9CD3D8", "#3CC3DF", "#537FF1"];
 
   useEffect(() => {
     const updateHeight = () => {
       const height =
-        page === "dashboard"
+        page === "analytics"
           ? window.innerHeight / 3.7
           : window.innerHeight / 2.9;
       setChartHeight(height);
@@ -33,18 +33,7 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     };
   }, [page]);
 
-  const COLORS_LIGHT = [
-    "#8979FF",
-    "#FF928A",
-    "#3CC3DF",
-    "#FFAE4C",
-    "#537FF1",
-    "#6FD195",
-  ];
-  const COLORS_DARK = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
-
   const [theme, setTheme] = useState<string>("dark");
-
   useEffect(() => {
     const getCurrentTheme = () =>
       document.documentElement.classList.contains("dark") ? "dark" : "light";
@@ -64,36 +53,6 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   }, []);
 
   const colors = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
-
-  const exportCSV = () => {
-    const header = ["Date", "Value"];
-    const csvContent =
-      "data:text/csv;charset=utf-8," +
-      [header.join(",")]
-        .concat(filteredData.map((row) => `${row.date},${row.value}`))
-        .join("\n");
-
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "analytics_pie_chart.csv");
-    document.body.appendChild(link);
-    link.click();
-  };
-
-  const exportPNG = () => {
-    if (chartRef.current) {
-      html2canvas(chartRef.current).then((canvas) => {
-        const link = document.createElement("a");
-        link.href = canvas.toDataURL("image/png");
-        link.download = "analytics_pie_chart.png";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-    }
-  };
-
   useEffect(() => {
     if (dateRange.from && dateRange.to) {
       const fromDate = new Date(dateRange.from);
@@ -113,14 +72,14 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   );
 
   const chartToolbar =
-    page === "dashboard" ? (
+    page === "analytics" ? (
       <div className="flex flex-row items-center justify-between">
         <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
           Total Foot Traffic
         </h1>
         <div className="flex flex-row items-center gap-x-2">
           <DatePicker onRangeChange={setDateRange} />
-          <Link href={"/analytics"}>
+          <Link href={"/dashboard/insights"}>
             <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transition duration-500 hover:scale-110">
               <MdArrowOutward size={16} className="text-white" />
             </button>
@@ -188,7 +147,7 @@ const AnalyticsPieChart = ({ page }: { page: "dashboard" | "analytics" }) => {
             <h1 className="font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-xs">
               Total
             </h1>
-            <h1 className="font-semibold text-2xl">
+            <h1 className=" text-[var(--bluetext)] dark:text-white font-semibold text-2xl">
               {filteredData.reduce((sum, entry) => sum + entry.value, 0)}
             </h1>
           </div>

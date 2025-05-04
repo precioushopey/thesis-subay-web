@@ -26,14 +26,18 @@ const AboutPage = () => {
         <div className="sm:h-1/3 h-auto w-full flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md p-4 cursor-pointer">
           <h1 className="font-semibold text-base pb-2">Abstract</h1>
           <p className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-xs text-wrap">
-            Retail environments benefit greatly from advanced customer
-            analytics, yet traditional single-camera tracking systems often fail
-            to provide comprehensive insights due to occlusions and limited
-            perspectives. This study aims to develop a multi-camera object
-            detection system that utilizes machine learning models, such as YOLO
-            and DeepSort, to track and analyze customer movements in retail
-            stores. The study evaluates the system's performance and usability,
-            contributing to intelligent retail analytics.
+            The study presents <strong>SUBAY</strong>, a multi-camera detection
+            system for customer tracking in retail settings. It uses
+            <strong> YOLOv10</strong> for detection,
+            <strong> DeepSORT</strong> for tracking, and <strong>OSNet </strong>
+            for re-identification. The system achieves
+            <strong> 100% precision</strong>, <strong>90.95% recall</strong>,
+            and
+            <strong> 72.17% F1-score</strong>, with
+            <strong> 91.9% bounding box overlap</strong>. It counts
+            <strong> 259</strong> unique customers, calculates dwell time, and
+            generates automated insights for store optimization. Its high user
+            satisfaction score demonstrates its practical applicability.
           </p>
         </div>
       </div>
@@ -46,7 +50,7 @@ const AboutPage = () => {
             {/* Xyrus */}
             <div className="relative h-auto w-full sm:w-1/2 flex flex-col sm:flex-row sm:justify-between bg-white dark:bg-[var(--navyblue)] rounded-md overflow-hidden cursor-pointer">
               <a
-                href="#"
+                href="https://drive.google.com/file/d/1SjSOFFw2YkY4AYmSiP3uTM3rx5z3holr/view?usp=sharing"
                 target="_blank"
                 className="absolute top-2 right-2 sm:left-2 hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)]"
               >
@@ -68,11 +72,11 @@ const AboutPage = () => {
               </div>
               <div className="flex flex-col place-content-between w-full sm:w-1/2 text-[var(--bluetext)] dark:text-[var(--periwinkle)] p-2">
                 <h1 className="text-[var(--bluetext)] dark:text-white text-[10px] text-center sm:text-left sm:border-l-2 sm:border-[var(--deepteal)] sm:dark:border-[var(--elecpurple)] sm:pl-2">
-                  Lead Researcher • Machine Learning Researcher
+                  Lead Researcher • Computer Vision Researcher
                 </h1>
                 <h1 className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-[10px] text-center font-semibold dark:font-medium italic">
-                  Designs and develops the algorithm and model from the data for
-                  machine learning.
+                  Leader in designing and building the algorithms and models to
+                  develop SUBAY.
                 </h1>
                 <ul className="flex flex-row flex-wrap sm:flex-col justify-center sm:justify-start gap-x-4 sm:gap-0 text-[10px] font-light text-[var(--bluetext)] dark:text-white">
                   <li className="flex flex-row items-center gap-1">
@@ -111,7 +115,7 @@ const AboutPage = () => {
             {/* Precious */}
             <div className="relative h-auto w-full sm:w-1/2 flex flex-col-reverse sm:flex-row sm:justify-between bg-white dark:bg-[var(--navyblue)] rounded-md cursor-pointer">
               <a
-                href="https://drive.google.com/file/d/1Ht0vyHKKtTYDkNvNKNMpTn9Ppy886jza/view?usp=sharing"
+                href="https://drive.google.com/file/d/1fVMen3I-UxacOr96W1iRcpvql7re7Fnb/view?usp=sharing"
                 target="_blank"
                 className="absolute top-2 right-2 hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)]"
               >
@@ -122,8 +126,8 @@ const AboutPage = () => {
                   Co-Researcher • Front-end Web Developer
                 </h1>
                 <h1 className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-[10px] text-center font-semibold dark:font-medium italic">
-                  Develops the web-based user-interface to display the camera
-                  feed and analytics.
+                  Develops the web-based user-interface for data analytics and
+                  wrote the thesis paper.
                 </h1>
                 <ul className="flex flex-row flex-wrap sm:flex-col justify-center sm:items-end gap-x-4 sm:gap-0 text-[10px] font-light text-[var(--bluetext)] dark:text-white">
                   <li className="flex flex-row-reverse sm:flex-row items-center gap-1">
@@ -179,7 +183,7 @@ const AboutPage = () => {
             {/* Rezzelle */}
             <div className="relative h-auto w-full sm:w-1/2 flex flex-col sm:flex-row sm:justify-between bg-white dark:bg-[var(--navyblue)] rounded-md overflow-hidden cursor-pointer">
               <a
-                href="#"
+                href="https://drive.google.com/file/d/1jWhLF6v_gLmK1iMHN98yU_9ZKsQM6SGv/view?usp=sharing"
                 target="_blank"
                 className="absolute top-2 right-2 sm:left-2 hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)]"
               >
@@ -244,7 +248,7 @@ const AboutPage = () => {
             {/* Venz */}
             <div className="relative h-auto w-full sm:w-1/2 flex flex-col-reverse sm:flex-row sm:justify-between bg-white dark:bg-[var(--navyblue)] rounded-md cursor-pointer">
               <a
-                href="#"
+                href="https://drive.google.com/file/d/1kLT_YEyvRRkdrwVNlE6EsAq-PrK4lxXt/view?usp=sharing"
                 target="_blank"
                 className="absolute top-2 right-2 hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)]"
               >
@@ -252,11 +256,11 @@ const AboutPage = () => {
               </a>
               <div className="w-full sm:w-1/2 flex flex-col place-content-between text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-right p-2">
                 <h1 className="text-[var(--bluetext)] dark:text-white text-[10px] text-center sm:text-right sm:border-r-2 sm:border-[var(--deepteal)] dark:sm:border-[var(--elecpurple)] sm:pr-2">
-                  Co-Researcher • Back-end Web Developer
+                  Co-Researcher • LaTeX Typesetting Documenter
                 </h1>
                 <h1 className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-[10px] text-center font-semibold dark:font-medium italic">
-                  Builds and maintains the database for storing the camera feed
-                  and analytics.
+                  Formatted, structured, and ensured the consistency of the
+                  manuscript with LaTeX.
                 </h1>
                 <ul className="flex flex-row flex-wrap sm:flex-col justify-center sm:items-end gap-x-4 sm:gap-0 text-[10px] font-light text-[var(--bluetext)] dark:text-white">
                   <li className="flex flex-row-reverse sm:flex-row items-center gap-1">
@@ -315,68 +319,68 @@ const AboutPage = () => {
           </h1>
           <div className="w-full h-full flex flex-row gap-4">
             <a
-              href="https://drive.google.com/drive/folders/1dSFnD-DRdjoNeFbYrpj4HcLho6SwTprl?usp=sharing"
+              href="https://drive.google.com/drive/folders/14a525Pv3JAnF4DZfYlW6Jwkta8R8IT0X?usp=sharing"
               target="_blank"
               className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
             >
               <MdFolder
                 size={80}
-                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)]"
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] hover:text-[var(--softcyan)] dark:hover:text-[var(--elecpurple)]"
               />
               <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
-                Subay.pdf
+                Manuscript
               </h1>
             </a>
             <a
-              href="https://drive.google.com/drive/folders/1dSFnD-DRdjoNeFbYrpj4HcLho6SwTprl?usp=sharing"
+              href="https://drive.google.com/drive/folders/1rUXT1j-NJffT7yyJWYjSG3DQSMosU-Z2?usp=sharing"
               target="_blank"
               className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
             >
               <MdFolder
                 size={80}
-                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)]"
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] hover:text-[var(--softcyan)] dark:hover:text-[var(--elecpurple)]"
               />
               <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
-                Forms.docs
+                User Manual
               </h1>
             </a>
             <a
-              href="https://drive.google.com/drive/folders/1dSFnD-DRdjoNeFbYrpj4HcLho6SwTprl?usp=sharing"
+              href="https://drive.google.com/drive/folders/12gn-n3UZ6hknBrWxnxQckCFVgZoOPUHD?usp=sharing"
               target="_blank"
               className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
             >
               <MdFolder
                 size={80}
-                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)]"
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] hover:text-[var(--softcyan)] dark:hover:text-[var(--elecpurple)]"
               />
               <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
-                Report.xlsx
+                Forms
               </h1>
             </a>
             <a
-              href="https://drive.google.com/drive/folders/1dSFnD-DRdjoNeFbYrpj4HcLho6SwTprl?usp=sharing"
+              href="https://drive.google.com/drive/folders/1NUJSGNTBZnumRdwIPY3dWcsqb2-KhSP6?usp=sharing"
               target="_blank"
               className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
             >
               <MdFolder
                 size={80}
-                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)]"
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] hover:text-[var(--softcyan)] dark:hover:text-[var(--elecpurple)]"
               />
               <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
-                Feed.mp4
+                Videos
               </h1>
             </a>
             <a
-              href="#"
+              href="https://drive.google.com/drive/folders/1uVtsx3FYA7yijR9BFoUFCDzuColrp6AO?usp=sharing"
               target="_blank"
               className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
             >
               <MdFolder
                 size={80}
-                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)]"
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] hover:text-[var(--softcyan)] dark:hover:text-[var(--elecpurple)]"
               />
               <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
-                Photos.jpg
+                Photos
               </h1>
             </a>
           </div>

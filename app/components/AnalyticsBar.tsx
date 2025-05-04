@@ -1,14 +1,12 @@
 "use client";
 import { useRef, useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import html2canvas from "html2canvas";
-import ChartHeight from "./ChartHeight";
-import DatePicker from "./DatePicker";
-import ExportButton from "./ExportButton";
-import ExpandButton from "./ExpandButton";
 import ZoneChart from "./ZoneChart";
+import DatePicker from "./DatePicker";
+import ChartHeight from "./ChartHeight";
+import ExpandButton from "./ExpandButton";
+import { MdArrowOutward } from "react-icons/md";
 import { barChartData } from "@/app/lib/barChartData";
-import { MdArrowOutward, MdCircle } from "react-icons/md";
 import { isWithinInterval, parseISO, startOfDay, endOfDay } from "date-fns";
 import {
   zoneAChartData,
@@ -36,7 +34,7 @@ type AggregatedData = {
   dwell_time: number;
 };
 
-const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
+const AnalyticsBarChart = ({ page }: { page: "analytics" | "insights" }) => {
   const chartHeight = ChartHeight(page);
   const chartRef = useRef<HTMLDivElement>(null);
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
@@ -61,32 +59,18 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
     }));
   });
 
-  const COLORS_LIGHT = [
-    "#8979FF",
-    "#FF928A",
-    "#3CC3DF",
-    "#FFAE4C",
-    "#537FF1",
-    "#6FD195",
-  ];
-  const COLORS_DARK = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
   const [theme, setTheme] = useState<string>("dark");
-
   useEffect(() => {
     const getCurrentTheme = () =>
       document.documentElement.classList.contains("dark") ? "dark" : "light";
-
     setTheme(getCurrentTheme());
-
     const observer = new MutationObserver(() => {
       setTheme(getCurrentTheme());
     });
-
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class"],
     });
-
     return () => observer.disconnect();
   }, []);
 
@@ -96,7 +80,6 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   ): AggregatedData[] => {
     const fromDate = new Date(from);
     const toDate = new Date(to);
-
     const filteredData = barChartData.filter((item) => {
       const itemDate = new Date(item.date);
       return itemDate >= fromDate && itemDate <= toDate;
@@ -130,12 +113,12 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   }, [dateRange]);
 
   const zoneData = {
-    "Zone A": zoneAChartData,
-    "Zone B": zoneBChartData,
-    "Zone C": zoneCChartData,
-    "Zone D": zoneDChartData,
-    "Zone E": zoneEChartData,
-    "Zone F": zoneFChartData,
+    "Aisle A": zoneAChartData,
+    "Aisle B": zoneBChartData,
+    "Aisle C": zoneCChartData,
+    "Aisle D": zoneDChartData,
+    "Aisle E": zoneEChartData,
+    "Aisle F": zoneFChartData,
   };
 
   const filteredZoneData = useMemo(() => {
@@ -161,8 +144,7 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
   const remaining = zoneEntries.slice(3);
 
   const chartContents =
-    page === "dashboard" ? (
-      // DASHBOARD VIEW
+    page === "analytics" ? (
       <div
         ref={chartRef}
         className="relative rounded-md bg-white dark:bg-[var(--navyblue)] p-4"
@@ -170,10 +152,10 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
       >
         <div className="flex flex-row items-center justify-between">
           <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-            Zone-Based Foot Traffic and Dwell Time
+            Aisle-Based Foot Traffic and Dwell Time
           </h1>
           <Link
-            href={"/analytics"}
+            href={"/dashboard/insights"}
             className="flex flex-row items-center gap-x-2"
           >
             <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110">
@@ -226,14 +208,14 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
               />
               <Bar
                 dataKey="visits"
-                fill={theme === "dark" ? "#7F25FB" : "#8979FF"}
+                fill={theme === "dark" ? "#7F25FB" : "#0B698B"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#E74C3C" stroke="#FFF" />}
               />
               <Bar
                 dataKey="dwell_time"
-                fill={theme === "dark" ? "#CB3CFF" : "#FF928A"}
+                fill={theme === "dark" ? "#CB3CFF" : "#0396A6"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#F1C40F" stroke="#FFF" />}
@@ -243,14 +225,13 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
         </div>
       </div>
     ) : (
-      // ANALYTICS PAGE VIEW
       <div
         ref={chartRef}
         className="relative h-full rounded-md bg-white dark:bg-[var(--navyblue)] py-4"
       >
         <div className="flex flex-col sm:flex-row items-center justify-between gap-y-2 px-4">
           <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-            Zone-Based Foot Traffic and Dwell Time
+            Aisle-Based Foot Traffic and Dwell Time
           </h1>
           <div className="flex flex-row items-center gap-x-2">
             <DatePicker onRangeChange={setDateRange} />
@@ -302,14 +283,14 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
               />
               <Bar
                 dataKey="visits"
-                fill={theme === "dark" ? "#7F25FB" : "#8979FF"}
+                fill={theme === "dark" ? "#7F25FB" : "#0B698B"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#E74C3C" stroke="#FFF" />}
               />
               <Bar
                 dataKey="dwell_time"
-                fill={theme === "dark" ? "#CB3CFF" : "#FF928A"}
+                fill={theme === "dark" ? "#CB3CFF" : "#0396A6"}
                 legendType="circle"
                 radius={[5, 5, 0, 0]}
                 activeBar={<Rectangle fill="#F1C40F" stroke="#FFF" />}
@@ -317,7 +298,6 @@ const AnalyticsBarChart = ({ page }: { page: "dashboard" | "analytics" }) => {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        {/* Zone Charts */}
         <div className="w-full h-full flex flex-col rounded-b-md bg-white dark:bg-[var(--navyblue)] gap-4 px-4 pb-4">
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4">
             {firstThree.map(([label, data]) => (

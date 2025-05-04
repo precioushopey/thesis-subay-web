@@ -60,14 +60,17 @@ function LogInForm() {
   };
 
   return (
-    <form onSubmit={handleLogIn} className="flex flex-col w-full gap-2 text-sm">
+    <form
+      onSubmit={handleLogIn}
+      className="flex flex-col w-full gap-2 text-sm text-[var(--bluetext)] dark:text-white font-medium"
+    >
       <label>Email</label>
       <input
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="py-2 pl-4 bg-transparent border-2 border-[var(--periwinkle)] rounded-md focus:outline focus:outline-[var(--brimagenta)]"
+        className="py-2 pl-4 bg-transparent border-2 border-[var(--softcyan)] dark:border-[var(--periwinkle)] rounded-md focus:outline focus:outline-[var(--brightaqua)] dark:focus:outline-[var(--brimagenta)]"
       />
       {fieldErrors.email && (
         <p className="text-red-500 text-xs">{fieldErrors.email}</p>
@@ -80,13 +83,13 @@ function LogInForm() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full py-2 pl-4 pr-10 bg-transparent border-2 border-[var(--periwinkle)] rounded-md focus:outline focus:outline-[var(--brimagenta)]"
+          className="w-full py-2 pl-4 pr-10 bg-transparent border-2 border-[var(--softcyan)] dark:border-[var(--periwinkle)] rounded-md focus:outline focus:outline-[var(--brightaqua)] dark:focus:outline-[var(--brimagenta)]"
           required
         />
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[var(--periwinkle)]"
+          className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[var(-softcyan)] dark:text-[var(--periwinkle)]"
         >
           {showPassword ? <RxEyeClosed size={20} /> : <RxEyeOpen size={20} />}
         </button>
@@ -99,7 +102,7 @@ function LogInForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-md bg-[var(--brimagenta)] hover:bg-[var(--purgenta)] text-white text-sm p-2 mt-4"
+        className="w-full rounded-md bg-[var(--brightaqua)] dark:bg-[var(--brimagenta)] hover:bg-[var(--softblue)] dark:hover:bg-[var(--purgenta)] text-white text-sm p-2 mt-4"
       >
         {loading ? "Logging in..." : "Log In here"}
       </button>

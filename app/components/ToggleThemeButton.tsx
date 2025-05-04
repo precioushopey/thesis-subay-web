@@ -6,9 +6,12 @@ function classNames(...classes: string[]) {
 }
 
 export default function ToggleThemeButton() {
-  const [theme, setTheme] = useState<string>("dark");
+  const [theme, setTheme] = useState<string>(() =>
+    typeof window !== "undefined"
+      ? localStorage.getItem("theme") || "light"
+      : "light"
+  );
 
-  // Initialize theme from localStorage on client only
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme) {
@@ -16,7 +19,6 @@ export default function ToggleThemeButton() {
     }
   }, []);
 
-  // Update DOM and localStorage when theme changes
   useEffect(() => {
     localStorage.setItem("theme", theme);
     document.documentElement.className = "";

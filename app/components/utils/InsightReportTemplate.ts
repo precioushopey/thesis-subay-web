@@ -1,10 +1,8 @@
-import { format } from "date-fns";
-
 const HTMLTemplate = ({
   insights,
   printJS,
 }: {
-  insights: any;
+  insights: any
   printJS?: any;
 }) => {
   return `
@@ -20,11 +18,11 @@ const HTMLTemplate = ({
         font-family: 'Georgia', serif;
         font-size: 16px;
         background-color: #f6f6f6;
-        margin: 50px;
         padding: 0;
         color: #044F6C;
         max-width: 1220px;
         margin: auto;
+        padding: 50px 0 50px 0;
         }
         header {
         text-align: center;
@@ -107,24 +105,7 @@ const HTMLTemplate = ({
         color: #0396A6;
         font-size: 20px;
         display: block;
-        }
-        .charts {
-        width: 73%;
-        display: flex;
-        column-gap: 20px;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
-        }
-        .chart-box {
-        flex: 1;
-        overflow: hidden;
-        background: #fff;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .chart-box:hover {
-        box-shadow: 0 8px 12px #9CD3D8;
+        margin-bottom: 15px;
         }
         .container {
         display: flex;
@@ -133,9 +114,9 @@ const HTMLTemplate = ({
         margin: auto;
         }
         .stat-boxes {
+        gap: 20px;
         display: flex;
         flex-direction: column;
-        gap: 20px;
         flex: 1;
         border-radius: 12px;
         padding: 20px;
@@ -146,26 +127,12 @@ const HTMLTemplate = ({
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .stat-box:hover {
-        box-shadow: 0 8px 12px #0396A6;
-        }
-        .charts-box {
-        flex: 2;
-        background-color: #f0f0ed;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-        }
-        .charts-box h3 {
-        color: #1d3b4c;
+        align-content: center;
+        justify-content: center;
         text-align: center;
         }
-        .chart-placeholder {
-        width: 100%;
-        height: 200px;
-        background: linear-gradient(90deg, #bdd7d6 0%, #f0f0ed 100%);
-        border-radius: 5px;
+        .stat-box:hover {
+        box-shadow: 0 8px 12px #9CD3D8;
         }
         footer {
         text-align: center;
@@ -184,240 +151,64 @@ const HTMLTemplate = ({
 
     <section>
         <div class="card">
-        <h2 class="highlight" id=""></h2>
+        <h2 class="highlight">${insights.peakDay}</h2>
         <p>Day with the most foot traffic</p>
         </div>
         <div class="card">
-        <h2 class="highlight">432</h2>
+        <h2 class="highlight">${insights.peakDayValue}</h2>
         <p>Highest foot traffic in a day recorded</p>
         </div>
         <div class="card">
-        <h2 class="highlight">'${insights.averageDwellTime}s'</h2>
+        <h2 class="highlight">${insights.totalFootTraffic}</h2>
         <p>Total foot traffic recorded<br>during the monitoring period</p>
         </div>
     </section>
-    
+
     <div class="section-title"><h4>Zone-based <strong>Foot Traffic and Dwell Time</strong></h4></div>
-
-    <section>
-        <div class="charts">
-        <div class="chart-box">
-            <canvas id="zoneVisitChart"></canvas>
-        </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="charts">
-        <div class="chart-box">
-            <canvas id="zoneAChart"></canvas>
-        </div>
-        <div class="chart-box">
-            <canvas id="zoneBChart"></canvas>
-        </div>
-        <div class="chart-box">
-            <canvas id="zoneCChart"></canvas>
-        </div>
-        </div>
-        <div class="charts" style="margin-top: -20px;">
-        <div class="chart-box">
-            <canvas id="zoneDChart"></canvas>
-        </div>
-        <div class="chart-box">
-            <canvas id="zoneEChart"></canvas>
-        </div>
-        <div class="chart-box">
-            <canvas id="zoneFChart"></canvas>
-        </div>
-        </div>
-    </section>
-
     <section>
         <div class="stat-block">
-        <div><strong>Zone B</strong>is the zone with the most foot<br>traffic with 678 entries recorded.</div>
-        <div><strong>Zone A</strong>is the zone with the longest<br>dwell time averaging 9.3 minutes.</div>
+        <div><strong>${insights.topAisle}</strong>is the zone with the most foot<br>traffic with <span>${insights.topAisleValue}</span> entries recorded.</div>
+        <div><strong>${insights.longestDwellZone}</strong>is the zone with the longest<br>dwell time averaging <span>${insights.longestDwellTime}</span> minutes.</div>
         </div>
         <div class="stat-block">
-        <div><strong>180 minutes</strong>Total customer dwell time across all zones</div>
-        <div><strong>5.8 minutes</strong>Average customer dwell time across all zones</div>
+        <div><strong>${insights.totalDwellTime} minutes</strong>Total customer dwell time across all zones</div>
+        <div><strong>${insights.averageDwellTime} minutes</strong>Average customer dwell time across all zones</div>
         </div>
     </section>
 
-    <div class="section-title"><h4>Other Charts and <strong>Interpretation</strong></h4></div>
+    <div class="section-title"><h4>Other Statistics and <strong>Conclusion</strong></h4></div>
     <div class="container">
         <div class="stat-boxes">
-        <div class="stat-box">
-            <h2 class="highlight">21.7%</h2>
-            <p>On average, of the total traffic occurred on Saturday.</p>
+            <div class="stat-box">
+                <h2 class="highlight">${insights.peakDayPercent}</h2>
+                <p>On average, of the total traffic occurred on <span>${insights.peakDay}</span></p>
+            </div>
+            <div class="stat-box">
+                <h2 class="highlight">${insights.topAislePercent}%</h2>
+                <p>${insights.topAisle}</span> accounted for this amount of total entries, highlighting it as a high-engagement area.</p>
+            </div>
         </div>
         <div class="stat-box">
-            <h2 class="highlight">34.1%</h2>
-            <p>Zone B accounted for this amount of total entries, highlighting it as a high-engagement area.</p>
-        </div>
-        </div>
-        <div class="charts" style="width: 60%; margin-left: -20px;">
-        <div class="chart-box">
-            <canvas id="dailyFootTrafficChart"></canvas>
+            ${insights.conclusions.map((rec: string) => `
+                  <div>${rec}</div>
+              `).join("")}
         </div>
         </div>
     </div>
 
-    <div class="section-title"><h4>Our <strong>Recommendation</strong></h4></div>
+    <div class="section-title"><h4>Our <strong>Recommendations</strong></h4></div>
     <section>
+      ${insights.recommendations.map((rec: string) => `
         <div class="stat-block">
-        <div>Dwell time suggests customers spend more time evaluating or interacting with displays in Zone A.</div>
+          <div>${rec}</div>
         </div>
-        <div class="stat-block">
-        <div>Consider placing promotions or staff reinforcements on days like 2025-04-13 to leverage high traffic.</div>
-        </div>
+      `).join("")}
     </section>
 
     <footer>
-        Conclusion and Appreciation to Our Stakeholders
+        Disclaimer: The insights and recommendations provided are based on the available data and may not fully capture the complete customer behavior patterns. Limited input data can affect the accuracy and reliability of the analysis. For more precise and comprehensive results, we recommend supplying additional video tracks to allow for a broader and deeper extraction of customer behavior for analytics.
     </footer>
     <hr>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const ctx1 = document.getElementById('dailyFootTrafficChart').getContext('2d');
-        const ctx2 = document.getElementById('zoneVisitChart').getContext('2d');
-        const ctx3 = document.getElementById('zoneAChart').getContext('2d');
-        const ctx4 = document.getElementById('zoneBChart').getContext('2d');
-        const ctx5 = document.getElementById('zoneCChart').getContext('2d');
-        const ctx6 = document.getElementById('zoneDChart').getContext('2d');
-        const ctx7 = document.getElementById('zoneEChart').getContext('2d');
-        const ctx8 = document.getElementById('zoneFChart').getContext('2d');
-
-
-        new Chart(ctx1, {
-        type: 'line',
-        data: {
-            labels: ['Camera 1', 'Camera 2', 'Camera 3', 'Camera 4'],
-            datasets: [{
-            label: 'Per Camera Foot Traffic',
-            data: [90, 150, 120, 100, 80, 60, 110],
-            borderColor: '#9CD3D8',
-            fill: false
-            }]
-        },
-        });
-
-        new Chart(ctx2, {
-        type: 'bar',
-        data: {
-            labels: ['Zone A', 'Zone B', 'Zone C', 'Zone D', 'Zone E', 'Zone F'],
-            datasets: [{
-            label: 'Visits',
-            data: [400, 380, 420, 390, 410, 400],
-            backgroundColor: '#0396A6'
-            }, {
-            label: 'Dwell Time',
-            data: [100, 120, 90, 110, 105, 100],
-            backgroundColor: '#9CD3D8'
-            }]
-        },
-        });
-
-        new Chart(ctx3, {
-        type: 'bar',
-        data: {
-            labels: ['04-11', '04-12', '04-13',],
-            datasets: [{
-            label: 'Visits',
-            data: [400, 380, 420, 390, 410, 400],
-            backgroundColor: '#0396A6'
-            }, {
-            label: 'Dwell Time',
-            data: [100, 120, 90, 110, 105, 100],
-            backgroundColor: '#9CD3D8'
-            }]
-        },
-        });
-
-        new Chart(ctx4, {
-        type: 'bar',
-        data: {
-            labels: ['04-11', '04-12', '04-13',],
-            datasets: [{
-            label: 'Visits',
-            data: [400, 380, 420, 390, 410, 400],
-            backgroundColor: '#0396A6'
-            }, {
-            label: 'Dwell Time',
-            data: [100, 120, 90, 110, 105, 100],
-            backgroundColor: '#9CD3D8'
-            }]
-        },
-        });
-
-        new Chart(ctx5, {
-        type: 'bar',
-        data: {
-            labels: ['04-11', '04-12', '04-13',],
-            datasets: [{
-            label: 'Visits',
-            data: [400, 380, 420, 390, 410, 400],
-            backgroundColor: '#0396A6'
-            }, {
-            label: 'Dwell Time',
-            data: [100, 120, 90, 110, 105, 100],
-            backgroundColor: '#9CD3D8'
-            }]
-        },
-        });
-
-        new Chart(ctx6, {
-        type: 'bar',
-        data: {
-            labels: ['04-11', '04-12', '04-13',],
-            datasets: [{
-            label: 'Visits',
-            data: [400, 380, 420, 390, 410, 400],
-            backgroundColor: '#0396A6'
-            }, {
-            label: 'Dwell Time',
-            data: [100, 120, 90, 110, 105, 100],
-            backgroundColor: '#9CD3D8'
-            }]
-        },
-        });
-
-        new Chart(ctx7, {
-        type: 'bar',
-        data: {
-            labels: ['04-11', '04-12', '04-13',],
-            datasets: [{
-            label: 'Visits',
-            data: [400, 380, 420, 390, 410, 400],
-            backgroundColor: '#0396A6'
-            }, {
-            label: 'Dwell Time',
-            data: [100, 120, 90, 110, 105, 100],
-            backgroundColor: '#9CD3D8'
-            }]
-        },
-        });
-        
-        new Chart(ctx8, {
-        type: 'bar',
-        data: {
-            labels: ['04-11', '04-12', '04-13',],
-            datasets: [{
-            label: 'Visits',
-            data: [400, 380, 420, 390, 410, 400],
-            backgroundColor: '#0396A6'
-            }, {
-            label: 'Dwell Time',
-            data: [100, 120, 90, 110, 105, 100],
-            backgroundColor: '#9CD3D8'
-            }]
-        },
-        });
-
-        setTimeout(() => {
-        window.print();
-        }, 5000);
-    </script>
     </body>
     </html>
     `;

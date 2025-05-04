@@ -1,14 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import { signOut } from "firebase/auth";
-import { usePathname, useRouter } from "next/navigation";
+import ExportButton from "./ExportButton";
 import { auth } from "@/app/firebase/config";
+import { usePathname, useRouter } from "next/navigation";
 import {
-  MdOutlineAdminPanelSettings,
   MdOutlineKeyboardArrowUp,
   MdOutlineKeyboardArrowDown,
 } from "react-icons/md";
-import ExportButton from "./ExportButton";
 
 const Topbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -35,13 +35,23 @@ const Topbar = () => {
         </h1>
       </div>
       <div className="relative flex flex-row items-center justify-center gap-4">
-        {path === "/dashboard/insights" && (
-          <ExportButton onExportPDF={() => {}} />
-        )}
-        <MdOutlineAdminPanelSettings
-          size={40}
-          className="text-[var(--bluetext)] dark:text-white"
-        />
+        {path === "/dashboard/insights" && <ExportButton />}
+        <>
+          <Image
+            src="/light_logo.png"
+            alt="Shop Logo"
+            width={40}
+            height={40}
+            className="block dark:hidden"
+          />
+          <Image
+            src="/dark_logo.png"
+            alt="Shop Logo"
+            width={40}
+            height={40}
+            className="hidden dark:block"
+          />
+        </>
         <div className="hidden sm:block flex-col">
           <p className="font-semibold text-[var(--bluetext)] dark:text-white text-base">
             Manager

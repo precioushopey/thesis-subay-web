@@ -1,8 +1,11 @@
+"use client";
 import React, { useState, useEffect } from "react";
 
 const ThemeToggle: React.FC = () => {
-  const [theme, setTheme] = useState<string>(
-    localStorage.getItem("theme") || "dark"
+  const [theme, setTheme] = useState<string>(() =>
+    typeof window !== "undefined"
+      ? localStorage.getItem("theme") || "light"
+      : "light"
   );
 
   useEffect(() => {

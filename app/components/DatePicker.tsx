@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { pieChartData } from "@/app/lib/pieChartData";
 import { MdCalendarMonth, MdExpandMore } from "react-icons/md";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -13,9 +14,9 @@ const formatDateLabel = (dateStr: string) => {
 };
 
 const getDefaultDates = () => {
-  const minDate = new Date("2025-04-16");
+  const minDate = new Date("2025-04-13");
   const minDateStr = minDate.toISOString().split("T")[0];
-  const maxDate = new Date("2025-04-16");
+  const maxDate = new Date("2025-04-17");
   const maxDateStr = maxDate.toISOString().split("T")[0];
 
   const today = new Date();
@@ -53,8 +54,8 @@ const DatePicker = ({
   onRangeChange?: (range: { from: string; to: string }) => void;
   onDateChange?: (range: [Date, Date]) => void;
 }) => {
-  const minDate = "2025-04-16";
-  const maxDate = "2025-04-16";
+  const minDate = "2025-04-13";
+  const maxDate = "2025-04-17";
 
   const defaultDates = getDefaultDates();
 

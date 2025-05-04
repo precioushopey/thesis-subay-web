@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import AnalyticsLineChart from "./AnalyticsLine";
 import AnalyticsBarChart from "./AnalyticsBar";
 import AnalyticsPieChart from "./AnalyticsPie";
+import AnalyticsLineChart from "./AnalyticsLine";
 import { MdOpenInFull, MdClose } from "react-icons/md";
 
 const ExpandButton = ({
@@ -40,9 +40,9 @@ const ExpandButton = ({
               <MdClose size={16} />
             </button>
             <div className="mt-4">
-              {chartType === "line" && <AnalyticsLineChart page="analytics" />}
-              {chartType === "pie" && <AnalyticsPieChart page="analytics" />}
-              {chartType === "bar" && <AnalyticsBarChart page="analytics" />}
+              {chartType === "line" && <AnalyticsLineChart page="insights" />}
+              {chartType === "pie" && <AnalyticsPieChart page="insights" />}
+              {chartType === "bar" && <AnalyticsBarChart page="insights" />}
             </div>
           </div>
         </div>

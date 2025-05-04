@@ -53,6 +53,7 @@ const ZoneChart = ({ label, data }: { label: String; data: any }) => {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 5, left: -35 }}>
             <CartesianGrid
+              horizontal={true}
               strokeDasharray="3 3"
               vertical={false}
               stroke={theme === "dark" ? "#AEB9E1" : "#0B698B"}
@@ -84,17 +85,17 @@ const ZoneChart = ({ label, data }: { label: String; data: any }) => {
             />
             <Bar
               dataKey="visits"
-              fill={theme === "dark" ? "#7F25FB" : "#8979FF"}
+              fill={theme === "dark" ? "#7F25FB" : "#0B698B"}
               legendType="none"
               radius={[5, 5, 0, 0]}
               activeBar={<Rectangle fill="#E74C3C" stroke="#FFF" />}
             />
             <Bar
               dataKey="dwell_time"
-              fill={theme === "dark" ? "#CB3CFF" : "#FF928A"}
+              fill={theme === "dark" ? "#CB3CFF" : "#0396A6"}
               legendType="none"
               radius={[5, 5, 0, 0]}
-              activeBar={<Rectangle fill="#EC8825" stroke="#FFF" />}
+              activeBar={<Rectangle fill="#F1C40F" stroke="#FFF" />}
             />
           </BarChart>
         </ResponsiveContainer>

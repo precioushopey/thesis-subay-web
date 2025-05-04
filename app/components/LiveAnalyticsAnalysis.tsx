@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
-import { onValue, ref } from "firebase/database";
 import { db } from "../firebase/config";
+import { onValue, ref } from "firebase/database";
 
 function LiveAnalyticsAnalysis() {
   const [totalCustomers, setTotalCustomers] = React.useState(0);
@@ -25,31 +25,15 @@ function LiveAnalyticsAnalysis() {
   }, []);
 
   return (
-    <div className="h-full w-full sm:w-[300px] flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md p-4">
-      <h1 className="font-semibold text-base pb-2">Analysis</h1>
-      {/* {[
-    "Total Costumers",
-    "Current Customers",
-    "Total Aisle Visits",
-    "Average Dwell Time",
-  ].map((item: any) => (
-    <div
-      key={item}
-      className="flex flex-col bg-transparent border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md p-3 mb-4"
-    >
-      <h1 className="font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-sm">
-        {item}
-      </h1>
-      <h1 className="text-center text-6xl font-semibold">00</h1>
-    </div>
-  ))} */}
-      <div className="flex flex-col bg-transparent border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md p-4 mb-4">
+    <div className="h-fit w-full sm:w-[300px] flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md gap-y-4 p-4">
+      <h1 className="font-semibold text-base">Analysis</h1>
+      <div className="flex flex-col bg-transparent border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md p-4">
         <h1 className="font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-sm">
           Total Customers
         </h1>
         <h1 className="text-center text-6xl font-semibold">{totalCustomers}</h1>
       </div>
-      <div className="flex flex-col bg-transparent border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md p-4 mb-4">
+      <div className="flex flex-col bg-transparent border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md p-4">
         <h1 className="font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-sm">
           Current Customers
         </h1>
@@ -57,7 +41,7 @@ function LiveAnalyticsAnalysis() {
           {currentCustomers}
         </h1>
       </div>
-      <div className="flex flex-col bg-transparent border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md p-4 mb-4">
+      <div className="flex flex-col bg-transparent border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md p-4">
         <h1 className="font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-sm">
           Total Aisle Visits
         </h1>

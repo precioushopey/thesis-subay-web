@@ -6,9 +6,10 @@ import ToggleThemeButton from "./ToggleThemeButton";
 import {
   MdMenu,
   MdHome,
+  MdSpaceDashboard,
   MdVideocam,
   MdBubbleChart,
-  MdAnalytics,
+  MdInsights,
   MdInfo,
 } from "react-icons/md";
 
@@ -77,6 +78,12 @@ const Sidebar = () => {
 
       {/* Menu Items */}
       <nav className="mt-4">
+        <SidebarItem
+          href="../dashboard"
+          icon={<MdHome size={20} />}
+          label="Home"
+          isCollapsed={isCollapsed}
+        />
         {!isCollapsed && (
           <h1 className="text-[var(--brightaqua)] dark:text-white font-semibold dark:font-medium text-sm pl-4 py-2">
             Real-Time Analysis
@@ -101,13 +108,13 @@ const Sidebar = () => {
         )}
         <SidebarItem
           href="../dashboard/post-analytics"
-          icon={<MdHome size={20} />}
+          icon={<MdSpaceDashboard size={20} />}
           label="Post Analytics"
           isCollapsed={isCollapsed}
         />
         <SidebarItem
           href="../dashboard/insights"
-          icon={<MdAnalytics size={20} />}
+          icon={<MdInsights size={20} />}
           label="Insights"
           isCollapsed={isCollapsed}
         />
