@@ -52,6 +52,7 @@ const HTMLTemplate = ({
         width: 250px;
         text-align: center;
         box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        margin-top: 20px;
         }
         .card:hover {
         box-shadow: 0 8px 12px #9CD3D8;
@@ -176,25 +177,26 @@ const HTMLTemplate = ({
         </div>
     </section>
 
-    <div class="section-title"><h4>Other Statistics and <strong>Conclusion</strong></h4></div>
-    <div class="container">
-        <div class="stat-boxes">
-            <div class="stat-box">
-                <h2 class="highlight">${insights.peakDayPercent}</h2>
-                <p>On average, of the total traffic occurred on <span>${insights.peakDay}</span></p>
-            </div>
-            <div class="stat-box">
-                <h2 class="highlight">${insights.topAislePercent}%</h2>
-                <p>${insights.topAisle}</span> accounted for this amount of total entries, highlighting it as a high-engagement area.</p>
-            </div>
+    <div class="section-title"><h4>Other <strong>Statistics</strong></h4></div>
+    <section>
+        <div class="stat-block">
+        <div><strong>${insights.peakDayPercent}</strong>On average, of the total traffic<br>occurred on <span>${insights.peakDay}</span></div>
+        <div><strong>${insights.topAislePercent}%</strong><span>${insights.topAisle}</span> accounted for this amount of total entries,<br>highlighting it as a high-engagement area.</div>
         </div>
-        <div class="stat-box">
-            ${insights.conclusions.map((rec: string) => `
-                  <div>${rec}</div>
-              `).join("")}
+        <div class="stat-block">
+        <div><strong>${insights.zoneEngagementRate}</strong>Zone Engagement Rate</div>
+        <div><strong>${insights.customerFlowEfficiency}%</strong>Customer Flow Efficiency</div>
         </div>
+    </section>
+
+    <div class="section-title"><h4>Our <strong>Conclusions</strong></h4></div>
+    <section>
+      ${insights.conclusions.map((rec: string) => `
+        <div class="stat-block">
+          <div>${rec}</div>
         </div>
-    </div>
+      `).join("")}
+    </section>
 
     <div class="section-title"><h4>Our <strong>Recommendations</strong></h4></div>
     <section>
@@ -209,6 +211,12 @@ const HTMLTemplate = ({
         Disclaimer: The insights and recommendations provided are based on the available data and may not fully capture the complete customer behavior patterns. Limited input data can affect the accuracy and reliability of the analysis. For more precise and comprehensive results, we recommend supplying additional video tracks to allow for a broader and deeper extraction of customer behavior for analytics.
     </footer>
     <hr>
+    
+    <script>
+       setTimeout(() => {
+        window.print();
+        }, 5000);
+    </script>
     </body>
     </html>
     `;
