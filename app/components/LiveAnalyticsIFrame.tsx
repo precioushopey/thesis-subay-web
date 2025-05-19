@@ -29,7 +29,7 @@ function LiveAnalyticsIFrame() {
         <iframe
           ref={contentRef}
           className="w-full object-cover h-full"
-          src="http://172.20.23.253:5001/video_feed/boxes"
+          src="http://172.20.23.221:5001/video_feed/boxes"
         ></iframe>
       </div>
     </div>
