@@ -28,7 +28,7 @@ const PeakMetricsCard: React.FC = () => {
 
     const totalPerZone = Object.entries(zoneMap).map(([zone, data]) => {
       const totalVisits = data.reduce((sum, curr) => sum + curr.visits, 0);
-      const totalDwell = data.reduce((sum, curr) => sum + curr.dwell_time, 0); // <-- key line
+      const totalDwell = data.reduce((sum, curr) => sum + curr.dwell_time, 0);
       return { zone, totalVisits, totalDwell };
     });
 
@@ -42,7 +42,7 @@ const PeakMetricsCard: React.FC = () => {
 
     return {
       peakVisit: peakVisitEntry.zone,
-      peakDwell: peakDwellEntry.zone, // <-- changed from date to zone
+      peakDwell: peakDwellEntry.zone,
     };
   }, []);
 

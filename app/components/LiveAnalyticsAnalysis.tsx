@@ -15,7 +15,6 @@ function LiveAnalyticsAnalysis() {
       const data = snapshot.val();
 
       if (snapshot.exists()) {
-        console.log("Data: ", data);
         setTotalCustomers(data.total_customers);
         setCurrentCustomers(data.current_customers);
         setTotalAisleVisits(data.total_isle_visits);

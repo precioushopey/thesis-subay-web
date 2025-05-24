@@ -8,7 +8,6 @@ function LiveAnalyticsIFrame() {
     const iframe = contentRef.current as any;
 
     const handleLoad = () => {
-      console.log("Iframe loaded");
       const iframeDocument =
         iframe.contentDocument || iframe.contentWindow.document;
       iframeDocument.documentElement.scrollTop =

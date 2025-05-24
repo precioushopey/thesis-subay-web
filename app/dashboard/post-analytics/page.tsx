@@ -13,13 +13,6 @@ const PostAnalyticsPage = () => {
             Customer and Zone-based Counting
           </h1>
           <div className="h-full w-full border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md">
-            {/*<Image
-              src={"/zone.png"}
-              alt={"Zone"}
-              width={3000}
-              height={3000}
-              objectFit="cover"
-            />*/}
             <video
               controls
               preload="none"
@@ -36,13 +29,6 @@ const PostAnalyticsPage = () => {
         <div className="h-full w-[1/2] flex flex-col gap-y-4">
           <h1 className="font-semibold text-base">Heatmap Overlay</h1>
           <div className="h-full w-full border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md">
-            {/*<Image
-              src={"/heatmap.png"}
-              alt={"Heatmap"}
-              width={3000}
-              height={3000}
-              objectFit="cover"
-            />*/}
             <video
               controls
               preload="none"

@@ -312,7 +312,7 @@ const AboutPage = () => {
             </div>
           </div>
         </div>
-        {/* Files */}
+        {/* FILES */}
         <div className="sm:h-1/3 h-auto w-full flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md p-4 overflow-x-auto cursor-pointer">
           <h1 className="font-semibold text-[var(--bluetext)] dark:text-white text-base pb-2">
             Files

@@ -92,13 +92,6 @@ const DashboardPage = () => {
             </Link>
           </div>
           <div className="h-fit w-full border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md">
-            {/*<Image
-              src={"/re-id.png"}
-              alt={"Shop Logo"}
-              width={3000}
-              height={3000}
-              objectFit="cover"
-            />*/}
             <video
               controls
               preload="none"
@@ -143,109 +136,6 @@ const DashboardPage = () => {
             <PeakMetricsCard />
             <HomeLiveAnalyticsAnalysis />
           </div>
-          {/*<div className="w-full h-full flex flex-col gap-4 bg-white dark:bg-[var(--navyblue)] rounded-md p-4">
-            <div className="flex flex-row justify-between">
-              <h1 className="font-semibold text-[var(--bluetext)] dark:text-white text-base">
-                The Team
-              </h1>
-              <Link
-                href={"/dashboard/about"}
-                className="flex flex-row items-center gap-x-2"
-              >
-                <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110">
-                  <MdArrowOutward size={16} className="text-white" />
-                </button>
-              </Link>
-            </div>
-            <div className="w-full h-auto sm:h-1/2 flex flex-col sm:flex-row gap-4 overflow-hidden">
-              <div className="h-auto w-full sm:w-1/2 flex flex-col sm:flex-row justify-between gap-y-4">
-                <div className="w-auto sm:w-1/2 items-center justify-center flex flex-col overflow-hidden">
-                  <div className="rounded-tr-full rounded-tl-full place-content-end bg-gradient-to-br from-[var(--softcyan)] via-[var(--brightaqua)] to-[var(--deepteal)] dark:from-[var(--brimagenta)] dark:via-[var(--purgenta)] dark:to-[var(--elecpurple)]">
-                    <Image
-                      src={"/xyrus.png"}
-                      alt={"Xyrus Vincent L. Dominguez"}
-                      width={100}
-                      height={100}
-                      objectFit="cover"
-                    />
-                  </div>
-                </div>
-                <div className="w-full sm:w-1/2 flex flex-col text-[var(--bluetext)] dark:text-[var(--periwinkle)] gap-y-2">
-                  <h1 className="text-[var(--bluetext)] dark:text-white text-sm text-center sm:text-left sm:border-l-2 sm:border-[var(--deepteal)] sm:dark:border-[var(--elecpurple)] sm:pl-2 font-semibold">
-                    Xyrus Vincent Dominguez
-                  </h1>
-                  <p className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-xs text-center sm:text-left font-semibold dark:font-medium italic">
-                    Developed the algorithm and model for SUBAY system.
-                  </p>
-                </div>
-              </div>
-              <div className="h-auto w-full sm:w-1/2 flex flex-col-reverse sm:flex-row justify-between gap-y-4">
-                <div className="w-full sm:w-1/2 flex flex-col text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-right gap-y-2">
-                  <h1 className="text-[var(--bluetext)] dark:text-white text-sm text-center sm:text-right sm:border-r-2 sm:border-[var(--brightaqua)] sm:dark:border-[var(--brimagenta)] sm:pr-2 font-semibold">
-                    Precious Hope Jumuad
-                  </h1>
-                  <p className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-xs text-center sm:text-right font-semibold dark:font-medium italic">
-                    Developed the web-based user-interface for data analytics.
-                  </p>
-                </div>
-                <div className="w-auto sm:w-1/2 items-center justify-center flex flex-col overflow-hidden">
-                  <div className="rounded-tr-full rounded-tl-full place-content-end bg-gradient-to-bl from-[var(--deepteal)] via-[var(--brightaqua)] to-[var(--softcyan)] dark:from-[var(--elecpurple)] dark:via-[var(--purgenta)] dark:to-[var(--brimagenta)]">
-                    <Image
-                      src={"/precious.png"}
-                      alt={"Precious Hope T. Jumuad"}
-                      width={100}
-                      height={100}
-                      objectFit="cover"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-full h-auto sm:h-1/2 flex flex-col sm:flex-row gap-4 overflow-hidden">
-              <div className="h-auto w-full sm:w-1/2 flex flex-col sm:flex-row justify-between gap-y-4">
-                <div className="w-auto sm:w-1/2 items-center justify-center flex flex-col overflow-hidden">
-                  <div className="rounded-tr-full rounded-tl-full place-content-end bg-gradient-to-br from-[var(--deepteal)] via-[var(--brightaqua)] to-[var(--softcyan)] dark:from-[var(--elecpurple)] dark:via-[var(--purgenta)] dark:to-[var(--brimagenta)]">
-                    <Image
-                      src={"/rezzelle.png"}
-                      alt={"Rezzelle T. Onahon"}
-                      width={100}
-                      height={100}
-                      objectFit="cover"
-                    />
-                  </div>
-                </div>
-                <div className="w-full sm:w-1/2 flex flex-col text-[var(--bluetext)] dark:text-[var(--periwinkle)] gap-y-2">
-                  <h1 className="text-[var(--bluetext)] dark:text-white text-sm text-center sm:text-left sm:border-l-2 sm:border-[var(--brightaqua)] sm:dark:border-[var(--brimagenta)] sm:pl-2 font-semibold">
-                    Rezzelle Tinoy Onahon
-                  </h1>
-                  <h1 className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-xs text-center sm:text-left font-semibold dark:font-medium italic">
-                    Designed the UI/UX of the data analytics web application.
-                  </h1>
-                </div>
-              </div>
-              <div className="h-auto w-full sm:w-1/2 flex flex-col-reverse sm:flex-row justify-between gap-y-4">
-                <div className="w-full sm:w-1/2 flex flex-col text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-right gap-y-2">
-                  <h1 className="text-[var(--bluetext)] dark:text-white text-sm text-center sm:text-right sm:border-r-2 sm:border-[var(--deepteal)] dark:sm:border-[var(--elecpurple)] sm:pr-2 font-semibold">
-                    Venz Joshua Nolasco
-                  </h1>
-                  <h1 className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-xs text-center sm:text-right font-semibold dark:font-medium italic">
-                    Wrote the paper in LaTeX format and annotated the data.
-                  </h1>
-                </div>
-                <div className="w-auto sm:w-1/2 items-center justify-center flex flex-col overflow-hidden">
-                  <div className="rounded-tr-full rounded-tl-full content-end bg-gradient-to-bl from-[var(--softcyan)] via-[var(--brightaqua)] to-[var(--deepteal)] dark:from-[var(--brimagenta)] dark:via-[var(--purgenta)] dark:to-[var(--elecpurple)]">
-                    <Image
-                      src={"/venz.png"}
-                      alt={"Venz Joshua Nolasco"}
-                      width={100}
-                      height={100}
-                      objectFit="cover"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>*/}
         </div>
       </div>
       <div className="h-full w-full flex flex-col sm:flex-row gap-4">

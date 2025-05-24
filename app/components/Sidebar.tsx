@@ -42,7 +42,7 @@ const Sidebar = () => {
       setIsCollapsed(window.innerWidth < 768);
     };
 
-    handleResize(); // Run on mount
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
@@ -76,7 +76,6 @@ const Sidebar = () => {
         </button>
       </div>
 
-      {/* Menu Items */}
       <nav className="mt-4">
         <SidebarItem
           href="../dashboard"
@@ -84,7 +83,6 @@ const Sidebar = () => {
           label="Home"
           isCollapsed={isCollapsed}
         />
-        {/*
         {!isCollapsed && (
           <h1 className="text-[var(--brightaqua)] dark:text-white font-semibold dark:font-medium text-sm pl-4 py-2">
             Real-Time Analysis
@@ -106,7 +104,7 @@ const Sidebar = () => {
           <h1 className="hidden lg:block text-[var(--brightaqua)] dark:text-white font-semibold dark:font-medium text-sm pl-4 py-2">
             Post-Event Analysis
           </h1>
-        )}*/}
+        )}
         <SidebarItem
           href="../dashboard/post-analytics"
           icon={<MdSpaceDashboard size={20} />}
@@ -119,6 +117,11 @@ const Sidebar = () => {
           label="Insights"
           isCollapsed={isCollapsed}
         />
+        {!isCollapsed && (
+          <h1 className="text-[var(--brightaqua)] dark:text-white font-semibold dark:font-medium text-sm pl-4 py-2">
+            Others
+          </h1>
+        )}
         <SidebarItem
           href="../dashboard/about"
           icon={<MdInfo size={20} />}
