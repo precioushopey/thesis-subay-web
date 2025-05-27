@@ -40,22 +40,18 @@ function LogInForm() {
       return;
     }
 
-    try {
-      const res = await signInWithEmailAndPassword(email, password);
-      if (res) {
-        router.push("/dashboard");
-      } else if (firebaseError) {
-        const msg = firebaseError.message;
-        if (msg.includes("auth/user-not-found")) {
-          setFieldErrors({ email: "No user found with that email." });
-        } else if (msg.includes("auth/wrong-password")) {
-          setFieldErrors({ password: "Incorrect password." });
-        } else {
-          setFieldErrors({ email: "Login failed. Please try again." });
-        }
+    const res = await signInWithEmailAndPassword(email, password);
+    if (res) {
+      router.push("/dashboard");
+    } else if (firebaseError) {
+      const msg = firebaseError.message;
+      if (msg.includes("auth/user-not-found")) {
+        setFieldErrors({ email: "No user found with that email." });
+      } else if (msg.includes("auth/wrong-password")) {
+        setFieldErrors({ password: "Incorrect password." });
+      } else {
+        setFieldErrors({ email: "Login failed. Please try again." });
       }
-    } catch (err) {
-      setFieldErrors({ email: "Unexpected error. Please try again later." });
     }
   };
 

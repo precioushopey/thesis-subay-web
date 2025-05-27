@@ -53,7 +53,7 @@ const HeatmappingPage = () => {
           presentation purposes during the final defense and to support live
           demonstrations when needed. As stated in the thesis, the scope of this
           study is limited to post-event analysis. Thus, real-time analytics are
-          not part of the system's official implementation.
+          not part of the system&apos;s official implementation.
         </p>
       </div>
     </div>

@@ -1,7 +1,6 @@
 "use client";
 import React, { useMemo } from "react";
 import { MdFlag } from "react-icons/md";
-import { pieChartData } from "@/app/lib/pieChartData";
 import {
   zoneAChartData,
   zoneBChartData,
