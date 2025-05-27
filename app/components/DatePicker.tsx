@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { pieChartData } from "@/app/lib/pieChartData";
 import { MdCalendarMonth, MdExpandMore } from "react-icons/md";
 import "react-datepicker/dist/react-datepicker.css";
 

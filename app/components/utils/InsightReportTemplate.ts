@@ -1,9 +1,25 @@
+interface Insights {
+  peakDay: string;
+  peakDayValue: number | string;
+  totalFootTraffic: number | string;
+  topAisle: string;
+  topAisleValue: number | string;
+  longestDwellZone: string;
+  longestDwellTime: number | string;
+  totalDwellTime: number | string;
+  averageDwellTime: number | string;
+  peakDayPercent: number | string;
+  topAislePercent: number | string;
+  zoneEngagementRate: number | string;
+  customerFlowEfficiency: number | string;
+  conclusions: string[];
+  recommendations: string[];
+}
+
 const HTMLTemplate = ({
   insights,
-  printJS,
 }: {
-  insights: any
-  printJS?: any;
+  insights: Insights;
 }) => {
   return `
     <!DOCTYPE html>

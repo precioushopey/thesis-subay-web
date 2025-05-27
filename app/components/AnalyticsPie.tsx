@@ -7,11 +7,17 @@ import { MdArrowOutward } from "react-icons/md";
 import { pieChartData } from "@/app/lib/pieChartData";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
+type ChartEntry = {
+  id: number;
+  date: string;
+  value: number;
+};
+
 const AnalyticsPieChart = ({ page }: { page: "analytics" | "insights" }) => {
+  const [hiddenDates] = useState<string[]>([]);
   const chartRef = useRef<HTMLDivElement>(null);
   const [chartHeight, setChartHeight] = useState<number>(300);
-  const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [hiddenDates, setHiddenDates] = useState<string[]>([]);
+  const [filteredData, setFilteredData] = useState<ChartEntry[]>([]);
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
   const COLORS_DARK = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF", "#A531FD"];
   const COLORS_LIGHT = ["#0B698B", "#0396A6", "#9CD3D8", "#3CC3DF", "#537FF1"];
@@ -93,7 +99,7 @@ const AnalyticsPieChart = ({ page }: { page: "analytics" | "insights" }) => {
         </h1>
         <div className="flex flex-row items-center gap-x-2 pb-5">
           <DatePicker onRangeChange={setDateRange} />
-          <ExpandButton label="Expand Pie Chart" chartType="pie" />
+          <ExpandButton chartType="pie" />
         </div>
       </div>
     );

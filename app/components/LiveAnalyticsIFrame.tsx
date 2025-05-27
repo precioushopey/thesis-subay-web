@@ -2,22 +2,27 @@
 import React, { useEffect, useRef } from "react";
 
 function LiveAnalyticsIFrame() {
-  const contentRef = useRef(null);
+  const contentRef = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
-    const iframe = contentRef.current as any;
+    const iframe = contentRef.current;
 
     const handleLoad = () => {
+      if (!iframe) return;
+
       const iframeDocument =
-        iframe.contentDocument || iframe.contentWindow.document;
-      iframeDocument.documentElement.scrollTop =
-        iframeDocument.documentElement.scrollHeight;
+        iframe.contentDocument || iframe.contentWindow?.document;
+
+      if (iframeDocument?.documentElement) {
+        iframeDocument.documentElement.scrollTop =
+          iframeDocument.documentElement.scrollHeight;
+      }
     };
 
-    iframe.addEventListener("load", handleLoad);
+    iframe?.addEventListener("load", handleLoad);
 
     return () => {
-      iframe.removeEventListener("load", handleLoad);
+      iframe?.removeEventListener("load", handleLoad);
     };
   }, []);
 

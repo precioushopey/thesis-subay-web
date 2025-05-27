@@ -6,11 +6,9 @@ import AnalyticsLineChart from "./AnalyticsLine";
 import { MdOpenInFull, MdClose } from "react-icons/md";
 
 const ExpandButton = ({
-  label,
   chartType,
   reload,
 }: {
-  label: string;
   chartType: "line" | "bar" | "pie";
   reload?: VoidFunction;
 }) => {

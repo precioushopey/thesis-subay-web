@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { format, parseISO } from "date-fns";
 import { pieChartData } from "@/app/lib/pieChartData";
 import PeakMetricsCard from "../components/PeakMetricsCard";
@@ -15,7 +14,7 @@ import {
 import AnalyticsPieChart from "../components/AnalyticsPie";
 import AnalyticsLineChart from "../components/AnalyticsLine";
 import AnalyticsBarChart from "../components/AnalyticsBar";
-import HomeLiveAnalyticsAnalysis from "../components/HomeLiveAnalyticsAnalysis";
+import AnalyticsCard from "../components/AnalyticsCard";
 
 const DashboardPage = () => {
   const uniqueDates = [
@@ -92,7 +91,13 @@ const DashboardPage = () => {
             </Link>
           </div>
           <div className="h-fit w-full border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md">
-            <video
+            <iframe
+              src="https://www.youtube.com/embed/BPizl9orHjs?playlist=BPizl9orHjs&loop=1&autoplay=1&mute=1&controls=0"
+              title="Re-Identification"
+              allow="autoplay; encrypted-media; accelerometer; mute; clipboard-write; gyroscope; picture-in-picture; web-share"
+              className="w-full aspect-[3/2] object-cover"
+            />
+            {/*<video
               controls
               preload="none"
               autoPlay
@@ -102,7 +107,7 @@ const DashboardPage = () => {
             >
               <source src="/re-id.mp4" type="video/mp4" />
               Your browser does not support the video tag.
-            </video>
+            </video>*/}
           </div>
         </div>
         <div className="h-full w-full sm:w-1/2 flex flex-col gap-4">
@@ -132,9 +137,9 @@ const DashboardPage = () => {
               </h1>
             </div>
           </div>
-          <div className="flex flex-row gap-x-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <PeakMetricsCard />
-            <HomeLiveAnalyticsAnalysis />
+            <AnalyticsCard />
             {/*<div className="w-full h-full flex flex-col gap-4 bg-white dark:bg-[var(--navyblue)] rounded-md p-4">
               <div className="flex flex-row justify-between">
                 <h1 className="font-semibold text-[var(--bluetext)] dark:text-white text-base">

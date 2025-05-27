@@ -13,10 +13,6 @@ import {
 
 const PeakMetricsCard: React.FC = () => {
   const { peakVisit, peakDwell } = useMemo(() => {
-    const peakDayEntry = pieChartData.reduce((max, curr) =>
-      curr.value > max.value ? curr : max
-    );
-
     const zoneMap = {
       "Aisle A": zoneAChartData,
       "Aisle B": zoneBChartData,

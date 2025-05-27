@@ -11,17 +11,22 @@ import {
   Rectangle,
 } from "recharts";
 
-const ZoneChart = ({ label, data }: { label: String; data: any }) => {
-  const COLORS_LIGHT = [
-    "#8979FF",
-    "#FF928A",
-    "#3CC3DF",
-    "#FFAE4C",
-    "#537FF1",
-    "#6FD195",
-  ];
-  const COLORS_DARK = ["#7F25FB", "#CB3CFF", "#0038FF", "#00C2FF"];
+type ZoneChartData = {
+  id: number;
+  date: string;
+  zone: string;
+  value: number;
+  visits: number;
+  dwell_time: number;
+};
 
+const ZoneChart = ({
+  label,
+  data,
+}: {
+  label: string;
+  data: ZoneChartData[];
+}) => {
   const [theme, setTheme] = useState<string>("dark");
 
   useEffect(() => {
@@ -41,8 +46,6 @@ const ZoneChart = ({ label, data }: { label: String; data: any }) => {
 
     return () => observer.disconnect();
   }, []);
-
-  const colors = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
 
   return (
     <div className="w-full h-[6rem]">

@@ -5,7 +5,7 @@ import DatePicker from "./DatePicker";
 import ChartHeight from "./ChartHeight";
 import ExpandButton from "./ExpandButton";
 import { lineChartData } from "@/app/lib/lineChartData";
-import { MdArrowOutward, MdLegendToggle } from "react-icons/md";
+import { MdArrowOutward } from "react-icons/md";
 import {
   LineChart,
   Line,
@@ -17,13 +17,24 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+type ChartEntry = {
+  id: number;
+  date: string;
+  zone: string;
+  value: number;
+};
+
+type AggregatedChartData = {
+  zone: string;
+  [date: string]: string | number;
+};
+
 const AnalyticsLineChart = ({ page }: { page: "analytics" | "insights" }) => {
   const chartHeight = ChartHeight(page);
+  const [hiddenDates] = useState<string[]>([]);
   const chartRef = useRef<HTMLDivElement>(null);
-  const [showLegend, setShowLegend] = useState(false);
-  const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [hiddenDates, setHiddenDates] = useState<string[]>([]);
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
+  const [filteredData, setFilteredData] = useState<ChartEntry[]>([]);
   const COLORS_DARK = ["#CB3CFF", "#7F25FB", "#0038FF", "#00C2FF"];
   const COLORS_LIGHT = ["#0396A6", "#0B698B", "#537FF1", "#3CC3DF", "#9CD3D8"];
 
@@ -47,6 +58,7 @@ const AnalyticsLineChart = ({ page }: { page: "analytics" | "insights" }) => {
   }, []);
 
   const colors = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
+
   useEffect(() => {
     if (dateRange.from && dateRange.to) {
       const fromDate = new Date(dateRange.from);
@@ -62,21 +74,17 @@ const AnalyticsLineChart = ({ page }: { page: "analytics" | "insights" }) => {
   }, [dateRange]);
 
   const finalChartData = Object.values(
-    filteredData.reduce((acc, { zone, date, value }) => {
-      if (!acc[zone]) acc[zone] = { zone };
-      acc[zone][date] = value;
-      return acc;
-    }, {} as Record<string, any>)
+    filteredData.reduce(
+      (acc: Record<string, AggregatedChartData>, { zone, date, value }) => {
+        if (!acc[zone]) {
+          acc[zone] = { zone };
+        }
+        acc[zone][date] = value;
+        return acc;
+      },
+      {}
+    )
   );
-
-  const handleLegendClick = (data: any) => {
-    const dateKey = data.value;
-    setHiddenDates((prev) =>
-      prev.includes(dateKey)
-        ? prev.filter((d) => d !== dateKey)
-        : [...prev, dateKey]
-    );
-  };
 
   const chartToolbar =
     page === "analytics" ? (
@@ -99,16 +107,10 @@ const AnalyticsLineChart = ({ page }: { page: "analytics" | "insights" }) => {
           <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
             Average Dwell Time per Aisle
           </h1>
-          <button
-            className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] transition duration-500 hover:scale-110"
-            onClick={() => setShowLegend(!showLegend)}
-          >
-            <MdLegendToggle size={16} />
-          </button>
         </div>
         <div className="flex flex-row items-center gap-x-2">
           <DatePicker onRangeChange={setDateRange} />
-          <ExpandButton label="Expand Line Chart" chartType="line" />
+          <ExpandButton chartType="line" />
         </div>
       </div>
     );
@@ -151,18 +153,15 @@ const AnalyticsLineChart = ({ page }: { page: "analytics" | "insights" }) => {
                 strokeWidth: 2,
               }}
             />
-            {showLegend && (
-              <Legend
-                align="center"
-                verticalAlign="bottom"
-                wrapperStyle={{
-                  paddingBottom: "10px",
-                  paddingLeft: "50px",
-                  color: theme === "dark" ? "#AEB9E1" : "#0B698B",
-                }}
-                onClick={handleLegendClick}
-              />
-            )}
+            <Legend
+              align="center"
+              verticalAlign="bottom"
+              wrapperStyle={{
+                paddingBottom: "10px",
+                paddingLeft: "50px",
+                color: theme === "dark" ? "#AEB9E1" : "#0B698B",
+              }}
+            />
             {[...new Set(filteredData.map((entry) => entry.date))].map(
               (date, index) => (
                 <Line
