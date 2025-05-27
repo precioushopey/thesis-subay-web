@@ -50,9 +50,9 @@ const AboutPage = () => {
             {/* Xyrus */}
             <div className="relative h-auto w-full sm:w-1/2 flex flex-col sm:flex-row sm:justify-between bg-white dark:bg-[var(--navyblue)] rounded-md overflow-hidden cursor-pointer">
               <a
-                href="https://drive.google.com/file/d/1SjSOFFw2YkY4AYmSiP3uTM3rx5z3holr/view?usp=sharing"
+                href="https://drive.google.com/file/d/1HiVoCt4xpYreHKzKaZIDsiCNrdC3bN2K/view?usp=sharing"
                 target="_blank"
-                className="absolute top-2 right-2 sm:left-2 hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)]"
+                className="absolute top-2 right-2 sm:left-2 hover:text-[var(--brightaqua)] dark:hover:text-[var(--elecpurple)]"
               >
                 <MdFileOpen />
               </a>
@@ -115,7 +115,7 @@ const AboutPage = () => {
             {/* Precious */}
             <div className="relative h-auto w-full sm:w-1/2 flex flex-col-reverse sm:flex-row sm:justify-between bg-white dark:bg-[var(--navyblue)] rounded-md cursor-pointer">
               <a
-                href="https://drive.google.com/file/d/1fVMen3I-UxacOr96W1iRcpvql7re7Fnb/view?usp=sharing"
+                href="https://drive.google.com/file/d/1a6xBQ8SLlQIqsPKs1xBa9YGMyfLzFtvu/view?usp=sharing"
                 target="_blank"
                 className="absolute top-2 right-2 hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)]"
               >
@@ -183,7 +183,7 @@ const AboutPage = () => {
             {/* Rezzelle */}
             <div className="relative h-auto w-full sm:w-1/2 flex flex-col sm:flex-row sm:justify-between bg-white dark:bg-[var(--navyblue)] rounded-md overflow-hidden cursor-pointer">
               <a
-                href="https://drive.google.com/file/d/1jWhLF6v_gLmK1iMHN98yU_9ZKsQM6SGv/view?usp=sharing"
+                href="https://drive.google.com/file/d/1Kq2zzOl5cewyv_FyE16q_vf9rLSb80uq/view?usp=sharing"
                 target="_blank"
                 className="absolute top-2 right-2 sm:left-2 hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)]"
               >
@@ -248,9 +248,9 @@ const AboutPage = () => {
             {/* Venz */}
             <div className="relative h-auto w-full sm:w-1/2 flex flex-col-reverse sm:flex-row sm:justify-between bg-white dark:bg-[var(--navyblue)] rounded-md cursor-pointer">
               <a
-                href="https://drive.google.com/file/d/1kLT_YEyvRRkdrwVNlE6EsAq-PrK4lxXt/view?usp=sharing"
+                href="https://drive.google.com/file/d/1TIdTGCMhYX7KU6r4eYsUuPCqmyopf0TB/view?usp=sharing"
                 target="_blank"
-                className="absolute top-2 right-2 hover:text-[var(--deepteal)] dark:hover:text-[var(--elecpurple)]"
+                className="absolute top-2 right-2 hover:text-[var(--brightaqua)] dark:hover:text-[var(--elecpurple)]"
               >
                 <MdFileOpen />
               </a>
@@ -319,6 +319,19 @@ const AboutPage = () => {
           </h1>
           <div className="w-full h-full flex flex-row gap-4">
             <a
+              href="https://drive.google.com/drive/folders/12gn-n3UZ6hknBrWxnxQckCFVgZoOPUHD?usp=sharing"
+              target="_blank"
+              className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
+            >
+              <MdFolder
+                size={80}
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] hover:text-[var(--softcyan)] dark:hover:text-[var(--elecpurple)]"
+              />
+              <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
+                Forms
+              </h1>
+            </a>
+            <a
               href="https://drive.google.com/drive/folders/14a525Pv3JAnF4DZfYlW6Jwkta8R8IT0X?usp=sharing"
               target="_blank"
               className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
@@ -329,6 +342,19 @@ const AboutPage = () => {
               />
               <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
                 Manuscript
+              </h1>
+            </a>
+            <a
+              href="https://drive.google.com/drive/folders/1uVtsx3FYA7yijR9BFoUFCDzuColrp6AO?usp=sharing"
+              target="_blank"
+              className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
+            >
+              <MdFolder
+                size={80}
+                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] hover:text-[var(--softcyan)] dark:hover:text-[var(--elecpurple)]"
+              />
+              <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
+                Photos
               </h1>
             </a>
             <a
@@ -345,19 +371,6 @@ const AboutPage = () => {
               </h1>
             </a>
             <a
-              href="https://drive.google.com/drive/folders/12gn-n3UZ6hknBrWxnxQckCFVgZoOPUHD?usp=sharing"
-              target="_blank"
-              className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
-            >
-              <MdFolder
-                size={80}
-                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] hover:text-[var(--softcyan)] dark:hover:text-[var(--elecpurple)]"
-              />
-              <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
-                Forms
-              </h1>
-            </a>
-            <a
               href="https://drive.google.com/drive/folders/1NUJSGNTBZnumRdwIPY3dWcsqb2-KhSP6?usp=sharing"
               target="_blank"
               className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
@@ -368,19 +381,6 @@ const AboutPage = () => {
               />
               <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
                 Videos
-              </h1>
-            </a>
-            <a
-              href="https://drive.google.com/drive/folders/1uVtsx3FYA7yijR9BFoUFCDzuColrp6AO?usp=sharing"
-              target="_blank"
-              className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
-            >
-              <MdFolder
-                size={80}
-                className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] hover:text-[var(--softcyan)] dark:hover:text-[var(--elecpurple)]"
-              />
-              <h1 className="-mt-2 text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)] hover:text-[var(--deepteal)] dark:hover:text-white">
-                Photos
               </h1>
             </a>
           </div>

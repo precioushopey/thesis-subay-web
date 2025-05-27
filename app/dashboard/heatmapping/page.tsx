@@ -3,7 +3,18 @@ import React from "react";
 const HeatmappingPage = () => {
   return (
     <div className="w-full h-fit flex flex-col gap-4 p-4 -mt-5 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
-      <div className="w-full h-full flex flex-col sm:flex-row bg-white dark:bg-[var(--navyblue)] rounded-md gap-4 p-4">
+      <video
+        controls
+        preload="none"
+        autoPlay
+        loop
+        muted
+        className="w-full h-full rounded-md object-cover"
+      >
+        <source src="/heatmapping.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      {/*<div className="w-full h-full flex flex-col sm:flex-row bg-white dark:bg-[var(--navyblue)] rounded-md gap-4 p-4">
         <div className="h-full w-[1/2] flex flex-col gap-y-4">
           <h1 className="font-semibold text-base">Camera Feed</h1>
           <div className="relative pb-[56%] overflow-hidden h-full sm:h-[363.333px] w-full sm:w-[545px] border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md">
@@ -26,7 +37,7 @@ const HeatmappingPage = () => {
             </iframe>
           </div>
         </div>
-      </div>
+      </div>*/}
     </div>
   );
 };
