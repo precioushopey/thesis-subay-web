@@ -1,5 +1,4 @@
 "use client";
-import printJS from "print-js";
 import { MdInsights } from "react-icons/md";
 import { generateInsights } from "./utils/generateInsights";
 import { HTMLTemplate } from "./utils/InsightReportTemplate";
