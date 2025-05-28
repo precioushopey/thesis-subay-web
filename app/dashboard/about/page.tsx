@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { MdEmail, MdFacebook, MdFileOpen, MdFolder } from "react-icons/md";
 import { AiFillInstagram } from "react-icons/ai";
+import { MdEmail, MdFacebook, MdFileOpen, MdFolder } from "react-icons/md";
 
 const AboutPage = () => {
   return (

@@ -7,7 +7,7 @@ import { HTMLTemplate } from "./utils/InsightReportTemplate";
 const ExportButton = () => {
   const generateReport = async () => {
     const insights = await generateInsights();
-    const htmlString = HTMLTemplate({ insights, printJS });
+    const htmlString = HTMLTemplate({ insights });
 
     const reportWindow = window.open("insight-report", "_blank");
     if (reportWindow) {

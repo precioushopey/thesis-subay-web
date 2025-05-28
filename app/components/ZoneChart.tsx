@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import {
-  BarChart,
   Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
-  ResponsiveContainer,
+  BarChart,
   Rectangle,
+  CartesianGrid,
+  ResponsiveContainer,
 } from "recharts";
 
 type ZoneChartData = {

@@ -52,7 +52,6 @@ const PeakMetricsCard: React.FC = () => {
           {peakVisit}
         </h1>
       </div>
-
       <div className="w-full h-full flex flex-col items-start bg-white dark:bg-[var(--navyblue)] rounded-md gap-y-2 p-4">
         <div className="flex flex-row items-center gap-x-2 font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)]">
           <MdFlag size={18} />

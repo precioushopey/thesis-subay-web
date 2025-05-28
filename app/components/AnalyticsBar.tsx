@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState, useMemo, useEffect } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import ZoneChart from "./ZoneChart";
 import DatePicker from "./DatePicker";
@@ -17,14 +17,14 @@ import {
   zoneFChartData,
 } from "@/app/lib/zoneChartData";
 import {
-  BarChart,
   Bar,
-  Rectangle,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
   Legend,
+  Tooltip,
+  BarChart,
+  Rectangle,
+  CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
 
@@ -34,10 +34,34 @@ type AggregatedData = {
   dwell_time: number;
 };
 
+type ZoneChartData = {
+  id: number;
+  date: string;
+  zone: string;
+  value: number;
+  visits: number;
+  dwell_time: number;
+};
+
 const AnalyticsBarChart = ({ page }: { page: "analytics" | "insights" }) => {
   const chartHeight = ChartHeight(page);
   const chartRef = useRef<HTMLDivElement>(null);
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
+  const [theme, setTheme] = useState<string>("dark");
+  useEffect(() => {
+    const getCurrentTheme = () =>
+      document.documentElement.classList.contains("dark") ? "dark" : "light";
+    setTheme(getCurrentTheme());
+    const observer = new MutationObserver(() => {
+      setTheme(getCurrentTheme());
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
+  }, []);
+
   const [filteredData, setFilteredData] = useState<AggregatedData[]>(() => {
     const initialAggregatedData: Record<
       string,
@@ -58,21 +82,6 @@ const AnalyticsBarChart = ({ page }: { page: "analytics" | "insights" }) => {
       dwell_time: values.dwell_time,
     }));
   });
-
-  const [theme, setTheme] = useState<string>("dark");
-  useEffect(() => {
-    const getCurrentTheme = () =>
-      document.documentElement.classList.contains("dark") ? "dark" : "light";
-    setTheme(getCurrentTheme());
-    const observer = new MutationObserver(() => {
-      setTheme(getCurrentTheme());
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    return () => observer.disconnect();
-  }, []);
 
   const filterAndAggregateData = (
     from: string,
@@ -235,7 +244,7 @@ const AnalyticsBarChart = ({ page }: { page: "analytics" | "insights" }) => {
           </h1>
           <div className="flex flex-row items-center gap-x-2">
             <DatePicker onRangeChange={setDateRange} />
-            <ExpandButton label="Expand Bar Chart" chartType="bar" />
+            <ExpandButton chartType="bar" />
           </div>
         </div>
         <div className="text-[10px] h-full -mt-2 px-4">
@@ -301,12 +310,20 @@ const AnalyticsBarChart = ({ page }: { page: "analytics" | "insights" }) => {
         <div className="w-full h-full flex flex-col rounded-b-md bg-white dark:bg-[var(--navyblue)] gap-4 px-4 pb-4">
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4">
             {firstThree.map(([label, data]) => (
-              <ZoneChart key={label} label={label} data={data} />
+              <ZoneChart
+                key={label}
+                label={label}
+                data={data as ZoneChartData[]}
+              />
             ))}
           </div>
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4">
             {remaining.map(([label, data]) => (
-              <ZoneChart key={label} label={label} data={data} />
+              <ZoneChart
+                key={label}
+                label={label}
+                data={data as ZoneChartData[]}
+              />
             ))}
           </div>
         </div>

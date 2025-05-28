@@ -77,7 +77,6 @@ export async function generateInsights() {
     conclusions.push(
       `The store is currently underperforming, with only an average of ${avgDailyFootTraffic} daily foot traffic and an average<br>dwell time of ${avgCustomerDwellTime} minutes. This suggests low customer engagement and insufficient time spent per visit.`
     );
-  
     recommendations.push(
       `Re-evaluate the product layout in low-traffic aisles such as ${lowAisle}, which received significantly less<br>attention. Consider reorganizing shelf positions or moving popular items nearby to draw traffic.`,
       `Introduce targeted promotions in low-performing zones. For example, bundle<br>complementary items or provide discounts in ${lowAisle} to encourage movement and exploration.`,
@@ -89,7 +88,6 @@ export async function generateInsights() {
     conclusions.push(
       `The store is performing well, recording an average of ${avgDailyFootTraffic} daily foot traffic with an average dwell<br>time of ${avgCustomerDwellTime} minutes. This indicates healthy foot traffic and meaningful customer engagement.`
     );
-  
     recommendations.push(
       `Leverage the success of ${topAisle}, which accounted for ${topAislePercent}% of all foot traffic.<br>Place new or high-margin products here to maximize visibility and drive sales.`,
       `Study the characteristics of ${longestDwellZone}, where customers spent an average of ${longestDwellAverage} minutes. Identify what makes this<br>zone engaging, such as layout, product type, or sensory elements, and replicate it in other underperforming zones.`,
@@ -117,9 +115,7 @@ export async function generateInsights() {
     lowAisleValue,
     lowAverageDwellAisle,
     lowAverageDwellAisleValue,
-
     avgCustomerDwellTime,
-
     zoneEngagementRate,
     customerFlowEfficiency,
   };

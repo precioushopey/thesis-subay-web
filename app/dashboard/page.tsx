@@ -2,6 +2,10 @@ import React from "react";
 import Link from "next/link";
 import { format, parseISO } from "date-fns";
 import { pieChartData } from "@/app/lib/pieChartData";
+import AnalyticsCard from "../components/AnalyticsCard";
+import AnalyticsBarChart from "../components/AnalyticsBar";
+import AnalyticsPieChart from "../components/AnalyticsPie";
+import AnalyticsLineChart from "../components/AnalyticsLine";
 import PeakMetricsCard from "../components/PeakMetricsCard";
 import {
   MdVideocam,
@@ -11,10 +15,6 @@ import {
   MdDateRange,
   MdArrowOutward,
 } from "react-icons/md";
-import AnalyticsPieChart from "../components/AnalyticsPie";
-import AnalyticsLineChart from "../components/AnalyticsLine";
-import AnalyticsBarChart from "../components/AnalyticsBar";
-import AnalyticsCard from "../components/AnalyticsCard";
 
 const DashboardPage = () => {
   const uniqueDates = [

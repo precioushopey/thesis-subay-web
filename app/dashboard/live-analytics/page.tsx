@@ -9,7 +9,6 @@ const LiveAnalyticsPage = () => {
         allow="autoplay; encrypted-media; accelerometer; mute; clipboard-write; gyroscope; picture-in-picture; web-share"
         className="w-full aspect-[120/61] object-cover rounded-md"
       />
-
       {/*<video
         controls
         preload="none"

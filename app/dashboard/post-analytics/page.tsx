@@ -1,7 +1,7 @@
 import React from "react";
-import AnalyticsLineChart from "../../components/AnalyticsLine";
 import AnalyticsBarChart from "../../components/AnalyticsBar";
 import AnalyticsPieChart from "../../components/AnalyticsPie";
+import AnalyticsLineChart from "../../components/AnalyticsLine";
 
 const PostAnalyticsPage = () => {
   return (

@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
+import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { auth } from "@/app/firebase/config";
 import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { z } from "zod";
 
 const loginSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email format"),
@@ -71,7 +71,6 @@ function LogInForm() {
       {fieldErrors.email && (
         <p className="text-red-500 text-xs">{fieldErrors.email}</p>
       )}
-
       <label>Password</label>
       <div className="relative w-full">
         <input
@@ -90,11 +89,9 @@ function LogInForm() {
           {showPassword ? <RxEyeClosed size={20} /> : <RxEyeOpen size={20} />}
         </button>
       </div>
-
       {fieldErrors.password && (
         <p className="text-red-500 text-xs">{fieldErrors.password}</p>
       )}
-
       <button
         type="submit"
         disabled={loading}

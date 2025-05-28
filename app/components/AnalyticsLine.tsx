@@ -4,16 +4,16 @@ import Link from "next/link";
 import DatePicker from "./DatePicker";
 import ChartHeight from "./ChartHeight";
 import ExpandButton from "./ExpandButton";
-import { lineChartData } from "@/app/lib/lineChartData";
 import { MdArrowOutward } from "react-icons/md";
+import { lineChartData } from "@/app/lib/lineChartData";
 import {
-  LineChart,
   Line,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
   Legend,
+  Tooltip,
+  LineChart,
+  CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
 

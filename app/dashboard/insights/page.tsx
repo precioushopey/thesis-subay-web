@@ -1,8 +1,8 @@
 import React from "react";
-import PeakMetricsCard from "../../components/PeakMetricsCard";
 import AnalyticsBarChart from "../../components/AnalyticsBar";
 import AnalyticsPieChart from "../../components/AnalyticsPie";
 import AnalyticsLineChart from "../../components/AnalyticsLine";
+import PeakMetricsCard from "../../components/PeakMetricsCard";
 
 const AnalyticsPage = () => {
   return (
