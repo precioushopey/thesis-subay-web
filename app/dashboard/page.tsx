@@ -6,7 +6,6 @@ import AnalyticsCard from "../components/AnalyticsCard";
 import AnalyticsBarChart from "../components/AnalyticsBar";
 import AnalyticsPieChart from "../components/AnalyticsPie";
 import AnalyticsLineChart from "../components/AnalyticsLine";
-import PeakMetricsCard from "../components/PeakMetricsCard";
 import {
   MdVideocam,
   MdBubbleChart,
@@ -76,13 +75,13 @@ const DashboardPage = () => {
         </div>
       </div>
       <div className="w-full flex flex-col sm:flex-row gap-4">
-        <div className="w-full sm:w-1/2 flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md gap-y-4 p-4">
+        <div className="w-full sm:w-2/3 flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md gap-y-4 p-4">
           <div className="flex flex-row justify-between">
             <h1 className="font-semibold text-[var(--bluetext)] dark:text-white text-base">
-              Camera Feed
+              Introducing, SUBAY...
             </h1>
             <Link
-              href={"/dashboard/live-analytics"}
+              href={"/dashboard/about"}
               className="flex flex-row items-center gap-x-2"
             >
               <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110">
@@ -92,10 +91,10 @@ const DashboardPage = () => {
           </div>
           <div className="h-fit w-full border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md">
             <iframe
-              src="https://www.youtube.com/embed/BPizl9orHjs?playlist=BPizl9orHjs&loop=1&autoplay=1&mute=1&controls=0"
+              src="https://www.youtube.com/embed/SwW-KC5U4Zo?playlist=SwW-KC5U4Zo&loop=1&autoplay=1&controls=0"
               title="Re-Identification"
               allow="autoplay; encrypted-media; accelerometer; mute; clipboard-write; gyroscope; picture-in-picture; web-share"
-              className="w-full aspect-[3/2] object-cover"
+              className="w-full aspect-[16/9] object-cover"
             />
             {/*<video
               controls
@@ -138,7 +137,6 @@ const DashboardPage = () => {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
-            <PeakMetricsCard />
             <AnalyticsCard />
             {/*<div className="w-full h-full flex flex-col gap-4 bg-white dark:bg-[var(--navyblue)] rounded-md p-4">
               <div className="flex flex-row justify-between">
