@@ -1,25 +1,29 @@
 import React from "react";
 import Image from "next/image";
+import Carousel from "@/app/components/Carousel";
 import { AiFillInstagram } from "react-icons/ai";
 import { MdEmail, MdFacebook, MdFileOpen, MdFolder } from "react-icons/md";
 
 const AboutPage = () => {
+  const images = ["/best_thesis.jpg", "/best_prototype.jpg"];
+
   return (
     <div className="w-full h-full flex flex-col sm:flex-row gap-4 p-4 -mt-4 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
       {/* LEFT */}
-      <div className="w-full lg:w-1/2 h-auto flex flex-col gap-4">
+      <div className="w-full h-auto flex flex-col gap-4">
         {/* ABOUT US */}
         <div className="sm:h-2/3 h-auto w-full flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md p-4">
-          <h1 className="font-semibold text-base pb-2">The Team</h1>
+          <h1 className="font-semibold text-base pb-2">
+            We were awarded at{" "}
+            <a
+              target="_blank"
+              href="https://www.facebook.com/share/p/1C7Sh36BhL/"
+            >
+              <u>CONVERGE 2025: CpE Research Colloquium!</u>
+            </a>
+          </h1>
           <div className="w-full relative mx-auto h-auto overflow-hidden rounded-lg cursor-pointer border-2 border-[var(--brightaqua)] dark:border-[var(--brimagenta)]">
-            <Image
-              src={"/group.jpg"}
-              alt={"Group Picture"}
-              width={520}
-              height={520}
-              objectFit="cover"
-              className="w-full h-auto relative z-0 rounded-lg overflow-hidden transition-all duration-300 hover:scale-110"
-            />
+            <Carousel images={images} />
           </div>
         </div>
         {/* SUBAY */}
@@ -136,7 +140,7 @@ const AboutPage = () => {
                       target="_blank"
                       className="hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)] flex flex-col"
                     >
-                      <p>precious@gmail.com</p>
+                      <p>hope@gmail.com</p>
                     </a>
                     <MdEmail className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] text-xs" />
                   </li>
@@ -156,7 +160,7 @@ const AboutPage = () => {
                       target="_blank"
                       className="hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)]"
                     >
-                      @yourprecioushope
+                      @urprecioushope
                     </a>
                     <AiFillInstagram className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] text-xs" />
                   </li>
@@ -219,7 +223,7 @@ const AboutPage = () => {
                       target="_blank"
                       className="hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)] flex flex-col"
                     >
-                      <p>rezzelle@gmail.com</p>
+                      <p>rezze@gmail.com</p>
                     </a>
                   </li>
                   <li className="flex flex-row items-center gap-1">
@@ -314,14 +318,14 @@ const AboutPage = () => {
         </div>
         {/* FILES */}
         <div className="sm:h-1/3 h-auto w-full flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md p-4 overflow-x-auto cursor-pointer">
-          <h1 className="font-semibold text-[var(--bluetext)] dark:text-white text-base pb-2">
+          <h1 className="font-semibold text-[var(--bluetext)] dark:text-white text-base">
             Files
           </h1>
           <div className="w-full h-full flex flex-row gap-4">
             <a
               href="https://drive.google.com/drive/folders/12gn-n3UZ6hknBrWxnxQckCFVgZoOPUHD?usp=sharing"
               target="_blank"
-              className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
+              className="w-full h-full flex flex-col items-center justify-center cursor-pointer transform hover:scale-110"
             >
               <MdFolder
                 size={80}
@@ -334,7 +338,7 @@ const AboutPage = () => {
             <a
               href="https://drive.google.com/drive/folders/14a525Pv3JAnF4DZfYlW6Jwkta8R8IT0X?usp=sharing"
               target="_blank"
-              className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
+              className="w-full h-full flex flex-col items-center justify-center cursor-pointer transform hover:scale-110"
             >
               <MdFolder
                 size={80}
@@ -347,7 +351,7 @@ const AboutPage = () => {
             <a
               href="https://drive.google.com/drive/folders/1uVtsx3FYA7yijR9BFoUFCDzuColrp6AO?usp=sharing"
               target="_blank"
-              className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
+              className="w-full h-full flex flex-col items-center justify-center cursor-pointer transform hover:scale-110"
             >
               <MdFolder
                 size={80}
@@ -360,7 +364,7 @@ const AboutPage = () => {
             <a
               href="https://drive.google.com/drive/folders/1rUXT1j-NJffT7yyJWYjSG3DQSMosU-Z2?usp=sharing"
               target="_blank"
-              className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
+              className="w-full h-full flex flex-col items-center justify-center cursor-pointer transform hover:scale-110"
             >
               <MdFolder
                 size={80}
@@ -373,7 +377,7 @@ const AboutPage = () => {
             <a
               href="https://drive.google.com/drive/folders/1NUJSGNTBZnumRdwIPY3dWcsqb2-KhSP6?usp=sharing"
               target="_blank"
-              className="w-full h-full flex flex-col items-center justify-center -mt-2 cursor-pointer transform hover:scale-110"
+              className="w-full h-full flex flex-col items-center justify-center cursor-pointer transform hover:scale-110"
             >
               <MdFolder
                 size={80}
