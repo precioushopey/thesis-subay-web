@@ -27,7 +27,7 @@ function AnalyticsCard() {
   }, []);
 
   return (
-    <div className="h-full w-full flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md gap-y-4 p-4">
+    <div className="card gap-y-4">
       <div className="flex flex-row justify-between">
         <h1 className="font-semibold text-base text-[var(--bluetext)] dark:text-white">
           Analysis
@@ -36,43 +36,36 @@ function AnalyticsCard() {
           href={"/dashboard/insights"}
           className="flex flex-row items-center gap-x-2"
         >
-          <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110">
+          <button className="link-button">
             <MdArrowOutward size={16} className="text-white" />
           </button>
         </Link>
       </div>
+
       <div className="w-full flex flex-col sm:flex-row gap-4">
-        <div className="w-full flex flex-col items-center justify-center bg-transparent border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md p-4">
-          <h1 className="font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-sm">
-            Total Foot Traffic
-          </h1>
-          <h1 className="text-center text-[var(--bluetext)] dark:text-white text-3xl font-semibold">
+        <div className="cells w-full items-center justify-center">
+          <h1 className="descriptions text-sm">Total Foot Traffic</h1>
+          <h1 className="header text-3xl">
             {insights ? insights.totalFootTraffic : "..."}
           </h1>
         </div>
-        <div className="w-full flex flex-col items-center justify-center bg-transparent border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md p-4">
-          <h1 className="font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-sm">
-            Total Aisle Visits
-          </h1>
-          <h1 className="text-center text-[var(--bluetext)] dark:text-white text-3xl font-semibold">
+        <div className="cells w-full items-center justify-center">
+          <h1 className="descriptions text-sm">Total Aisle Visits</h1>
+          <h1 className="header text-3xl">
             {insights ? insights.totalAisleTraffic : "..."}
           </h1>
         </div>
       </div>
       <div className="w-full flex flex-col sm:flex-row gap-4">
-        <div className="w-full flex flex-col items-center justify-center bg-transparent border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md p-4">
-          <h1 className="font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-sm">
-            Total Dwell Time
-          </h1>
-          <h1 className="text-center text-[var(--bluetext)] dark:text-white text-3xl font-semibold">
+        <div className="cells w-full items-center justify-center">
+          <h1 className="descriptions text-sm">Total Dwell Time</h1>
+          <h1 className="header text-3xl">
             {insights ? insights.totalDwellTime : "..."} mins
           </h1>
         </div>
-        <div className="w-full flex flex-col items-center justify-center bg-transparent border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md p-4">
-          <h1 className="font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-sm">
-            Average Dwell Time
-          </h1>
-          <h1 className="text-center text-[var(--bluetext)] dark:text-white text-3xl font-semibold">
+        <div className="cells w-full items-center justify-center">
+          <h1 className="descriptions text-sm">Average Dwell Time</h1>
+          <h1 className="header text-3xl">
             {insights ? insights.averageDwellTime : "..."} mins
           </h1>
         </div>

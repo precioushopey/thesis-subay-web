@@ -10,7 +10,8 @@ const prompt = Prompt({
 
 export const metadata: Metadata = {
   title: "SUBAY",
-  description: "An Undergraduate Thesis",
+  description:
+    "An Undergraduate Thesis by Dominguez, Jumuad, Nolasco, and Onahon",
   icons: {
     icon: "/light_logo.png",
   },

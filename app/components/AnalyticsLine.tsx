@@ -89,13 +89,11 @@ const AnalyticsLineChart = ({ page }: { page: "analytics" | "insights" }) => {
   const chartToolbar =
     page === "analytics" ? (
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-          Avg. Dwell Time
-        </h1>
+        <h1 className="header-text">Avg. Dwell Time</h1>
         <div className="flex flex-row items-center gap-x-2">
           <DatePicker onRangeChange={setDateRange} />
           <Link href={"/dashboard/insights"}>
-            <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transition duration-500 hover:scale-110">
+            <button className="link-button">
               <MdArrowOutward size={16} className="text-white" />
             </button>
           </Link>
@@ -104,9 +102,7 @@ const AnalyticsLineChart = ({ page }: { page: "analytics" | "insights" }) => {
     ) : (
       <div className="flex flex-col sm:flex-row items-center justify-between gap-y-2">
         <div className="flex flex-row gap-x-2">
-          <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-            Average Dwell Time per Aisle
-          </h1>
+          <h1 className="header-text">Average Dwell Time per Aisle</h1>
         </div>
         <div className="flex flex-row items-center gap-x-2">
           <DatePicker onRangeChange={setDateRange} />

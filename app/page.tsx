@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="w-full h-screen flex flex-row items-center justify-center gap-10 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
+    <main className="w-full h-screen flex items-center justify-center gap-10 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white font-medium">
       <>
         <Image
           src="/light_logo.png"
@@ -22,7 +22,7 @@ export default function Home() {
         />
       </>
       <div className="flex flex-col">
-        <div className="flex flex-row gap-x-1.5">
+        <div className="flex gap-1.5">
           <h1 className="text-6xl font-bold italic">SUBAY</h1>
           <h1 className="text-6xl font-bold text-[var(--deepteal)] dark:text-[var(--cyanblue)]">
             .

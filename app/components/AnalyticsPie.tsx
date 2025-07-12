@@ -80,13 +80,11 @@ const AnalyticsPieChart = ({ page }: { page: "analytics" | "insights" }) => {
   const chartToolbar =
     page === "analytics" ? (
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-          Total Foot Traffic
-        </h1>
+        <h1 className="header-text">Total Foot Traffic</h1>
         <div className="flex flex-row items-center gap-x-2">
           <DatePicker onRangeChange={setDateRange} />
           <Link href={"/dashboard/insights"}>
-            <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transition duration-500 hover:scale-110">
+            <button className="link-button">
               <MdArrowOutward size={16} className="text-white" />
             </button>
           </Link>
@@ -94,9 +92,7 @@ const AnalyticsPieChart = ({ page }: { page: "analytics" | "insights" }) => {
       </div>
     ) : (
       <div className="flex flex-row justify-between">
-        <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
-          Total Foot Traffic
-        </h1>
+        <h1 className="header-text">Total Foot Traffic</h1>
         <div className="flex flex-row items-center gap-x-2 pb-5">
           <DatePicker onRangeChange={setDateRange} />
           <ExpandButton chartType="pie" />
@@ -150,10 +146,8 @@ const AnalyticsPieChart = ({ page }: { page: "analytics" | "insights" }) => {
             </PieChart>
           </ResponsiveContainer>
           <div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center mt-2">
-            <h1 className="font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-xs">
-              Total
-            </h1>
-            <h1 className=" text-[var(--bluetext)] dark:text-white font-semibold text-2xl">
+            <h1 className="descriptions text-xs">Total</h1>
+            <h1 className="header-text text-2xl">
               {filteredData.reduce((sum, entry) => sum + entry.value, 0)}
             </h1>
           </div>

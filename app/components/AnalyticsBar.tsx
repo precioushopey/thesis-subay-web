@@ -160,14 +160,14 @@ const AnalyticsBarChart = ({ page }: { page: "analytics" | "insights" }) => {
         style={{ height: chartHeight }}
       >
         <div className="flex flex-row items-center justify-between">
-          <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
+          <h1 className="header-text">
             Aisle-Based Foot Traffic and Dwell Time
           </h1>
           <Link
             href={"/dashboard/insights"}
             className="flex flex-row items-center gap-x-2"
           >
-            <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110">
+            <button className="link-button">
               <MdArrowOutward size={16} className="text-white" />
             </button>
           </Link>
@@ -236,10 +236,10 @@ const AnalyticsBarChart = ({ page }: { page: "analytics" | "insights" }) => {
     ) : (
       <div
         ref={chartRef}
-        className="relative h-full rounded-md bg-white dark:bg-[var(--navyblue)] py-4"
+        className="relative h-full bg-white dark:bg-[var(--navyblue)] rounded-md py-4"
       >
         <div className="flex flex-col sm:flex-row items-center justify-between gap-y-2 px-4">
-          <h1 className="text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm">
+          <h1 className="header-text">
             Aisle-Based Foot Traffic and Dwell Time
           </h1>
           <div className="flex flex-row items-center gap-x-2">
@@ -307,7 +307,7 @@ const AnalyticsBarChart = ({ page }: { page: "analytics" | "insights" }) => {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <div className="w-full h-full flex flex-col rounded-b-md bg-white dark:bg-[var(--navyblue)] gap-4 px-4 pb-4">
+        <div className="card gap-4">
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4">
             {firstThree.map(([label, data]) => (
               <ZoneChart

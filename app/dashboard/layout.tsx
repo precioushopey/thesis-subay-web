@@ -10,10 +10,10 @@ export default function DashboardLayout({
 }) {
   return (
     <AuthGuard>
-      <div className="flex flex-row">
+      <div className="flex">
         <Sidebar />
         <div className="w-full flex flex-col">
-          <div className="flex flex-row justify-between">
+          <div className="flex justify-between">
             <Topbar />
           </div>
           {children}

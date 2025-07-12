@@ -43,8 +43,8 @@ const PeakMetricsCard: React.FC = () => {
 
   return (
     <div className="w-full md:w-1/3 h-full flex flex-col gap-4">
-      <div className="w-full h-full flex flex-col items-start bg-white dark:bg-[var(--navyblue)] rounded-md gap-y-2 p-4">
-        <div className="flex flex-row items-center gap-x-2 font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)]">
+      <div className="card h-full items-start gap-y-2">
+        <div className="descriptions text-sm flex flex-row items-center gap-x-2">
           <MdFlag size={18} />
           <h1 className="text-sm">Peak Visit Aisle</h1>
         </div>
@@ -52,8 +52,8 @@ const PeakMetricsCard: React.FC = () => {
           {peakVisit}
         </h1>
       </div>
-      <div className="w-full h-full flex flex-col items-start bg-white dark:bg-[var(--navyblue)] rounded-md gap-y-2 p-4">
-        <div className="flex flex-row items-center gap-x-2 font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)]">
+      <div className="card h-full items-start gap-y-2">
+        <div className="descriptions text-sm flex flex-row items-center gap-x-2">
           <MdFlag size={18} />
           <h1 className="text-sm">Peak Dwell Aisle</h1>
         </div>

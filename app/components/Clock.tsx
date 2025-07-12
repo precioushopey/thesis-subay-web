@@ -27,7 +27,7 @@ const Clock = () => {
       <h1 className="font-bold text-[var(--bluetext)] dark:text-white text-4xl">
         {ctime}
       </h1>
-      <div className="flex flex-row gap-x-2 font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)] text-xs">
+      <div className="descriptions flex flex-row gap-x-2 text-xs">
         <h1>{format(new Date(), "eeee")}, </h1>
         <h1>{format(new Date(), "MMM dd, yyyy")}</h1>
       </div>

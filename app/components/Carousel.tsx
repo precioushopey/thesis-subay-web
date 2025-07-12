@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
-import Image from "next/image";
 
 interface CarouselProps {
   images: string[];
@@ -47,12 +46,10 @@ const Carousel: React.FC<CarouselProps> = ({
                 : "opacity-0 z-0 absolute inset-0"
             }`}
           >
-            <Image
+            <img
               src={image}
               alt="Best Thesis and Best Prototype Win"
-              width={850}
-              height={730}
-              className="w-full h-auto rounded-md"
+              className="w-full aspect-[85/73] object-cover rounded-lg cursor-pointer border-2 border-[var(--brightaqua)] dark:border-[var(--brimagenta)]"
             />
           </div>
         ))}

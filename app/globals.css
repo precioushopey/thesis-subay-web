@@ -50,3 +50,126 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+@layer utilities {
+  .container {
+    @apply w-full flex flex-col gap-4 p-4 -mt-4 font-[family-name:var(--font-prompt)]
+    selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] font-medium text-base
+    selection:text-[var(--deepteal)] dark:selection:text-white text-[var(--bluetext)] dark:text-white;
+  }
+}
+
+@layer utilities {
+  .card {
+    @apply w-full flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md p-4;
+  }
+}
+
+@layer utilities {
+  .link-button {
+    @apply rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)]
+    transform transition duration-500 hover:scale-110;
+  }
+}
+
+@layer utilities {
+  .links {
+    @apply flex items-center justify-center transform transition
+    duration-500 hover:scale-110 hover:animate-pulse gap-4;
+  }
+}
+
+@layer utilities {
+  .contributor {
+    @apply leading-tight relative w-full sm:w-1/2 flex flex-col sm:flex-row sm:justify-between
+    bg-white dark:bg-[var(--navyblue)] rounded-md overflow-hidden cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .cv-boy {
+    @apply absolute top-2 right-2 hover:text-[var(--brightaqua)] dark:hover:text-[var(--elecpurple)];
+  }
+}
+
+@layer utilities {
+  .cv-girl {
+    @apply absolute top-2 right-2 hover:text-[var(--brightaqua)] dark:hover:text-[var(--brimagenta)];
+  }
+}
+
+@layer utilities {
+  .background-boy {
+    @apply h-3/4 rounded-tr-full rounded-tl-full content-end from-[var(--softcyan)] 
+    via-[var(--brightaqua)] to-[var(--deepteal)] dark:from-[var(--brimagenta)] 
+    dark:via-[var(--purgenta)] dark:to-[var(--elecpurple)];
+  }
+}
+
+@layer utilities {
+  .background-girl {
+    @apply h-3/4 rounded-tr-full rounded-tl-full content-end from-[var(--deepteal)]
+    via-[var(--brightaqua)] to-[var(--softcyan)] dark:from-[var(--elecpurple)]
+    dark:via-[var(--purgenta)] dark:to-[var(--brimagenta)];
+  }
+}
+
+@layer utilities {
+  .profile-info {
+    @apply w-full sm:w-1/2 flex flex-col place-content-between
+    text-[var(--bluetext)] dark:text-[var(--periwinkle)] p-2;
+  }
+}
+
+@layer utilities {
+  .profile-header-boy {
+    @apply text-[var(--bluetext)] dark:text-white text-[10px] text-center 
+    sm:border-[var(--deepteal)] dark:sm:border-[var(--elecpurple)];
+  }
+}
+
+@layer utilities {
+  .profile-header-girl {
+    @apply text-[var(--bluetext)] dark:text-white text-[10px] text-center 
+    sm:border-[var(--brightaqua)] dark:sm:border-[var(--brimagenta)];
+  }
+}
+
+@layer utilities {
+  .profile-description {
+    @apply text-[var(--bluetext)] dark:text-[var(--periwinkle)]
+    font-semibold dark:font-medium italic text-[10px] text-center;
+  }
+}
+
+@layer utilities {
+  .contact-list {
+    @apply flex flex-wrap sm:flex-col justify-center gap-x-4 sm:gap-0
+    text-[10px] font-light text-[var(--bluetext)] dark:text-white;
+  }
+}
+
+@layer utilities {
+  .header-text {
+    @apply text-[var(--bluetext)] dark:text-white font-semibold dark:font-medium text-sm;
+  }
+}
+
+@layer utilities {
+  .descriptions {
+    @apply font-semibold dark:font-medium text-[var(--brightaqua)] dark:text-[var(--periwinkle)];
+  }
+}
+
+@layer utilities {
+  .header {
+    @apply text-[var(--bluetext)] dark:text-white text-center font-semibold;
+  }
+}
+
+@layer utilities {
+  .cells {
+    @apply flex flex-col bg-transparent border rounded-md p-4
+    border-[var(--bluetext)] dark:border-[var(--periwinkle)];
+  }
+}
+

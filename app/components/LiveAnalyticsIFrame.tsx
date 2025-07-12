@@ -27,7 +27,7 @@ function LiveAnalyticsIFrame() {
   }, []);
 
   return (
-    <div className="h-full sm:h-[570px] w-full sm:w-[805px] flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md gap-y-4 p-4">
+    <div className="card h-full sm:h-[570px] sm:w-[805px] gap-y-4">
       <h1 className="font-semibold text-base">Live Analytics</h1>
       <div className="h-full border flex items-center justify-center rounded-md">
         <iframe

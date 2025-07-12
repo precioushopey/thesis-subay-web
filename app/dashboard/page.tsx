@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import React, { JSX } from "react";
 import { format, parseISO } from "date-fns";
 import { pieChartData } from "@/app/lib/pieChartData";
 import AnalyticsCard from "../components/AnalyticsCard";
@@ -14,6 +14,44 @@ import {
   MdDateRange,
   MdArrowOutward,
 } from "react-icons/md";
+
+type DashboardCard = {
+  label: string;
+  href: string;
+  icon: JSX.Element;
+  gradient: string;
+};
+
+const dashboardCards: DashboardCard[] = [
+  {
+    label: "Live Analytics",
+    href: "../dashboard/live-analytics",
+    icon: <MdVideocam size={24} />,
+    gradient:
+      "bg-gradient-to-r from-[var(--deepteal)] via-[var(--deepteal)] to-[var(--brightaqua)] dark:from-[var(--cyanblue)] dark:via-[var(--cyanblue)] dark:to-[var(--royalblue)]",
+  },
+  {
+    label: "Heatmapping",
+    href: "../dashboard/heatmapping",
+    icon: <MdBubbleChart size={24} />,
+    gradient:
+      "bg-gradient-to-r from-[var(--brightaqua)] via-[var(--softblue)] to-[var(--softblue)] dark:from-[var(--royalblue)] dark:via-[var(--royalblue)] dark:to-[var(--elecpurple)]",
+  },
+  {
+    label: "Post Analytics",
+    href: "../dashboard/post-analytics",
+    icon: <MdSpaceDashboard size={20} />,
+    gradient:
+      "bg-gradient-to-r from-[var(--softblue)] via-[var(--softcyan)] to-[var(--softcyan)] dark:from-[var(--elecpurple)] dark:via-[var(--elecpurple)] dark:to-[var(--purgenta)]",
+  },
+  {
+    label: "Insights",
+    href: "../dashboard/insights",
+    icon: <MdInsights size={20} />,
+    gradient:
+      "bg-gradient-to-r from-[var(--softcyan)] via-[var(--cyanblue)] to-[var(--cyanblue)] dark:from-[var(--purgenta)] dark:via-[var(--brimagenta)] dark:to-[var(--brimagenta)]",
+  },
+];
 
 const DashboardPage = () => {
   const uniqueDates = [
@@ -35,60 +73,38 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="w-full h-full flex flex-col gap-4 p-4 -mt-4 font-[family-name:var(--font-prompt)] selection:bg-[var(--softcyan)] dark:selection:bg-[var(--elecpurple)] selection:text-[var(--deepteal)] dark:selection:text-white text-white text-base font-medium">
-      <div className="flex flex-col sm:flex-row gap-4">
-        <div className="w-full rounded-md text-center font-semibold p-8 bg-gradient-to-r from-[var(--deepteal)] via-[var(--deepteal)] to-[var(--brightaqua)] dark:from-[var(--cyanblue)] dark:via-[var(--cyanblue)] dark:to-[var(--royalblue)] cursor-pointer">
-          <Link
-            href={"../dashboard/live-analytics"}
-            className="flex flex-row items-center justify-center transform transition duration-500 hover:scale-110 hover:animate-pulse gap-x-4"
-          >
-            <MdVideocam size={24} />
-            Live Analytics
-          </Link>
-        </div>
-        <div className="w-full rounded-md text-center font-semibold p-8 bg-gradient-to-r from-[var(--brightaqua)] via-[var(--softblue)] to-[var(--softblue)] dark:from-[var(--royalblue)] dark:via-[var(--royalblue)] dark:to-[var(--elecpurple)] cursor-pointer">
-          <Link
-            href={"../dashboard/heatmapping"}
-            className="flex flex-row items-center justify-center transform transition duration-500 hover:scale-110 hover:animate-pulse gap-x-4"
-          >
-            <MdBubbleChart size={24} />
-            Heatmapping
-          </Link>
-        </div>
-        <div className="w-full rounded-md text-center font-semibold p-8 bg-gradient-to-r from-[var(--softblue)] via-[var(--softcyan)] to-[var(--softcyan)] dark:from-[var(--elecpurple)] dark:via-[var(--elecpurple)] dark:to-[var(--purgenta)] cursor-pointer">
-          <Link
-            href={"../dashboard/post-analytics"}
-            className="flex flex-row items-center justify-center transform transition duration-500 hover:scale-110 hover:animate-pulse gap-x-4"
-          >
-            <MdSpaceDashboard size={20} />
-            Post Analytics
-          </Link>
-        </div>
-        <div className="w-full rounded-md text-center font-semibold p-8 bg-gradient-to-r from-[var(--softcyan)] via-[var(--cyanblue)] to-[var(--cyanblue)] dark:from-[var(--purgenta)] dark:via-[var(--brimagenta)] dark:to-[var(--brimagenta)] cursor-pointer">
-          <Link
-            href={"../dashboard/insights"}
-            className="flex flex-row items-center justify-center transform transition duration-500 hover:scale-110 hover:animate-pulse gap-x-4"
-          >
-            <MdInsights size={20} />
-            Insights
-          </Link>
-        </div>
+    <section className="container">
+      <div className="flex flex-col lg:flex-row gap-4">
+        {[0, 1].map((row) => (
+          <div key={row} className="w-full flex flex-col sm:flex-row gap-4">
+            {dashboardCards.slice(row * 2, row * 2 + 2).map((card) => (
+              <div
+                key={card.href}
+                className={`w-full rounded-md text-white text-center font-semibold p-8 cursor-pointer ${card.gradient}`}
+              >
+                <Link href={card.href} className="links">
+                  {card.icon}
+                  {card.label}
+                </Link>
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
-      <div className="w-full flex flex-col sm:flex-row gap-4">
-        <div className="w-full sm:w-2/3 flex flex-col bg-white dark:bg-[var(--navyblue)] rounded-md gap-y-4 p-4">
-          <div className="flex flex-row justify-between">
-            <h1 className="font-semibold text-[var(--bluetext)] dark:text-white text-base">
+
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="card lg:w-2/3 gap-4">
+          <div className="flex justify-between">
+            <h2 className="font-semibold text-[var(--bluetext)] dark:text-white">
               Introducing, SUBAY...
-            </h1>
-            <Link
-              href={"/dashboard/about"}
-              className="flex flex-row items-center gap-x-2"
-            >
-              <button className="rounded-md p-1 bg-[var(--softcyan)] dark:bg-[var(--brimagenta)] transform transition duration-500 hover:scale-110">
+            </h2>
+            <Link href={"/dashboard/about"} className="flex items-center gap-2">
+              <button className="link-button">
                 <MdArrowOutward size={16} className="text-white" />
               </button>
             </Link>
           </div>
+
           <div className="h-fit w-full border border-[var(--bluetext)] dark:border-[var(--periwinkle)] rounded-md">
             <iframe
               src="https://www.youtube.com/embed/SwW-KC5U4Zo?playlist=SwW-KC5U4Zo&loop=1&autoplay=1&controls=0"
@@ -96,63 +112,45 @@ const DashboardPage = () => {
               allow="autoplay; encrypted-media; accelerometer; mute; clipboard-write; gyroscope; picture-in-picture; web-share"
               className="w-full aspect-[16/9] object-cover"
             />
-            {/*<video
-              controls
-              preload="none"
-              autoPlay
-              loop
-              muted
-              className="w-full object-cover"
-            >
-              <source src="/re-id.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>*/}
           </div>
         </div>
-        <div className="h-full w-full sm:w-1/2 flex flex-col gap-4">
-          <div className="h-full w-full flex flex-col sm:flex-row gap-4">
-            <div className="h-full w-full sm:w-1/2 flex flex-col items-center justify-center bg-white dark:bg-[var(--navyblue)] rounded-md gap-2 p-4">
-              <div className="flex flex-row items-center justify-center gap-x-3">
+
+        <div className="w-fulll lg:w-1/2 flex flex-col gap-4">
+          <div className="w-full flex flex-col md:flex-row gap-4">
+            <div className="card lg:w-1/2 items-center justify-center gap-2">
+              <div className="flex items-center justify-center gap-3">
                 <span className="relative flex size-3">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                  <span className="absolute inline-flex w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
                   <span className="relative inline-flex size-3 rounded-full bg-red-500"></span>
                 </span>
-                <h1 className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-center text-sm">
+                <h3 className="text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-sm">
                   Live Cameras
-                </h1>
+                </h3>
               </div>
-              <div className="text-center text-base font-semibold text-[var(--bluetext)] dark:text-white">
-                <h1>Camera 02 → Camera 05</h1>
-                <h1>Camera 03 ← Camera 09</h1>
+              <div className="header">
+                <h2>Camera 02 → Camera 05</h2>
+                <h2>Camera 03 ← Camera 09</h2>
               </div>
             </div>
-            <div className="h-full w-full sm:w-1/2 flex flex-col items-center justify-center bg-white dark:bg-[var(--navyblue)] rounded-md gap-2 p-4">
-              <span className="flex flex-row text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-center text-sm gap-x-2">
+
+            <div className="card lg:w-1/2 items-center justify-center gap-2">
+              <div className="flex text-[var(--bluetext)] dark:text-[var(--periwinkle)] text-center text-sm gap-2">
                 <MdDateRange size={18} className="animate-pulse" />
-                Available Dates for Analysis
-              </span>
-              <h1 className="text-center text-2xl font-semibold text-[var(--bluetext)] dark:text-white px-4">
-                {formattedDateRange}
-              </h1>
+                <h3>Available Dates for Analysis</h3>
+              </div>
+              <h2 className="header text-2xl">{formattedDateRange}</h2>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <AnalyticsCard />
-          </div>
+          <AnalyticsCard />
         </div>
       </div>
-      <div className="h-full w-full flex flex-col sm:flex-row gap-4">
-        <div className="h-full w-full sm:w-1/3">
-          <AnalyticsPieChart page="analytics" />
-        </div>
-        <div className="h-full w-full sm:w-1/3">
-          <AnalyticsLineChart page="analytics" />
-        </div>
-        <div className="h-full w-full sm:w-1/3">
-          <AnalyticsBarChart page="analytics" />
-        </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <AnalyticsPieChart page="analytics" />
+        <AnalyticsLineChart page="analytics" />
+        <AnalyticsBarChart page="analytics" />
       </div>
-    </div>
+    </section>
   );
 };
 
