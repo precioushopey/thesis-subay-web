@@ -48,18 +48,14 @@ const PeakMetricsCard: React.FC = () => {
           <MdFlag size={18} />
           <h1 className="text-sm">Peak Visit Aisle</h1>
         </div>
-        <h1 className="items-center justify-center text-[var(--bluetext)] dark:text-white text-2xl font-semibold">
-          {peakVisit}
-        </h1>
+        <h1 className="metrics-card">{peakVisit}</h1>
       </div>
       <div className="card h-full items-start gap-y-2">
         <div className="descriptions text-sm flex flex-row items-center gap-x-2">
           <MdFlag size={18} />
           <h1 className="text-sm">Peak Dwell Aisle</h1>
         </div>
-        <h1 className="items-center justify-center text-[var(--bluetext)] dark:text-white text-2xl font-semibold">
-          {peakDwell}
-        </h1>
+        <h1 className="metrics-card">{peakDwell}</h1>
       </div>
     </div>
   );

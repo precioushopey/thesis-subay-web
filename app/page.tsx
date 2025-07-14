@@ -42,7 +42,7 @@ export default function Home() {
         </h1>
         <Link
           href="/login"
-          className="w-fit rounded-full transform transition duration-500 hover:scale-110 bg-[var(--brightaqua)] dark:bg-[var(--brimagenta)] hover:bg-[var(--softblue)] dark:hover:bg-[var(--purgenta)] font-semibold text-white text-sm py-2 px-10 mt-8"
+          className="button w-fit rounded-full transform transition duration-500 hover:scale-110 font-semibold py-2 px-10 mt-8"
         >
           Log In Here
         </Link>

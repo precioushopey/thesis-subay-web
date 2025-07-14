@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
-interface CarouselProps {
+type CarouselProps = {
   images: string[];
   autoSlide?: boolean;
   autoSlideInterval?: number;
-}
+};
 
 const Carousel: React.FC<CarouselProps> = ({
   images,
@@ -55,16 +55,10 @@ const Carousel: React.FC<CarouselProps> = ({
         ))}
       </div>
 
-      <button
-        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gradient-to-r from-[var(--brightaqua)] to-[var(--softcyan)] dark:from-[var(--elecpurple)] dark:to-[var(--brimagenta)] text-white rounded-full p-2"
-        onClick={prevSlide}
-      >
+      <button className="next-btn left-2" onClick={prevSlide}>
         <MdNavigateBefore size={20} />
       </button>
-      <button
-        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gradient-to-r from-[var(--brightaqua)] to-[var(--softcyan)] dark:from-[var(--elecpurple)] dark:to-[var(--brimagenta)] text-white rounded-full p-2"
-        onClick={nextSlide}
-      >
+      <button className="next-btn right-2" onClick={nextSlide}>
         <MdNavigateNext size={20} />
       </button>
     </div>

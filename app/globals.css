@@ -135,6 +135,18 @@ body {
 }
 
 @layer utilities {
+  .icon-style-boy {
+    @apply text-[var(--deepteal)] dark:text-[var(--elecpurple)] text-xs;
+  }
+}
+
+@layer utilities {
+  .icon-style-girl {
+    @apply text-[var(--brightaqua)] dark:text-[var(--brimagenta)] text-xs;
+  }
+}
+
+@layer utilities {
   .profile-description {
     @apply text-[var(--bluetext)] dark:text-[var(--periwinkle)]
     font-semibold dark:font-medium italic text-[10px] text-center;
@@ -173,3 +185,49 @@ body {
   }
 }
 
+@layer utilities {
+  .next-btn {
+    @apply absolute top-1/2 transform -translate-y-1/2 bg-gradient-to-r
+    from-[var(--brightaqua)] to-[var(--softcyan)] dark:from-[var(--elecpurple)]
+    dark:to-[var(--brimagenta)] text-white rounded-full p-2;
+  }
+}
+
+@layer utilities {
+  .date-picker {
+    @apply appearance-none rounded-md bg-white dark:bg-[var(--navyblue)] cursor-pointer
+    border-[var(--background)] hover:text-[var(--deepteal)] dark:hover:text-white p-1;
+  }
+}
+
+@layer utilities {
+  .date-btn {
+    @apply bg-[var(--offwhite)] dark:bg-[var(--darkbg)] rounded-md gap-2;
+  }
+}
+
+@layer utilities {
+  .login {
+    @apply border-2 border-[var(--softcyan)] dark:border-[var(--periwinkle)] rounded-md;
+  }
+}
+
+@layer utilities {
+  .form-inputs {
+    @apply py-2 pl-4 bg-transparent focus:outline focus:outline-[var(--brightaqua)] dark:focus:outline-[var(--brimagenta)];
+  }
+}
+
+@layer utilities {
+  .button {
+    @apply bg-[var(--brightaqua)] dark:bg-[var(--brimagenta)] text-white 
+    hover:bg-[var(--softblue)] dark:hover:bg-[var(--purgenta)] text-sm;
+  }
+}
+
+@layer utilities {
+  .metrics-card {
+    @apply items-center justify-center text-[var(--bluetext)] dark:text-white text-2xl font-semibold;
+  }
+}
+ 

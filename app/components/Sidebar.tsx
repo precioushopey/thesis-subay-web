@@ -13,12 +13,12 @@ import {
   MdInfo,
 } from "react-icons/md";
 
-interface SidebarItemProps {
+type SidebarItemProps = {
   href: string;
   icon: JSX.Element;
   label: string;
   isCollapsed: boolean;
-}
+};
 
 const SidebarItem = ({ href, icon, label, isCollapsed }: SidebarItemProps) => {
   return (

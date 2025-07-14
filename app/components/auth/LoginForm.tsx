@@ -66,7 +66,7 @@ function LogInForm() {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="py-2 pl-4 bg-transparent border-2 border-[var(--softcyan)] dark:border-[var(--periwinkle)] rounded-md focus:outline focus:outline-[var(--brightaqua)] dark:focus:outline-[var(--brimagenta)]"
+        className="login form-inputs"
       />
       {fieldErrors.email && (
         <p className="text-red-500 text-xs">{fieldErrors.email}</p>
@@ -78,7 +78,7 @@ function LogInForm() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full py-2 pl-4 pr-10 bg-transparent border-2 border-[var(--softcyan)] dark:border-[var(--periwinkle)] rounded-md focus:outline focus:outline-[var(--brightaqua)] dark:focus:outline-[var(--brimagenta)]"
+          className="login form-inputs w-full pr-10"
           required
         />
         <button
@@ -95,7 +95,7 @@ function LogInForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-md bg-[var(--brightaqua)] dark:bg-[var(--brimagenta)] hover:bg-[var(--softblue)] dark:hover:bg-[var(--purgenta)] text-white text-sm p-2 mt-4"
+        className="button w-full rounded-md p-2 mt-4"
       >
         {loading ? "Logging in..." : "Log In here"}
       </button>

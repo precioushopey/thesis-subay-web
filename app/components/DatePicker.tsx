@@ -101,7 +101,7 @@ const DatePicker = ({
     <div className="relative text-xs text-[var(--bluetext)] dark:text-[var(--periwinkle)]">
       <button
         onClick={togglePicker}
-        className="flex items-center gap-2 bg-[var(--offwhite)] dark:bg-[var(--darkbg)] px-3 py-1.5 rounded-md hover:brightness-120 transition"
+        className="date-btn flex items-center px-3 py-1.5 hover:brightness-120 transition"
       >
         <MdCalendarMonth size={14} />
         <span className="hover:text-[var(--deepteal)] dark:hover:text-white">
@@ -111,7 +111,7 @@ const DatePicker = ({
       </button>
 
       {showPicker && (
-        <div className="absolute top-8 right-0 z-10 flex flex-col sm:flex-row items-end gap-2 bg-[var(--offwhite)] dark:bg-[var(--darkbg)] p-2 rounded-md shadow-lg">
+        <div className="date-btn absolute top-8 right-0 z-10 flex flex-col sm:flex-row items-end p-2 shadow-lg">
           <div className="flex flex-col">
             <label className="mb-1">From</label>
             <input
@@ -126,7 +126,7 @@ const DatePicker = ({
                 }
                 setFromDate(newFrom);
               }}
-              className="appearance-none rounded-md bg-white dark:bg-[var(--navyblue)] border-[var(--background)] hover:text-[var(--deepteal)] dark:hover:text-white p-1 cursor-pointer"
+              className="date-picker"
             />
           </div>
           <div className="flex flex-col">
@@ -137,7 +137,7 @@ const DatePicker = ({
               min={fromDate}
               max={maxDate}
               onChange={(e) => setToDate(e.target.value)}
-              className="appearance-none rounded-md bg-white dark:bg-[var(--navyblue)] border-[var(--background)] hover:text-[var(--deepteal)] dark:hover:text-white p-1 cursor-pointer"
+              className="date-picker"
             />
           </div>
           <button

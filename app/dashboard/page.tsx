@@ -3,9 +3,6 @@ import React, { JSX } from "react";
 import { format, parseISO } from "date-fns";
 import { pieChartData } from "@/app/lib/pieChartData";
 import AnalyticsCard from "../components/AnalyticsCard";
-import AnalyticsBarChart from "../components/AnalyticsBar";
-import AnalyticsPieChart from "../components/AnalyticsPie";
-import AnalyticsLineChart from "../components/AnalyticsLine";
 import {
   MdVideocam,
   MdBubbleChart,
@@ -143,12 +140,6 @@ const DashboardPage = () => {
           </div>
           <AnalyticsCard />
         </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <AnalyticsPieChart page="analytics" />
-        <AnalyticsLineChart page="analytics" />
-        <AnalyticsBarChart page="analytics" />
       </div>
     </section>
   );

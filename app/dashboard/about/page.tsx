@@ -20,92 +20,68 @@ type FileItem = {
 const allContactLinks: Record<string, ContactLink[]> = {
   xyrus: [
     {
-      icon: (
-        <MdEmail className="text-[var(--deepteal)] dark:text-[var(--elecpurple)] text-xs" />
-      ),
+      icon: <MdEmail className="icon-style-boy" />,
       href: "mailto:dominguez.xyrusvincent1@gmail.com",
       label: "xyrus@gmail.com",
     },
     {
-      icon: (
-        <MdFacebook className="text-[var(--deepteal)] dark:text-[var(--elecpurple)] text-xs" />
-      ),
+      icon: <MdFacebook className="icon-style-boy" />,
       href: "https://www.facebook.com/XVLDM",
       label: "Xyrus Dominguez",
     },
     {
-      icon: (
-        <AiFillInstagram className="text-[var(--deepteal)] dark:text-[var(--elecpurple)] text-xs" />
-      ),
+      icon: <AiFillInstagram className="icon-style-boy" />,
       href: "https://www.instagram.com/xyeuuuuusss/",
       label: "@xyeuuuuusss",
     },
   ],
   precious: [
     {
-      icon: (
-        <MdEmail className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] text-xs" />
-      ),
+      icon: <MdEmail className="icon-style-girl" />,
       href: "mailto:jumuad.precious@gmail.com",
       label: "hope@gmail.com",
     },
     {
-      icon: (
-        <MdFacebook className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] text-xs" />
-      ),
+      icon: <MdFacebook className="icon-style-girl" />,
       href: "https://www.facebook.com/precioushope.jumuad",
       label: "Precious Jumuad",
     },
     {
-      icon: (
-        <AiFillInstagram className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] text-xs" />
-      ),
+      icon: <AiFillInstagram className="icon-style-girl" />,
       href: "https://www.instagram.com/yourprecioushope/",
       label: "@urprecioushope",
     },
   ],
   rezzelle: [
     {
-      icon: (
-        <MdEmail className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] text-xs" />
-      ),
+      icon: <MdEmail className="icon-style-girl" />,
       href: "mailto:rezzelleonahon@gmail.com",
       label: "rezze@gmail.com",
     },
     {
-      icon: (
-        <MdFacebook className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] text-xs" />
-      ),
+      icon: <MdFacebook className="icon-style-girl" />,
       href: "https://www.facebook.com/rezzelleliesh.onahon",
       label: "Rezzelle Onahon",
     },
     {
-      icon: (
-        <AiFillInstagram className="text-[var(--brightaqua)] dark:text-[var(--brimagenta)] text-xs" />
-      ),
+      icon: <AiFillInstagram className="icon-style-girl" />,
       href: "https://www.instagram.com/_rrreezzelle/",
       label: "@_rrreezzelle",
     },
   ],
   venz: [
     {
-      icon: (
-        <MdEmail className="text-[var(--deepteal)] dark:text-[var(--elecpurple)] text-xs" />
-      ),
+      icon: <MdEmail className="icon-style-boy" />,
       href: "mailto:vjnolasco0510@gmail.com",
       label: "venz@gmail.com",
     },
     {
-      icon: (
-        <MdFacebook className="text-[var(--deepteal)] dark:text-[var(--elecpurple)] text-xs" />
-      ),
+      icon: <MdFacebook className="icon-style-boy" />,
       href: "https://www.facebook.com/vnzjshnlsc",
       label: "Venz Nolasco",
     },
     {
-      icon: (
-        <AiFillInstagram className="text-[var(--deepteal)] dark:text-[var(--elecpurple)] text-xs" />
-      ),
+      icon: <AiFillInstagram className="icon-style-boy" />,
       href: "https://www.instagram.com/vnzjshnlsc/",
       label: "@vnzjshnlsc",
     },
